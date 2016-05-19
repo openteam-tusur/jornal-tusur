@@ -18,7 +18,6 @@
 /config/database.yml
 /config/deploy.yml
 /config/settings.yml
-/config/secrets.yml
 /log/*
 /public/system/*
 /vendor/bundle

@@ -1,0 +1,31 @@
+app:
+  domain:               domain
+  name:                 name
+  url:                  url
+  host:                 host
+  secret:               secret
+
+errors:
+  key:                  key
+  url:                  url
+
+redis:
+  url:                  url
+
+redis_user_connector:
+  url:                  url
+
+session_store:
+  db:                   db
+  key_prefix:           key_prefix
+  host:                 host
+  port:                 port
+
+profile:
+  url:                  url
+  sign_in_url:          sign_in_url
+  sign_out_url:         sign_out_url
+  users_url:            users_url
+
+storage:
+  url:                  url
