@@ -1,66 +1,80 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>We're sorry, but something went wrong (500)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-  body {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+<html lang="ru">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Внутренняя ошибка сервера — Ошибка 500</title>
+    <link href="/assets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/application.js"></script>
+  </head>
 
-  div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+  <body class="error-page" role="document">
+    <div class="tusur_header_wrapper">
+      <div class="navbar navbar-inverse navbar-fixed-top navbar-desktop" role="navigation" id="menu_first">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/"></a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Сайты ТУСУР<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="https://tusur.ru">Официальный сайт университета</a></li>
+                  <li><a href="https://directory.tusur.ru">Телефонный справочник</a></li>
+                  <li><a href="https://abiturient.tusur.ru">Абитуриентам</a></li>
+                  <li><a href="https://magistrant.tusur.ru">Магистрантам</a></li>
+                  <li><a href="https://timetable.tusur.ru">Расписание занятий</a></li>
+                  <li><a href="https://edu.tusur.ru">Научно-образовательный портал</a></li>
+                  <li><a href="https://attendance.tusur.ru">Журнал посещаемости</a></li>
+                  <li><a href="https://gpo.tusur.ru">Групповое проектное обучение</a></li>
+                  <li><a href="https://workprogram.tusur.ru">Генератор рабочих программ</a></li>
+                  <li><a href="http://re.tusur.ru">Газета «Радиоэлектроник»</a></li>
+                </ul>
+              </li>
+            </ul>
 
-  div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+          </div>
+        </div>
+      </div>
 
-  h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+      <div class="navbar navbar-inverse navbar-fixed-top navbar-mobile" role="navigation" id="menu_mobile">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle mobile-toggler" data-toggle="collapse" data-target="#site-menu">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"></a>
+          </div>
+        </div>
+      </div>
 
-  div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-  </style>
-</head>
-
-<body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <div>
-      <h1>We're sorry, but something went wrong.</h1>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
-</body>
+
+    <div class="container" role="main">
+      <div class="error">
+        <div class="error-image error-500"></div>
+
+        <div class="error-text">
+          <p>
+            На сервере произошла внутренняя ошибка и сервер не смог обработать Ваш запрос
+          </p>
+
+          <p>
+            Не стоит беспокоиться &ndash; служба поддержки уже получила сообщение об ошибке и в ближайшее время устранит причину.
+          </p>
+
+          <p>
+            <a href="/">На главную страницу</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
 </html>
