@@ -12,13 +12,7 @@
   <body>
     <%= render partial: 'navigation' %>
     <div class='container'>
-      <% if content_for? :page_header %>
-      <div class='row'>
-        <div class='col-xs-12'>
-          <h1><%= yield(:page_header).squish %></h1>
-        </div>
-      </div>
-      <% end %>
+      <%= render partial: 'page_header' if content_for? :page_header %>
       <%= render partial: 'flash' %>
       <%= yield %>
     </div>

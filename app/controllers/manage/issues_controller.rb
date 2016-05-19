@@ -22,7 +22,7 @@ class Manage::IssuesController < Manage::ApplicationController
 
   def update
     if @issue.update(issue_params)
-      redirect_to [:manage, @issue], alert: 'Номер журнала изменён.'
+      redirect_to [:manage, @issue], notice: 'Номер журнала изменён.'
     else
       render :edit
     end
