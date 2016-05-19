@@ -170,6 +170,8 @@ GEM
     netrc (0.11.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    non-stupid-digest-assets (1.0.8)
+      sprockets (>= 2.0)
     openteam-capistrano (1.0.12)
       airbrake (~> 3.1.16)
       capistrano (~> 3.1)
@@ -312,6 +314,7 @@ DEPENDENCIES
   gravtastic
   jquery-rails
   letter_opener
+  non-stupid-digest-assets
   openteam-capistrano (~> 1.0.11)
   pg
   rails (~> 4.2.6)
