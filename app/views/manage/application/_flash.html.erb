@@ -1,0 +1,8 @@
+<% if notice || alert %>
+  <div class='row'>
+    <div class='col-xs-12'>
+      <%= content_tag :div, notice, class: 'alert alert-info', role: :alert if notice %>
+      <%= content_tag :div, alert, class: 'alert alert-warning', role: :alert if alert %>
+    </div>
+  </div>
+<% end %>

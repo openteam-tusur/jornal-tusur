@@ -3,3 +3,13 @@ ru:
 
   app:
     title: 'Журнал «Доклады ТУСУР»'
+
+  activerecord:
+
+    attributes:
+
+      issue:
+        year: 'Год'
+        number: 'Номер'
+        part: 'Часть'
+        through_number: 'Сквозной номер'

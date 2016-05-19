@@ -2,7 +2,7 @@
 <html lang='<%= I18n.locale %>'>
   <head>
     <meta charset='UTF-8'>
-    <title><%= I18n.t('app_name') %></title>
+    <title><%= "#{yield(:page_header).squish} — " if content_for? :page_header %><%= I18n.t('app_name') %></title>
     <%= favicon_link_tag %>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <%= stylesheet_link_tag    'manage/application', media: 'all', 'data-turbolinks-track' => true %>
@@ -10,7 +10,18 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= render 'navigation' %>
-    <%= yield %>
+    <%= render partial: 'navigation' %>
+    <div class='container'>
+      <% if content_for? :page_header %>
+      <div class='row'>
+        <div class='col-xs-12'>
+          <h1><%= yield(:page_header).squish %></h1>
+        </div>
+      </div>
+      <% end %>
+      <%= render partial: 'flash' %>
+      <%= yield %>
+    </div>
+    <%= render partial: 'development' %>
   </body>
 </html>

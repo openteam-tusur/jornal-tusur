@@ -1,0 +1,24 @@
+<% content_for :page_header, 'Номера журнала' %>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <p>
+      <%= link_to 'Новый номер', new_manage_issue_path, class: 'btn btn-default' %>
+    </p>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <% @issues.group_by(&:year).each do |year, issues| %>
+      <h3><%= year %> год</h3>
+      <ul>
+        <% issues.each do |issue| %>
+          <li>
+            <%= link_to issue.full_number, [:manage, issue] %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

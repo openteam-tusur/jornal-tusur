@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   namespace :manage do
-    root 'application#index'
+    resources :issues
+    root 'issues#index'
   end
 
   root 'welcome#index'

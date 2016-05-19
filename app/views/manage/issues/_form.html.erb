@@ -1,0 +1,31 @@
+<div class='row'>
+  <%= simple_form_for [:manage, @issue] do |f| %>
+    <%= f.error_notification %>
+
+    <div class='form-inputs'>
+      <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
+        <%= f.input :year, autofocus: true %>
+      </div>
+      <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
+        <%= f.input :number %>
+      </div>
+      <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
+        <%= f.input :part %>
+      </div>
+      <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
+        <%= f.input :through_number %>
+      </div>
+    </div>
+
+    <div class='form-actions col-xs-12'>
+      <%= f.button :submit, 'Сохранить', class: 'btn-success' %>
+      <% if @issue.new_record? %>
+        <%= link_to 'назад', manage_issues_path, class: 'btn btn-default' %>
+      <% else %>
+        <%= link_to 'назад', [:manage, @issue], class: 'btn btn-default' %>
+        <%= link_to 'удалить', [:manage, @issue], method: :delete, data: { confirm: 'Вы уверены?' },
+          class: 'btn btn-default pull-right' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
