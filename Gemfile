@@ -24,7 +24,9 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development do
   gem 'annotate'
+  gem 'capistrano-auth-subscriber'
   gem 'letter_opener'
+  gem 'openteam-capistrano', '~> 1.0.11'
   gem 'rubocop'
   gem 'spring'
   gem 'web-console', '~> 2.0'
