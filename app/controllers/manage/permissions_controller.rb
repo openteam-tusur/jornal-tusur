@@ -1,5 +1,7 @@
 class Manage::PermissionsController < Manage::ApplicationController
 
+  load_and_authorize_resource
+
   def index
     @permissions = Permission.all
   end

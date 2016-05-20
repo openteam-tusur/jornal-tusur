@@ -3,6 +3,8 @@ require 'rack/cache'
 
 class Manage::UsersController < Manage::ApplicationController
 
+  load_and_authorize_resource
+
   def search
     search_url = URI.encode("#{Settings['profile.users_url']}?term=#{params[:term]}")
 

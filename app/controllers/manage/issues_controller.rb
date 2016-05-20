@@ -1,5 +1,7 @@
 class Manage::IssuesController < Manage::ApplicationController
 
+  load_and_authorize_resource
+
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
 
   def index
