@@ -9,11 +9,11 @@ class Issue < ActiveRecord::Base
   end
 
   default_value_for :number do
-    Issue.where(year: Issue.pluck(:year).max).pluck(:number).max + 1
+    Issue.where(year: Issue.pluck(:year).max).pluck(:number).max + 1 rescue nil
   end
 
   default_value_for :through_number do
-    Issue.pluck(:through_number).max + 1
+    Issue.pluck(:through_number).max + 1 rescue nil
   end
 
   def human_number
