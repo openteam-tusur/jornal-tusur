@@ -7,6 +7,8 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :issues, 'Номера', manage_issues_path,
       highlights_on: /^\/manage\/issues/ #if can?(:manage, Issue)
 
+    primary.item :permissions, 'Управление правами', manage_permissions_path,
+      highlights_on: /\/manage\/permissions/
   end
 end
 

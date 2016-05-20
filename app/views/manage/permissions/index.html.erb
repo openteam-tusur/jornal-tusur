@@ -1,0 +1,40 @@
+<% content_for :page_header, 'Управление правами' %>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <p>
+      <%= link_to 'Добавить роль', new_manage_permission_path, class: 'btn btn-default' %>
+    </p>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <table class='table table-bordered table-hover'>
+      <thead>
+        <tr>
+          <th>Пользователь</th>
+          <th>E-mail</th>
+          <th>Роль</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @permissions.sort{ |a, b| a.user.fullname <=> b.user.fullname }.each do |permission| %>
+          <tr>
+            <td><%= permission.user.fullname %></td>
+            <td><%= mail_to permission.user.email %></td>
+            <td><%= I18n.t "permissions.#{permission.role}" %></td>
+            <td>
+              <%= link_to manage_permission_path(permission),
+                title: 'удалить',
+                data: { method: :delete, confirm: 'Вы уверены?' } do %>
+                <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

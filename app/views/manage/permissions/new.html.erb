@@ -1,0 +1,19 @@
+<% content_for :page_header, 'Добавление роли' %>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <%= simple_form_for [:manage, @permission], url: manage_permissions_path(@permission) do |f| %>
+
+      <%= f.input :name, required: true, autofocus: true,
+        input_html: { value: params.try(:[], :permission).try(:[], :name), class: 'js-user-autocomplete', data: { url: manage_users_search_path } },
+        placeholder: 'Начните вводить ФИО' %>
+      <%= f.input :user_id, as: :hidden, input_html: { class: 'js-user-autocomplete-target' } %>
+      <%= f.input :role, collection: Permission.available_roles.map{ |role| [I18n.t("permissions.#{role}", title: '').strip, role] } %>
+
+      <div class='actions'>
+        <%= f.submit 'Сохранить', name: nil, class: 'btn btn-success' %>
+        <%= link_to 'Отмена', manage_permissions_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
+</div>

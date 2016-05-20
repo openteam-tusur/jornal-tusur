@@ -5,4 +5,6 @@ $(document).on 'ready page:change', ->
   $(document).on 'click', 'a.disabled', ->
     return false
 
+  init_user_autocomplete() if $('.js-user-autocomplete').length
+
   return

@@ -4,9 +4,17 @@ ru:
   app:
     title: 'Журнал «Доклады ТУСУР»'
 
+  permissions:
+    admin: 'Администратор'
+    manager: 'Менеджер'
+
   activerecord:
 
     attributes:
+
+      permission:
+        name: 'ФИО'
+        role: 'Роль'
 
       issue:
         year: 'Год'
