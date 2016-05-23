@@ -1,6 +1,6 @@
 <div class='row'>
   <%= simple_form_for [:manage, @issue] do |f| %>
-    <%= f.error_notification %>
+    <%= content_tag :div, f.error_notification, class: 'col-xs-12' %>
 
     <div class='form-inputs'>
       <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
@@ -18,12 +18,12 @@
     </div>
 
     <div class='form-actions col-xs-12'>
-      <%= f.button :submit, 'Сохранить', class: 'btn-success' %>
+      <%= f.button :submit, 'Сохранить', class: 'btn btn-success' %>
       <% if @issue.new_record? %>
         <%= link_to 'Отмена', manage_issues_path, class: 'btn btn-default' %>
       <% else %>
-        <%= link_to 'Отмена', [:manage, @issue], class: 'btn btn-default' %>
-        <%= link_to 'удалить', [:manage, @issue], method: :delete, data: { confirm: 'Вы уверены?' },
+        <%= link_to 'Отмена', manage_issue_articles_path(@issue), class: 'btn btn-default' %>
+        <%= link_to 'удалить', manage_issue_path(@issue), method: :delete, data: { confirm: 'Вы уверены?' },
           class: 'btn btn-default pull-right' %>
       <% end %>
     </div>

@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520050123) do
+ActiveRecord::Schema.define(version: 20160523090830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.integer  "issue_id"
+    t.text     "title_ru"
+    t.text     "title_en"
+    t.text     "annotation_ru"
+    t.text     "annotation_en"
+    t.integer  "page_from"
+    t.integer  "page_to"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.text     "file_url"
+  end
+
+  add_index "articles", ["issue_id"], name: "index_articles_on_issue_id", using: :btree
 
   create_table "issues", force: :cascade do |t|
     t.integer  "year"
@@ -36,4 +55,5 @@ ActiveRecord::Schema.define(version: 20160520050123) do
 
   add_index "permissions", ["user_id", "role", "context_id", "context_type"], name: "by_user_and_role_and_context", using: :btree
 
+  add_foreign_key "articles", "issues"
 end

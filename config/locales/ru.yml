@@ -21,3 +21,19 @@ ru:
         number: 'Номер'
         part: 'Часть'
         through_number: 'Сквозной номер'
+
+      article:
+        title_ru: 'Название'
+        title_en: 'Title [название на английском языке]'
+        annotation_ru: 'Аннотация'
+        annotation_en: 'Annotation [аннотация на английском языке]'
+        page_from: 'Со страницы'
+        page_to: 'До страницы'
+        file: 'Файл'
+
+    errors:
+      models:
+        article:
+          attributes:
+            document:
+              blank: 'Не может быть пустым'

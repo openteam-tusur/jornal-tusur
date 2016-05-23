@@ -1,0 +1,45 @@
+<% content_for :page_header do %>
+  Номер
+  <%= @issue.full_number %>
+  за <%= @issue.year %> год
+<% end %>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <p>
+      <%= link_to 'Изменить', edit_manage_issue_path(@issue), class: 'btn btn-default' %>
+      <%= link_to 'Отмена', manage_issues_path, class: 'btn btn-default' %>
+    </p>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <h2>Статьи</h2>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <p>
+      <%= link_to 'Новая статья', new_manage_issue_article_path, class: 'btn btn-default' %>
+    </p>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <ul>
+      <% @articles.each do |article| %>
+        <li>
+          <h3><%= link_to article.title, manage_issue_article_path(@issue, article) %></h3>
+          <p>
+            <%= article.annotation %>
+            Стр.
+            <%= article.page_from %>&ndash;<%= article.page_to %>.
+          </p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

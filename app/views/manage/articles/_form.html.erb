@@ -1,0 +1,56 @@
+<div class='row'>
+  <%= simple_form_for @article, url: [:manage, @issue, @article] do |f| %>
+    <%= content_tag :div, f.error_notification, class: 'col-xs-12' %>
+
+    <div class='form-inputs'>
+      <div class='col-xs-12'>
+        <p>
+          Номер
+          <%= @issue.full_number %>
+          за <%= @issue.year %> год
+        </p>
+      </div>
+      <%= f.association :issue, as: :hidden %>
+      <div class='col-xs-12'>
+        <%= f.input :title_ru, as: :string, autofocus: true %>
+      </div>
+      <div class='col-xs-12'>
+        <%= f.input :annotation_ru %>
+      </div>
+      <div class='col-xs-12'>
+        <%= f.input :title_en, as: :string %>
+      </div>
+      <div class='col-xs-12'>
+        <%= f.input :annotation_en %>
+      </div>
+      <div class='col-lg-2 col-md-2 col-sm-6 col-xs-12'>
+        <%= f.input :page_from %>
+      </div>
+      <div class='col-lg-2 col-md-2 col-sm-6 col-xs-12'>
+        <%= f.input :page_to %>
+      </div>
+      <% if f.object.file.present? %>
+        <div class='col-lg-2 col-md-3 col-sm-6 col-xs-12'>
+          <div class='form-group'>
+            <label class='control-label'>Загруженный файл</label>
+          <%= link_to f.object.file_file_name, f.object.file.url, target: '_blank' %>
+          </div>
+        </div>
+      <% end %>
+      <div class='col-lg-2 col-md-3 col-sm-6 col-xs-12'>
+        <%= f.input :file, required: true %>
+      </div>
+    </div>
+
+    <div class='form-actions col-xs-12'>
+      <%= f.button :submit, 'Сохранить', class: 'btn btn-success' %>
+      <% if @article.new_record? %>
+        <%= link_to 'Отмена', manage_issue_articles_path(@issue), class: 'btn btn-default' %>
+      <% else %>
+        <%= link_to 'Отмена', manage_issue_article_path(@issue, @article), class: 'btn btn-default' %>
+        <%= link_to 'удалить', manage_issue_article_path(@issue, @article), method: :delete, data: { confirm: 'Вы уверены?' },
+          class: 'btn btn-default pull-right' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

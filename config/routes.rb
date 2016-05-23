@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
 
   namespace :manage do
-    resources :issues
+    resources :issues, except: [:show] do
+      resources :articles
+    end
+
     resources :permissions, except: [:edit, :update]
     get 'users/search' => 'users#search', as: :users_search
+
     get '/', to: redirect('/manage/issues')
   end
 

@@ -66,6 +66,7 @@ GEM
       rake (>= 10.4, < 12.0)
     arel (6.0.3)
     ast (2.2.0)
+    attribute_normalizer (1.2.0)
     autoprefixer-rails (6.3.6.1)
       execjs
     awesome_print (1.6.1)
@@ -103,6 +104,10 @@ GEM
     capistrano3-unicorn (0.2.1)
       capistrano (~> 3.1, >= 3.1.0)
     chunky_png (1.3.5)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.8)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -131,6 +136,7 @@ GEM
       highline (= 1.5.2)
       multi_json (~> 1.10.1)
     connection_pool (2.2.0)
+    curb (0.9.3)
     daemons (1.2.3)
     debug_inspector (0.0.2)
     default_value_for (3.0.1)
@@ -165,6 +171,7 @@ GEM
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     mime-types (2.99.1)
+    mimemagic (0.3.0)
     mini_portile2 (2.0.0)
     minitest (5.9.0)
     multi_json (1.10.1)
@@ -184,6 +191,15 @@ GEM
       capistrano-rvm
       capistrano-sidekiq
       capistrano3-unicorn
+    paperclip (4.3.6)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (= 0.3.0)
+    paperclip-elvfs (0.0.5.2)
+      curb
+      paperclip
     parser (2.3.1.0)
       ast (~> 2.2)
     pg (0.18.4)
@@ -310,6 +326,7 @@ PLATFORMS
 DEPENDENCIES
   airbrake
   annotate
+  attribute_normalizer
   auth_client!
   auth_redis_user_connector!
   awesome_print
@@ -327,6 +344,8 @@ DEPENDENCIES
   letter_opener
   non-stupid-digest-assets
   openteam-capistrano (~> 1.0.11)
+  paperclip
+  paperclip-elvfs
   pg
   rack-cache
   rails (~> 4.2.6)

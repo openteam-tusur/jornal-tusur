@@ -1,8 +1,15 @@
 class Issue < ActiveRecord::Base
 
+  has_many :articles, dependent: :destroy
+
   scope :ordered, -> { order year: :desc, number: :desc, part: :desc }
 
   validates_presence_of :year, :number, :through_number
+
+  validates :number, uniqueness: {
+    scope: [:year, :part],
+    message: 'Такой номер журнала уже существует'
+  }
 
   default_value_for :year do
     Issue.pluck(:year).max
@@ -15,6 +22,9 @@ class Issue < ActiveRecord::Base
   default_value_for :through_number do
     Issue.pluck(:through_number).max + 1 rescue nil
   end
+
+  normalize_attributes :year, :number, :through_number, with: :squish
+  normalize_attributes :part, with: [:squish, :blank]
 
   def human_number
     human_number = ["№#{number}"]

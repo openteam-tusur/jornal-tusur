@@ -1,0 +1,48 @@
+<% content_for :page_header do %>
+  Номер
+  <%= @issue.full_number %>
+  за <%= @issue.year %> год
+<% end %>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <h2>
+      <%= @article.title_ru %>
+    </h2>
+    <p>
+      <strong>Аннотация:</strong>
+      <%= @article.annotation_ru %>
+    </p>
+    <p>
+      <strong>Ключевые слова:</strong>
+      блабла, бла бла бла
+    </p>
+
+    <hr />
+
+    <h3><%= @article.title_en %></h3>
+    <p>
+      <strong>Annotation:</strong>
+      <%= @article.annotation_en %>
+    </p>
+    <p>
+      <strong>Keywords:</strong>
+      blahblah, blah blah blah
+    </p>
+
+    <hr />
+
+    <p>
+      <strong>Страницы:</strong>
+      <%= @article.page_from %>&ndash;<%= @article.page_to %>
+    </p>
+    <p>
+      <strong>Файл:</strong>
+      <%= link_to @article.file_file_name, @article.file.url, target: '_blank' %>
+    </p>
+    <p>
+      <%= link_to 'Изменить', edit_manage_issue_article_path(@issue, @article), class: 'btn btn-default' %>
+      <%= link_to 'Отмена', manage_issue_articles_path(@issue), class: 'btn btn-default' %>
+    </p>
+  </div>
+</div>
