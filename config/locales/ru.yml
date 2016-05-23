@@ -23,13 +23,17 @@ ru:
         through_number: 'Сквозной номер'
 
       article:
-        title_ru: 'Название'
-        title_en: 'Title [название на английском языке]'
-        annotation_ru: 'Аннотация'
-        annotation_en: 'Annotation [аннотация на английском языке]'
+        ru_title: 'Название'
+        en_title: 'Title [название на английском языке]'
+        ru_annotation: 'Аннотация'
+        en_annotation: 'Annotation [аннотация на английском языке]'
         page_from: 'Со страницы'
         page_to: 'До страницы'
         file: 'Файл'
+        ru_keywords: 'Ключевые слова'
+        ru_keyword_list: 'Ключевые слова'
+        en_keywords: 'Keywords [ключевые слова на английском]'
+        en_keyword_list: 'Keywords [ключевые слова на английском]'
 
     errors:
       models:

@@ -16,7 +16,7 @@ class Manage::IssuesController < Manage::ApplicationController
     @issue = Issue.new(issue_params)
 
     if @issue.save
-      redirect_to manage_issue_articles_path(@issue), notice: 'Номер журнала создан.'
+      redirect_to manage_issue_articles_path(@issue), notice: 'Номер журнала создан'
     else
       render :new
     end
@@ -24,7 +24,7 @@ class Manage::IssuesController < Manage::ApplicationController
 
   def update
     if @issue.update(issue_params)
-      redirect_to manage_issue_articles_path(@issue), notice: 'Номер журнала изменён.'
+      redirect_to manage_issue_articles_path(@issue), notice: 'Номер журнала изменён'
     else
       render :edit
     end
@@ -32,7 +32,7 @@ class Manage::IssuesController < Manage::ApplicationController
 
   def destroy
     @issue.destroy
-    redirect_to manage_issues_path, notice: 'Номер журнала удалён.'
+    redirect_to manage_issues_path, notice: 'Номер журнала удалён'
   end
 
   private

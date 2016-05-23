@@ -4,6 +4,7 @@ ru:
     messages:
       in_between: 'должен быть между %{min} и %{max}'
       spoofed_media_type: 'имеет содержимое, не соответствующее заявленному'
+      blank: 'не может быть пустым'
 
   number:
     human:

@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
+gem 'acts-as-taggable-on'
 gem 'airbrake'
 gem 'attribute_normalizer'
 gem 'auth_client', :git => 'https://github.com/openteam-tusur/auth_client'
 gem 'auth_redis_user_connector', :git => 'https://github.com/openteam-tusur/auth_redis_user_connector'
-gem 'default_value_for'
 gem 'awesome_print'
+gem 'default_value_for'
 gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'coffee-rails', '~> 4.1.0'

@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523090830) do
+ActiveRecord::Schema.define(version: 20160523154641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
     t.integer  "issue_id"
-    t.text     "title_ru"
-    t.text     "title_en"
-    t.text     "annotation_ru"
-    t.text     "annotation_en"
+    t.text     "ru_title"
+    t.text     "en_title"
+    t.text     "ru_annotation"
+    t.text     "en_annotation"
     t.integer  "page_from"
     t.integer  "page_to"
     t.datetime "created_at",        null: false
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20160523090830) do
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.text     "file_url"
+    t.text     "ru_keywords"
+    t.text     "en_keywords"
   end
 
   add_index "articles", ["issue_id"], name: "index_articles_on_issue_id", using: :btree
@@ -54,6 +56,26 @@ ActiveRecord::Schema.define(version: 20160523090830) do
   end
 
   add_index "permissions", ["user_id", "role", "context_id", "context_type"], name: "by_user_and_role_and_context", using: :btree
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   add_foreign_key "articles", "issues"
 end

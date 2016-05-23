@@ -6,28 +6,28 @@
 
 <div class='row'>
   <div class='col-xs-12'>
-    <h2>
-      <%= @article.title_ru %>
-    </h2>
+    <h3>
+      <%= @article.ru_title %>
+    </h3>
     <p>
       <strong>Аннотация:</strong>
-      <%= @article.annotation_ru %>
+      <%= @article.ru_annotation %>
     </p>
     <p>
       <strong>Ключевые слова:</strong>
-      блабла, бла бла бла
+      <%= @article.ru_keyword_list %>
     </p>
 
     <hr />
 
-    <h3><%= @article.title_en %></h3>
+    <h3><%= @article.en_title %></h3>
     <p>
       <strong>Annotation:</strong>
-      <%= @article.annotation_en %>
+      <%= @article.en_annotation %>
     </p>
     <p>
       <strong>Keywords:</strong>
-      blahblah, blah blah blah
+      <%= @article.en_keyword_list %>
     </p>
 
     <hr />

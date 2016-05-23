@@ -2,16 +2,26 @@ class Article < ActiveRecord::Base
 
   belongs_to :issue
 
-  normalize_attribute :title_ru, :title_en, :annotation_ru, :annotation_en,
+  normalize_attributes :ru_title, :en_title, :ru_annotation, :en_annotation,
     :page_from, :page_to, with: :squish
 
-  validates_presence_of :title_ru, :title_en, :annotation_ru, :annotation_en,
+  validates_presence_of :ru_title, :en_title, :ru_annotation, :en_annotation,
     :page_from, :page_to
 
-  validates :title_ru, uniqueness: {
+  validates :ru_title, uniqueness: {
     scope: :issue_id,
     message: 'Статья с таким названием уже есть в этом номере журнала'
   }
+
+  normalize_attributes :ru_keyword_list, :en_keyword_list, with: [:squish, :blank, :downcase] do |value|
+    if value.present?
+      value.gsub('.', '').gsub(';', ',')
+    else
+      value
+    end
+  end
+
+  acts_as_taggable_on :ru_keywords, :en_keywords
 
   has_attached_file :file, storage: :elvfs, elvfs_url: Settings['storage.url']
   validates_attachment :file, presence: true,
@@ -25,10 +35,10 @@ end
 #
 #  id                :integer          not null, primary key
 #  issue_id          :integer
-#  title_ru          :text
-#  title_en          :text
-#  annotation_ru     :text
-#  annotation_en     :text
+#  ru_title          :text
+#  en_title          :text
+#  ru_annotation     :text
+#  en_annotation     :text
 #  page_from         :integer
 #  page_to           :integer
 #  created_at        :datetime         not null
@@ -38,6 +48,8 @@ end
 #  file_file_size    :integer
 #  file_updated_at   :datetime
 #  file_url          :text
+#  ru_keywords       :text
+#  en_keywords       :text
 #
 # Indexes
 #

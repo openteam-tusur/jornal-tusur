@@ -32,11 +32,18 @@
     <ul>
       <% @articles.each do |article| %>
         <li>
-          <h3><%= link_to article.title, manage_issue_article_path(@issue, article) %></h3>
-          <p>
-            <%= article.annotation %>
-            Стр.
+          <h3>
+            Страницы
             <%= article.page_from %>&ndash;<%= article.page_to %>.
+            <%= link_to article.ru_title, manage_issue_article_path(@issue, article) %>
+          </h3>
+          <p>
+            <strong>Аннотация:</strong>
+            <%= article.ru_annotation %>
+          </p>
+          <p>
+            <strong>Ключевые слова:</strong>
+            <%= article.ru_keyword_list %>
           </p>
         </li>
       <% end %>
