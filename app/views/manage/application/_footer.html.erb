@@ -1,0 +1,23 @@
+<div class='footer'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-xs-12'>
+        <span class='nowrap'>
+          2016<%= "&ndash;#{Date.today.year}".html_safe if Date.today.year > 2016 %>,
+          <%= I18n.t ('app.title') %>,
+        </span>
+        <span class='nowrap'>
+          <span class='glyphicon glyphicon-map-marker'></span> пр. Ленина, 40, мк, каб. 310/2
+        </span>
+        <span class='nowrap'>
+          <span class='glyphicon glyphicon-phone-alt'></span> (3822) 51-21-21, внутр.: 1460
+        </span>
+        <span class='nowrap'>
+          <span class='glyphicon glyphicon-envelope'></span> <a href="mailto:vnmas@tusur.ru">vnmas@tusur.ru</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render partial: 'development' %>

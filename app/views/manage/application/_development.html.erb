@@ -1,7 +1,9 @@
 <% if Rails.env.development? %>
-  <div class='development-json'>
-    <%= link_to 'JSON', @link_to_json, :target => '_blank' %>
-  </div>
+  <% if @link_to_json.present? %>
+    <div class='development-json'>
+      <%= link_to 'JSON', @link_to_json, :target => '_blank' %>
+    </div>
+  <% end %>
   <div class='development-resolution'>
   </div>
 <% end %>

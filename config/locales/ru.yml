@@ -39,5 +39,7 @@ ru:
       models:
         article:
           attributes:
-            document:
+            file:
               blank: 'Не может быть пустым'
+            file_content_type:
+              invalid: 'имеет содержимое, не соответствующее заявленному'

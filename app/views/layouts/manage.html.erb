@@ -10,12 +10,14 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= render partial: 'navigation' %>
-    <div class='container'>
-      <%= render partial: 'page_header' if content_for? :page_header %>
-      <%= render partial: 'flash' %>
-      <%= yield %>
+    <div class='page_wrapper'>
+      <%= render partial: 'navigation' %>
+      <div class='container'>
+        <%= render partial: 'page_header' if content_for? :page_header %>
+        <%= render partial: 'flash' %>
+        <%= yield %>
+      </div>
     </div>
-    <%= render partial: 'development' %>
+    <%= render partial: 'footer' %>
   </body>
 </html>
