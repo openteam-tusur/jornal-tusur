@@ -1,6 +1,7 @@
 class Section < ActiveRecord::Base
 
   validates_presence_of :ru_title, :en_title
+  validates_uniqueness_of :ru_title, :en_title
 
   normalize_attributes :ru_title, :en_title, with: :squish
 
