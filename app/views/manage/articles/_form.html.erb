@@ -84,11 +84,12 @@
         </div>
         <div class='col-lg-2 col-md-2 col-sm-6 col-xs-12'>
           <div class='form-group integer required article_page_to'
-               ng-class='{"has-error": article_form.$submitted && article_form.article_page_to.$error.required}'>
+               ng-class='{ "has-error": article_form.$submitted && (article_form.article_page_to.$error.required || article_form.$error.page_from_larger_page_to) }'>
             <label class='integer required control-label' for='article_page_to'>До страницы <abbr title='обязательное поле'>*</abbr></label>
             <input class='numeric integer required form-control' type='number' step='1' id='article_page_to'
                    ng-model='article.page_to' ng-disabled='article.submitted' name='article_page_to' required />
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_page_to.$error.required'>не может быть пустым</span>
+            <span class='help-block' ng-show='article_form.$submitted && article_form.$error.page_from_larger_page_to'>не может быть меньше или равной стартовой странице</span>
           </div>
         </div>
         <% if @article.file.present? %>
@@ -101,7 +102,7 @@
         <% end %>
         <div class='col-lg-3 col-md-3 col-sm-6 col-xs-12'>
           <div class='form-group file required article_file'
-               ng-class='{"has-error": article_form.$submitted && (article_form.article_file.$error.required || article_form.article_file.$error.pattern)}'>
+               ng-class='{ "has-error": article_form.$submitted && (article_form.article_file.$error.required || article_form.article_file.$error.pattern) }'>
             <label class='file required control-label' for='article_file'>Файл <abbr title='обязательное поле'>*</abbr></label>
             <input class='file required' type='file' id='article_file' <%= 'required' if @article.file.blank? %>
                    ng-model='article.file' ng-change='show_progress = true' ng-disabled='article.submitted' name='article_file'

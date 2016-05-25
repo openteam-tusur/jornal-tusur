@@ -13,6 +13,8 @@ class Article < ActiveRecord::Base
     message: 'Статья с таким названием уже есть в этом номере журнала'
   }
 
+  validate :page_from_larger_page_to
+
   normalize_attributes :ru_keyword_list, :en_keyword_list, with: [:squish, :blank, :downcase] do |value|
     if value.present?
       value.gsub('.', '').gsub(';', ',')
@@ -41,6 +43,14 @@ class Article < ActiveRecord::Base
   def en_keyword_list
     en_keywords.map(&:name).join(', ')
   end
+
+  private
+
+    def page_from_larger_page_to
+      if page_from >= page_to
+        errors.add(:page_to, 'не может быть меньше или равной стартовой странице')
+      end
+    end
 
 end
 
