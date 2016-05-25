@@ -24,8 +24,20 @@ class Article < ActiveRecord::Base
   acts_as_taggable_on :ru_keywords, :en_keywords
 
   has_attached_file :file, storage: :elvfs, elvfs_url: Settings['storage.url']
-  validates_attachment :file, presence: true,
+  validates_attachment :file, #presence: true,
     content_type: { content_type: 'application/pdf' }
+
+  def to_json
+    super({ methods: [:ru_keyword_list, :en_keyword_list]})
+  end
+
+  def ru_keyword_list
+    ru_keywords.map(&:name).join(', ')
+  end
+
+  def en_keyword_list
+    en_keywords.map(&:name).join(', ')
+  end
 
 end
 

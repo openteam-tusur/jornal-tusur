@@ -6,5 +6,6 @@
  * = require tusur_header
  * = require jquery-ui
  * = require ./user_autocomplete
+ * = require ./article_form
  * = require ./main
  */
