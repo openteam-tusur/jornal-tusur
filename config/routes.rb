@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get '/', to: redirect('/manage/issues')
   end
 
-  root 'welcome#index'
+  root :to => 'main#index'
+  get '(*path)', :to => 'main#index'
 
 end

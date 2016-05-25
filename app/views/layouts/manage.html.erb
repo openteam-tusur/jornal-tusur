@@ -14,10 +14,10 @@
       <%= render partial: 'navigation' %>
       <div class='container content'>
         <%= render partial: 'page_header' if content_for? :page_header %>
-        <%= render partial: 'flash' %>
+        <%= render partial: 'main/flash' %>
         <%= yield %>
       </div>
     </div>
-    <%= render partial: 'footer' %>
+    <%= render partial: 'main/footer' %>
   </body>
 </html>

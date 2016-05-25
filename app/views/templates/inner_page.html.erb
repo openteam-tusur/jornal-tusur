@@ -1,0 +1,41 @@
+<div class='inner-page-wrapper<%= right_side_present? ? ' with-right-bg' : nil  %>'>
+  <div class='container'>
+    <div class='row'>
+      <div class='<%= right_side_present? ? 'col-lg-9 col-md-9 col-sm-8 col-xs-12' : 'col-xs-12' %> left-side'>
+        <%= render_partial_for_region @breadcrumbs if @breadcrumbs.present? %>
+
+        <div class='content'>
+
+          <h1><%= @content.try(&:part_title).presence || @page_title %></h1>
+
+          <% if @page.slug == 'contact-information' %>
+            <div class="address">
+              <strong>Address</strong>: 40 Lenina Prospect, Tomsk, Russia
+            </div>
+            <div class="map">
+              <iframe width="850" height="350" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=%D1%82%D1%83%D1%81%D1%83%D1%80&key=AIzaSyAEQnlSHzvQyGEbEhlpl1s5FRhcKxIbh1E" allowfullscreen></iframe>
+            </div>
+          <% end %>
+
+          <%= render_partial_for_region(@content) if @content.present? %>
+        </div>
+      </div>
+
+      <% if right_side_present? %>
+        <div class='col-lg-3 col-md-3 col-sm-4 col-xs-12 right-side'>
+          <% if @right_navigation.present? && @content.present? && (@content.type == 'NewsListPart' || @content.type == 'NewsItemPart') %>
+          <% else %>
+            <%= render_partial_for_region(@right_navigation, 'inner_right') if @right_navigation.present? %>
+          <% end %>
+
+          <%= render_partial_for_region(@right_links, 'inner_right_links') if @right_links.present? %>
+          <%= render_partial_for_region(@right_advert, 'inner_right_advert') if @right_advert.present? %>
+          <%= render_partial_for_region(@right_documents, 'inner_right_documents') if @right_documents.present? %>
+          <%= render_partial_for_region(@right_contacts, 'inner_right_contacts') if @right_contacts.present? %>
+          <%= render_partial_for_region(@right_html, 'inner_right_html') if @right_html.present? %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

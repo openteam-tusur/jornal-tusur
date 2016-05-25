@@ -1,0 +1,105 @@
+.subdivisions-tree
+  ul
+    &.parent
+      border-left: 1px solid #d0d5d4
+      margin-left: 6px
+
+      li
+        &:last-child
+          &:after
+            left: -12px
+            height: 16px
+            background: #FFF
+
+    &.child
+      margin-left: 28px
+      padding-left: 10px
+      margin-top: -5px
+
+      li
+        padding-left: 5px
+
+        &:after
+          background-color: #FFF
+
+        &:last-child
+          &:after
+            left: -24px
+            height: 16px
+
+    li
+      position: relative
+      padding: 5px 0 5px 10px
+
+      &:before, &:after
+        position: absolute
+        display: block
+        bottom: 0
+        left: 0
+        content: ''
+        width: 5px
+        height: 5px
+        background-color: #d0d5d4
+
+      &:before
+        height: 1px
+        left: -11px
+        width: 17px
+        top: 18px
+
+      &:after
+        background: none
+
+    ul
+      padding-left: 40px
+      border-left: 1px solid #d0d5d4
+
+      li
+        &:before, &:after
+          position: absolute
+          display: block
+          bottom: 0
+          left: 0
+          content: ''
+          width: 5px
+          height: 5px
+          background-color: #d0d5d4
+
+        &:before
+          height: 1px
+          left: -21px
+          width: 17px
+          content: ''
+          top: 18px
+
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max)
+    ul
+      &.parent
+        li
+          padding-left: 12px
+
+      &.child
+        li
+          &:after
+            bottom: 38px
+
+          &:last-child
+            &:after
+              top: 19px
+              height: 100%
+
+  @media (max-width: $screen-xs-max)
+    ul
+      &.parent
+        li
+          padding-left: 12px
+
+      &.child
+        li
+          &:after
+            bottom: 38px
+
+          &:last-child
+            &:after
+              top: 19px
+              height: 100%

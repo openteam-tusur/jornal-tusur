@@ -3,6 +3,10 @@ ru:
 
   app:
     title: 'Журнал «Доклады ТУСУР»'
+    cecutient: 'Версия для слабовидящих'
+    cecutient_normal: 'Обычная версия'
+    sign_in: 'Кабинет ТУСУР'
+    notifications: 'Уведомления'
 
   permissions:
     admin: 'Администратор'
@@ -38,3 +42,20 @@ ru:
         ru_keyword_list: 'Ключевые слова'
         en_keywords: 'Keywords [ключевые слова на английском]'
         en_keyword_list: 'Keywords [ключевые слова на английском]'
+
+    errors:
+      models:
+        article:
+          attributes:
+            file:
+              blank: 'Не может быть пустым'
+            file_content_type:
+              invalid: 'имеет содержимое, не соответствующее заявленному'
+
+  top_header:
+    sections_for: 'Разделы для'
+    sites_tusur: 'Сайты ТУСУР'
+    close: 'Закрыть'
+
+  old_site_version: 'Старая версия сайта'
+  search_placeholder: 'Поиск'

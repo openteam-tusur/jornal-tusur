@@ -1,0 +1,53 @@
+.events
+  overflow: hidden
+
+  table
+    tr
+      td
+        border: 0
+
+        &:nth-child(even)
+          padding-left: 15px
+
+        &.date
+          padding: 20px
+          width: 215px
+          font-size: 1.8rem
+          background: #f7f7f7
+
+          .dates-range
+            font-size: 24px
+
+          .short-month,
+          .one-month
+            font-size: 1.4rem
+
+        .location
+          color: #828282
+          font-size: 1.4rem
+
+      &.top-separator
+        border-top: 1px solid #dadada
+
+        td
+          padding: 2px 0
+
+      &.bottom-separator
+        border-bottom: 1px solid #dadada
+
+        td
+          padding: 2px 0
+
+      .title
+        font-size: 1.8rem
+
+    @media (max-width: $screen-xs-max)
+
+      margin-top: 10px
+
+  .annotation
+    font-size: 1.4rem
+
+    p
+      &:last-child
+        margin: 0

@@ -2,13 +2,20 @@
 <html lang='<%= I18n.locale %>'>
   <head>
     <meta charset='UTF-8'>
-    <title>Журнал «Доклады ТУСУР»</title>
+    <title><%= "#{yield(:page_header).squish} — " if content_for? :page_header %><%= I18n.t('app_name') %></title>
     <%= favicon_link_tag %>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= yield %>
+    <div class='page_wrapper'>
+      <div class='overlay js-overlay hidden-xs'></div>
+        <%= render partial: 'public_navigation' %>
+        <%= render partial: 'flash' %>
+        <%= yield %>
+    </div>
+    <%= render partial: 'footer' %>
   </body>
 </html>

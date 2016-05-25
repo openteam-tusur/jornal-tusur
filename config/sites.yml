@@ -1,0 +1,81 @@
+ru:
+  main_sites:
+    phones:
+      title: 'Телефонный справочник'
+      link: 'https://directory.tusur.ru'
+
+    edu:
+      title: 'Научно-образовательный портал'
+      link: 'https://edu.tusur.ru'
+
+    timetable:
+      title: 'Расписание занятий'
+      link: 'https://timetable.tusur.ru'
+
+    attendance:
+      title: 'Журнал посещаемости'
+      link: 'https://attendance.tusur.ru'
+
+    radioelektronik:
+      title: 'Газета &laquo;Радиоэлектроник&raquo;'
+      link: 'http://re.tusur.ru'
+
+  additional_sites:
+    abiturients:
+      title: 'Абитуриентам'
+      link: 'http://abiturient.tusur.ru/'
+
+    students:
+      title: 'Студентам'
+      link: '/ru/studentam'
+
+    magistrants:
+      title: 'Магистрантам'
+      link: 'https://magistrant.tusur.ru'
+
+    postgraduates:
+      title: 'Аспирантам'
+      link: '/ru/aspirantam'
+
+    staff:
+      title: 'Сотрудникам'
+      link: '/ru/sotrudnikam'
+
+en:
+  main_sites:
+    phones:
+      title: 'Phonebook'
+      link: 'https://directory.tusur.ru'
+
+    edu:
+      title: 'Research and Education Portal'
+      link: 'https://edu.tusur.ru'
+
+    timetable:
+      title: 'Timetable of classes'
+      link: 'https://timetable.tusur.ru'
+
+    attendance:
+      title: 'Attendance History'
+      link: 'https://attendance.tusur.ru'
+
+    radioelektronik:
+      title: 'Newspaper &laquo;RADIOELECTRONICS&raquo;'
+      link: 'http://re.tusur.ru'
+
+  additional_sites:
+    admission:
+      title: 'Admission'
+      link: '/en/admission'
+
+    degree-programs:
+      title: 'Degree Programs'
+      link: '/en/degree-programs/bachelor-programs'
+
+    employment:
+      title: 'Employment'
+      link: '/en/employment'
+
+    publications:
+      title: 'Publications'
+      link: '/en/publications'
