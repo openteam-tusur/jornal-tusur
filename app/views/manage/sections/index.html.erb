@@ -17,8 +17,10 @@
             <%= section.ru_title %>
             [<%= section.en_title %>]
             <%= link_to edit_manage_section_path(section) do %>
-              <span class='glyphicon glyphicon-pencil'></span>
-              изменить
+              <span class='nowrap'>
+                <span class='glyphicon glyphicon-pencil'></span>
+                изменить
+              </span>
             <% end %>
           </p>
         </li>
