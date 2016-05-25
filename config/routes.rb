@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       resources :articles
     end
 
+    resources :sections, except: [:show]
+
     resources :permissions, except: [:edit, :update]
     get 'users/search' => 'users#search', as: :users_search
 

@@ -5,7 +5,7 @@ class Ability
 
     return unless user
 
-    can :manage, [Issue] if user.manager?
+    can :manage, [Issue, Section] if user.manager?
 
     can :manage, :all if user.admin?
 

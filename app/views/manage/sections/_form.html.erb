@@ -1,0 +1,23 @@
+<div class='row'>
+  <%= simple_form_for [:manage, @section] do |f| %>
+    <%= content_tag :div, f.error_notification, class: 'col-xs-12' %>
+
+    <div class='form-inputs'>
+      <div class='col-xs-12'>
+        <%= f.input :ru_title, autofocus: true %>
+      </div>
+      <div class='col-xs-12'>
+        <%= f.input :en_title %>
+      </div>
+    </div>
+
+    <div class='form-actions col-xs-12'>
+      <%= f.button :submit, 'Сохранить', class: 'btn btn-success' %>
+      <%= link_to 'Отмена', manage_sections_path, class: 'btn btn-default' %>
+      <% unless @section.new_record? %>
+        <%= link_to 'удалить', manage_section_path(@section), method: :delete, data: { confirm: 'Вы уверены?' },
+          class: 'btn btn-default pull-right' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

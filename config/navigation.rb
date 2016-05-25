@@ -8,6 +8,10 @@ SimpleNavigation::Configuration.run do |navigation|
       highlights_on: /^\/manage\/issues/,
       if: -> { can?(:manage, Issue) }
 
+    primary.item :sections, 'Секции', manage_sections_path,
+      highlights_on: /^\/manage\/sections/,
+      if: -> { can?(:manage, Section) }
+
     primary.item :permissions, 'Управление правами', manage_permissions_path,
       highlights_on: /\/manage\/permissions/,
       if: -> { can?(:manage, Permission) }

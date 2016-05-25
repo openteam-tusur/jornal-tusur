@@ -1,0 +1,28 @@
+<% content_for :page_header, 'Секции журнала' %>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <p>
+      <%= link_to 'Новая секция', new_manage_section_path, class: 'btn btn-default' %>
+    </p>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <ul>
+      <% @sections.each do |section| %>
+        <li>
+          <p>
+            <%= section.ru_title %>
+            [<%= section.en_title %>]
+            <%= link_to edit_manage_section_path(section) do %>
+              <span class='glyphicon glyphicon-pencil'></span>
+              изменить
+            <% end %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
