@@ -37,6 +37,7 @@ gem 'uglifier', '>= 1.3.0'
 source 'https://rails-assets.org' do
   gem 'rails-assets-angucomplete-alt'
   gem 'rails-assets-angular'
+  gem 'rails-assets-ng-file-upload'
 end
 
 group :development do

@@ -4,102 +4,139 @@
               article.method="<%= @article.new_record? ? 'POST' : 'PUT' %>";
               article.url="<%= @article.new_record? ? manage_issue_articles_path(@issue) : manage_issue_article_path(@issue, @article) %>";'>
   <div class='form-wrapper simple_form'>
-    <form ng-submit='commitArticle()' name='article_form' novalidate>
-    <div class='form-inputs'>
-      <div class='col-xs-12'>
-        <p>
-          Номер
-          <%= @issue.full_number %>
-          за <%= @issue.year %> год
-        </p>
-      </div>
-      <% if @article.id.present? %>
+    <form ng-submit='commit()' name='article_form' novalidate>
+      <div class='form-inputs'>
+        <div class='col-xs-12'>
+          <p>
+            Номер
+            <%= @issue.full_number %>
+            за <%= @issue.year %> год
+          </p>
+        </div>
+        <% if @article.id.present? %>
+          <div class='form-group hidden article_issue'>
+            <input class='hidden form-control' type='hidden' id='article_id' ng-model='article.id' />
+          </div>
+        <% end %>
         <div class='form-group hidden article_issue'>
-          <input class='hidden form-control' type='hidden' id='article_id' ng-model='article.id' />
+          <input class='hidden form-control' type='hidden' id='article_issue_id' ng-model='article.issue_id' />
         </div>
-      <% end %>
-      <div class='form-group hidden article_issue'>
-        <input class='hidden form-control' type='hidden' id='article_issue_id' ng-model='article.issue_id' />
-      </div>
-      <div class='col-xs-12'>
-        <div class='form-group string required article_ru_title'
-             ng-class='{"has-error": article_form.$submitted && article_form.article_ru_title.$error.required}'>
-          <label class='string required control-label' for='article_ru_title'>Название <abbr title='обязательное поле'>*</abbr></label>
-          <input class='string required form-control' autofocus='autofocus' type='text' id='article_ru_title'
-                 ng-model='article.ru_title' name='article_ru_title' required />
-          <span class='help-block' ng-show='article_form.$submitted && article_form.article_ru_title.$error.required'>не может быть пустым</span>
+        <div class='col-xs-12'>
+          <div class='form-group string required article_ru_title'
+               ng-class='{"has-error": article_form.$submitted && article_form.article_ru_title.$error.required}'>
+            <label class='string required control-label' for='article_ru_title'>Название <abbr title='обязательное поле'>*</abbr></label>
+            <input class='string required form-control' autofocus='autofocus' type='text' id='article_ru_title'
+                   ng-model='article.ru_title' ng-disabled='article.submitted' name='article_ru_title' required />
+            <span class='help-block' ng-show='article_form.$submitted && article_form.article_ru_title.$error.required'>не может быть пустым</span>
+          </div>
+        </div>
+        <div class='col-xs-12'>
+          <div class='form-group text required article_ru_annotation'
+               ng-class='{"has-error": article_form.$submitted && article_form.article_ru_annotation.$error.required}'>
+            <label class='text required control-label' for='article_ru_annotation'>Аннотация <abbr title='обязательное поле'>*</abbr></label>
+            <textarea class='text required form-control' id='article_ru_annotation'
+                      ng-model='article.ru_annotation' ng-disabled='article.submitted' name='article_ru_annotation' required></textarea>
+            <span class='help-block' ng-show='article_form.$submitted && article_form.article_ru_annotation.$error.required'>не может быть пустым</span>
+          </div>
+        </div>
+        <div class='col-xs-12'>
+          <div class='form-group string optional article_ru_keyword_list'>
+            <label class='string optional control-label' for='article_ru_keyword_list'>Ключевые слова</label>
+            <input class='string optional form-control' type='text' id='article_ru_keyword_list'
+                   ng-model='article.ru_keyword_list' ng-disabled='article.submitted' />
+          </div>
+          <hr>
+        </div>
+        <div class='col-xs-12'>
+          <div class='form-group string required article_en_title'
+               ng-class='{"has-error": article_form.$submitted && article_form.article_en_title.$error.required}'>
+            <label class='string required control-label' for='article_en_title'>Title [название на английском языке] <abbr title='обязательное поле'>*</abbr></label>
+            <input class='string required form-control' type='text' id='article_en_title'
+                   ng-model='article.en_title' ng-disabled='article.submitted' name='article_en_title' required />
+            <span class='help-block' ng-show='article_form.$submitted && article_form.article_en_title.$error.required'>не может быть пустым</span>
+          </div>
+        </div>
+        <div class='col-xs-12'>
+          <div class='form-group text required article_en_annotation'
+               ng-class='{"has-error": article_form.$submitted && article_form.article_en_annotation.$error.required}'>
+            <label class='text required control-label' for='article_en_annotation'>Annotation [аннотация на английском языке] <abbr title='обязательное поле'>*</abbr></label>
+            <textarea class='text required form-control' id='article_en_annotation'
+                      ng-model='article.en_annotation' ng-disabled='article.submitted' name='article_en_annotation' required></textarea>
+            <span class='help-block' ng-show='article_form.$submitted && article_form.article_en_annotation.$error.required'>не может быть пустым</span>
+          </div>
+        </div>
+        <div class='col-xs-12'>
+          <div class='form-group string optional article_en_keyword_list'>
+            <label class='string optional control-label' for='article_en_keyword_list'>Keywords [ключевые слова на английском]</label>
+            <input class='string optional form-control' type='text' id='article_en_keyword_list'
+                   ng-model='article.en_keyword_list' ng-disabled='article.submitted' />
+          </div>
+          <hr />
+        </div>
+        <div class='col-lg-2 col-md-2 col-sm-6 col-xs-12'>
+          <div class='form-group integer required article_page_from'
+               ng-class='{"has-error": article_form.$submitted && article_form.article_page_from.$error.required}'>
+            <label class='integer required control-label' for='article_page_from'>Со страницы <abbr title='обязательное поле'>*</abbr></label>
+            <input class='numeric integer required form-control' type='number' step='1' id='article_page_from'
+                   ng-model='article.page_from' ng-disabled='article.submitted' name='article_page_from' required />
+            <span class='help-block' ng-show='article_form.$submitted && article_form.article_page_from.$error.required'>не может быть пустым</span>
+          </div>
+        </div>
+        <div class='col-lg-2 col-md-2 col-sm-6 col-xs-12'>
+          <div class='form-group integer required article_page_to'
+               ng-class='{"has-error": article_form.$submitted && article_form.article_page_to.$error.required}'>
+            <label class='integer required control-label' for='article_page_to'>До страницы <abbr title='обязательное поле'>*</abbr></label>
+            <input class='numeric integer required form-control' type='number' step='1' id='article_page_to'
+                   ng-model='article.page_to' ng-disabled='article.submitted' name='article_page_to' required />
+            <span class='help-block' ng-show='article_form.$submitted && article_form.article_page_to.$error.required'>не может быть пустым</span>
+          </div>
+        </div>
+        <% if @article.file.present? %>
+          <div class='col-lg-2 col-md-3 col-sm-6 col-xs-12'>
+            <div class='form-group'>
+              <label class='file required control-label' for='article_file'>&nbsp;</label>
+              <%= link_to @article.file_file_name, @article.file.url, target: '_blank' %>
+            </div>
+          </div>
+        <% end %>
+        <div class='col-lg-3 col-md-3 col-sm-6 col-xs-12'>
+          <div class='form-group file required article_file'
+               ng-class='{"has-error": article_form.$submitted && (article_form.article_file.$error.required || article_form.article_file.$error.pattern)}'>
+            <label class='file required control-label' for='article_file'>Файл <abbr title='обязательное поле'>*</abbr></label>
+            <input class='file required' type='file' id='article_file' <%= 'required' if @article.file.blank? %>
+                   ng-model='article.file' ng-change='show_progress = true' ng-disabled='article.submitted' name='article_file'
+                   ngf-select ngf-pattern='"application/pdf"' ngf-accept='"application/pdf"'>
+            <span class='help-block' ng-show='article_form.$submitted && article_form.article_file.$error.required && !article_form.article_file.$error.pattern'>не может быть пустым</span>
+            <span class='help-block' ng-show='article_form.$submitted && article_form.article_file.$error.pattern'>имеет неверный формат</span>
+          </div>
+        </div>
+        <div class='col-xs-12' ng-show='show_progress'>
+          <div class='progress'>
+            <div class='progress-bar'
+              role='progressbar'
+              aria-valuemin='0'
+              aria-valuemax='100'
+              aria-valuenow='{{ article.submit_proggress }'
+              style='width: {{ article.submit_proggress }}%;'>
+              {{ article.submit_proggress }}%
+            </div>
+          </div>
         </div>
       </div>
-      <div class='col-xs-12'>
-        <div class='form-group text required article_ru_annotation'
-             ng-class='{"has-error": article_form.$submitted && article_form.article_ru_annotation.$error.required}'>
-          <label class='text required control-label' for='article_ru_annotation'>Аннотация <abbr title='обязательное поле'>*</abbr></label>
-          <textarea class='text required form-control' id='article_ru_annotation'
-                    ng-model='article.ru_annotation' name='article_ru_annotation' required></textarea>
-          <span class='help-block' ng-show='article_form.$submitted && article_form.article_ru_annotation.$error.required'>не может быть пустым</span>
-        </div>
+      <div class='form-actions col-xs-12'>
+        <input type='submit' name='commit' value='Сохранить' class='btn btn-default btn btn-success'
+               ng-class='{"disabled": article.submitted}' ng-disabled='article.submitted' />
+        <% if @article.new_record? %>
+          <a href='<%= manage_issue_articles_path(@issue) %>' class='btn btn-default'
+             ng-class='{"disabled": article.submitted}' ng-disabled='article.submitted'>Отмена</a>
+        <% else %>
+          <a href='<%= manage_issue_article_path(@issue, @article) %>' class='btn btn-default'
+             ng-class='{"disabled": article.submitted}' ng-disabled='article.submitted'>Отмена</a>
+          <a href='<%= manage_issue_article_path(@issue, @article) %>' class='btn btn-default pull-right'
+             data-confirm='Вы уверены?' data-method='delete' rel='nofollow'
+             ng-class='{"disabled": article.submitted}' ng-disabled='article.submitted'>удалить</a>
+        <% end %>
       </div>
-      <div class='col-xs-12'>
-        <div class='form-group string optional article_ru_keyword_list'>
-          <label class='string optional control-label' for='article_ru_keyword_list'>Ключевые слова</label>
-          <input class='string optional form-control' type='text' id='article_ru_keyword_list' ng-model='article.ru_keyword_list' />
-        </div>
-        <hr>
-      </div>
-      <div class='col-xs-12'>
-        <div class='form-group string required article_en_title'
-             ng-class='{"has-error": article_form.$submitted && article_form.article_en_title.$error.required}'>
-          <label class='string required control-label' for='article_en_title'>Title [название на английском языке] <abbr title='обязательное поле'>*</abbr></label>
-          <input class='string required form-control' type='text' id='article_en_title'
-                 ng-model='article.en_title' name='article_en_title' required />
-          <span class='help-block' ng-show='article_form.$submitted && article_form.article_en_title.$error.required'>не может быть пустым</span>
-        </div>
-      </div>
-      <div class='col-xs-12'>
-        <div class='form-group text required article_en_annotation'
-             ng-class='{"has-error": article_form.$submitted && article_form.article_en_annotation.$error.required}'>
-          <label class='text required control-label' for='article_en_annotation'>Annotation [аннотация на английском языке] <abbr title='обязательное поле'>*</abbr></label>
-          <textarea class='text required form-control' id='article_en_annotation'
-                    ng-model='article.en_annotation' name='article_en_annotation' required></textarea>
-          <span class='help-block' ng-show='article_form.$submitted && article_form.article_en_annotation.$error.required'>не может быть пустым</span>
-        </div>
-      </div>
-      <div class='col-xs-12'>
-        <div class='form-group string optional article_en_keyword_list'>
-          <label class='string optional control-label' for='article_en_keyword_list'>Keywords [ключевые слова на английском]</label>
-          <input class='string optional form-control' type='text' id='article_en_keyword_list' ng-model='article.en_keyword_list' />
-        </div>
-        <hr />
-      </div>
-      <div class='col-lg-2 col-md-2 col-sm-6 col-xs-12'>
-        <div class='form-group integer required article_page_from'
-             ng-class='{"has-error": article_form.$submitted && article_form.article_page_from.$error.required}'>
-          <label class='integer required control-label' for='article_page_from'>Со страницы <abbr title='обязательное поле'>*</abbr></label>
-          <input class='numeric integer required form-control' type='number' step='1' id='article_page_from'
-                 ng-model='article.page_from' name='article_page_from' required />
-          <span class='help-block' ng-show='article_form.$submitted && article_form.article_page_from.$error.required'>не может быть пустым</span>
-        </div>
-      </div>
-      <div class='col-lg-2 col-md-2 col-sm-6 col-xs-12'>
-        <div class='form-group integer required article_page_to'
-             ng-class='{"has-error": article_form.$submitted && article_form.article_page_to.$error.required}'>
-          <label class='integer required control-label' for='article_page_to'>До страницы <abbr title='обязательное поле'>*</abbr></label>
-          <input class='numeric integer required form-control' type='number' step='1' id='article_page_to'
-                 ng-model='article.page_to' name='article_page_to' required />
-          <span class='help-block' ng-show='article_form.$submitted && article_form.article_page_to.$error.required'>не может быть пустым</span>
-        </div>
-      </div>
-    </div>
-    <div class='form-actions col-xs-12'>
-      <input type='submit' name='commit' value='Сохранить' class='btn btn-default btn btn-success' />
-      <% if @article.new_record? %>
-        <%= link_to 'Отмена', manage_issue_articles_path(@issue), class: 'btn btn-default' %>
-      <% else %>
-        <%= link_to 'Отмена', manage_issue_article_path(@issue, @article), class: 'btn btn-default' %>
-        <%= link_to 'удалить', manage_issue_article_path(@issue, @article), method: :delete, data: { confirm: 'Вы уверены?' },
-          class: 'btn btn-default pull-right' %>
-      <% end %>
-    </div>
     </form>
   </div>
 </div>
