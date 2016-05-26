@@ -1,0 +1,19 @@
+<table class="editorial-team">
+  <% object.each do |item| %>
+    <tr>
+      <td class='nobr'><%= link_to item.person_full_name, item.person_url, target: '_blank' %></td>
+      <td>
+        <%=
+          [
+            item.post_presentation.description,
+            [
+              item.short_title.to_s.gsub(/, (к|д)\.н\./, '').squish,
+              item.subdivision.abbr
+            ].delete_if(&:blank?).join(' '),
+            item.person_academic_titles
+          ].delete_if(&:blank?).join(', ').sub(/^./){ |m| m.mb_chars.upcase }
+        %>
+      </td>
+    </tr>
+  <% end %>
+</table>

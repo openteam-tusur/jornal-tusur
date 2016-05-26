@@ -9,6 +9,7 @@
           <h1><%= @content.try(&:part_title).presence || @page_title %></h1>
 
           <%= render_partial_for_region(@content) if @content.present? %>
+          <%= render_partial_for_region(@editorials) if @editorials.present? %>
         </div>
       </div>
 
