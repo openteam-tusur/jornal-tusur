@@ -29,3 +29,7 @@ profile:
 
 storage:
   url:                  url
+
+cms:
+  url:                  url
+  site_slug:            site_slug_cms
