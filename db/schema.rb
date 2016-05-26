@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525094301) do
+ActiveRecord::Schema.define(version: 20160525131532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,9 +33,11 @@ ActiveRecord::Schema.define(version: 20160525094301) do
     t.text     "file_url"
     t.text     "ru_keywords"
     t.text     "en_keywords"
+    t.integer  "section_id"
   end
 
   add_index "articles", ["issue_id"], name: "index_articles_on_issue_id", using: :btree
+  add_index "articles", ["section_id"], name: "index_articles_on_section_id", using: :btree
 
   create_table "issues", force: :cascade do |t|
     t.integer  "year"
@@ -85,4 +87,5 @@ ActiveRecord::Schema.define(version: 20160525094301) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   add_foreign_key "articles", "issues"
+  add_foreign_key "articles", "sections"
 end

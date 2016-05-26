@@ -18,9 +18,16 @@ angular.module('article_form').
 
         $scope.article.submitted = true
 
+        if $scope.article.section
+          $scope.article.section_id = $scope.article.section.id
+        else
+          $scope.article.section_id = ''
+
+        delete($scope.article['section'])
+
         $scope.upload = Upload.upload
-          url: $scope.article.url
-          method: $scope.article.method
+          url: $scope.url
+          method: $scope.method
           headers: { 'Content-Type': 'application/json' }
           data: { article: $scope.article }
           file: $scope.article_file

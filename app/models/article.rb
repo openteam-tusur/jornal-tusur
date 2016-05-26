@@ -1,6 +1,7 @@
 class Article < ActiveRecord::Base
 
   belongs_to :issue
+  belongs_to :section
 
   normalize_attributes :ru_title, :en_title, :ru_annotation, :en_annotation,
     :page_from, :page_to, with: :squish
@@ -75,12 +76,15 @@ end
 #  file_url          :text
 #  ru_keywords       :text
 #  en_keywords       :text
+#  section_id        :integer
 #
 # Indexes
 #
-#  index_articles_on_issue_id  (issue_id)
+#  index_articles_on_issue_id    (issue_id)
+#  index_articles_on_section_id  (section_id)
 #
 # Foreign Keys
 #
+#  fk_rails_582ee7da77  (section_id => sections.id)
 #  fk_rails_e2f71d0bb7  (issue_id => issues.id)
 #

@@ -1,8 +1,10 @@
 <div class='row js-article-form'
      ng-controller='ArticleController'
      ng-init='article=<%= @article.to_json %>;
-              article.method="<%= @article.new_record? ? 'POST' : 'PUT' %>";
-              article.url="<%= @article.new_record? ? manage_issue_articles_path(@issue) : manage_issue_article_path(@issue, @article) %>";'>
+              sections=<%= (sections = Section.ordered).to_json %>;
+              article.section=<%= sections.select{ |section| section.id == @article.section_id }.first.to_json %>;
+              method="<%= @article.new_record? ? 'POST' : 'PUT' %>";
+              url="<%= @article.new_record? ? manage_issue_articles_path(@issue) : manage_issue_article_path(@issue, @article) %>";'>
   <div class='form-wrapper simple_form'>
     <form ng-submit='commit()' name='article_form' novalidate>
       <div class='form-inputs'>
@@ -22,11 +24,21 @@
           <input class='hidden form-control' type='hidden' id='article_issue_id' ng-model='article.issue_id' />
         </div>
         <div class='col-xs-12'>
+          <div class='form-group select optional article_section'>
+            <label class='select optional control-label' for='article_section_id'>Секция</label>
+            <select class='select optional form-control' name='article_section_id' id='article_section_id'
+                    ng-model='article.section' ng-disabled='article.submitted'
+                    ng-options='section.ru_title for section in sections track by section.id'>
+              <option value=''></option>
+            </select>
+          </div>
+        </div>
+        <div class='col-xs-12'>
           <div class='form-group string required article_ru_title'
                ng-class='{"has-error": article_form.$submitted && article_form.article_ru_title.$error.required}'>
             <label class='string required control-label' for='article_ru_title'>Название <abbr title='обязательное поле'>*</abbr></label>
-            <input class='string required form-control' autofocus='autofocus' type='text' id='article_ru_title'
-                   ng-model='article.ru_title' ng-disabled='article.submitted' name='article_ru_title' required />
+            <input class='string required form-control' type='text' id='article_ru_title'
+                   ng-model='article.ru_title' ng-disabled='article.submitted' name='article_ru_title' required='required' />
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_ru_title.$error.required'>не может быть пустым</span>
           </div>
         </div>
@@ -35,7 +47,7 @@
                ng-class='{"has-error": article_form.$submitted && article_form.article_ru_annotation.$error.required}'>
             <label class='text required control-label' for='article_ru_annotation'>Аннотация <abbr title='обязательное поле'>*</abbr></label>
             <textarea class='text required form-control' id='article_ru_annotation'
-                      ng-model='article.ru_annotation' ng-disabled='article.submitted' name='article_ru_annotation' required></textarea>
+                      ng-model='article.ru_annotation' ng-disabled='article.submitted' name='article_ru_annotation' required='required'></textarea>
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_ru_annotation.$error.required'>не может быть пустым</span>
           </div>
         </div>
@@ -52,7 +64,7 @@
                ng-class='{"has-error": article_form.$submitted && article_form.article_en_title.$error.required}'>
             <label class='string required control-label' for='article_en_title'>Title [название на английском языке] <abbr title='обязательное поле'>*</abbr></label>
             <input class='string required form-control' type='text' id='article_en_title'
-                   ng-model='article.en_title' ng-disabled='article.submitted' name='article_en_title' required />
+                   ng-model='article.en_title' ng-disabled='article.submitted' name='article_en_title' required='required' />
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_en_title.$error.required'>не может быть пустым</span>
           </div>
         </div>
@@ -61,7 +73,7 @@
                ng-class='{"has-error": article_form.$submitted && article_form.article_en_annotation.$error.required}'>
             <label class='text required control-label' for='article_en_annotation'>Annotation [аннотация на английском языке] <abbr title='обязательное поле'>*</abbr></label>
             <textarea class='text required form-control' id='article_en_annotation'
-                      ng-model='article.en_annotation' ng-disabled='article.submitted' name='article_en_annotation' required></textarea>
+                      ng-model='article.en_annotation' ng-disabled='article.submitted' name='article_en_annotation' required='required'></textarea>
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_en_annotation.$error.required'>не может быть пустым</span>
           </div>
         </div>
@@ -78,7 +90,7 @@
                ng-class='{"has-error": article_form.$submitted && article_form.article_page_from.$error.required}'>
             <label class='integer required control-label' for='article_page_from'>Со страницы <abbr title='обязательное поле'>*</abbr></label>
             <input class='numeric integer required form-control' type='number' step='1' id='article_page_from'
-                   ng-model='article.page_from' ng-disabled='article.submitted' name='article_page_from' required />
+                   ng-model='article.page_from' ng-disabled='article.submitted' name='article_page_from' required='required' />
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_page_from.$error.required'>не может быть пустым</span>
           </div>
         </div>
@@ -87,7 +99,7 @@
                ng-class='{ "has-error": article_form.$submitted && (article_form.article_page_to.$error.required || article_form.$error.page_from_larger_page_to) }'>
             <label class='integer required control-label' for='article_page_to'>До страницы <abbr title='обязательное поле'>*</abbr></label>
             <input class='numeric integer required form-control' type='number' step='1' id='article_page_to'
-                   ng-model='article.page_to' ng-disabled='article.submitted' name='article_page_to' required />
+                   ng-model='article.page_to' ng-disabled='article.submitted' name='article_page_to' required='required' />
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_page_to.$error.required'>не может быть пустым</span>
             <span class='help-block' ng-show='article_form.$submitted && article_form.$error.page_from_larger_page_to'>не может быть меньше или равной стартовой странице</span>
           </div>
@@ -95,7 +107,7 @@
         <% if @article.file.present? %>
           <div class='col-lg-2 col-md-3 col-sm-6 col-xs-12'>
             <div class='form-group'>
-              <label class='file required control-label' for='article_file'>&nbsp;</label>
+              <label class='file control-label' for='article_file'>&nbsp;</label>
               <%= link_to @article.file_file_name, @article.file.url, target: '_blank' %>
             </div>
           </div>
@@ -104,7 +116,7 @@
           <div class='form-group file required article_file'
                ng-class='{ "has-error": article_form.$submitted && (article_form.article_file.$error.required || article_form.article_file.$error.pattern) }'>
             <label class='file required control-label' for='article_file'>Файл <abbr title='обязательное поле'>*</abbr></label>
-            <input class='file required' type='file' id='article_file' <%= 'required' if @article.file.blank? %>
+            <input class='file required' type='file' id='article_file' <%= 'required="required"'.html_safe if @article.file.blank? %>
                    ng-model='article.file' ng-change='show_progress = true' ng-disabled='article.submitted' name='article_file'
                    ngf-select ngf-pattern='"application/pdf"' ngf-accept='"application/pdf"'>
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_file.$error.required && !article_form.article_file.$error.pattern'>не может быть пустым</span>

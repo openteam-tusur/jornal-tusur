@@ -6,6 +6,10 @@
 
 <div class='row'>
   <div class='col-xs-12'>
+    <p>
+      <strong>Секция:</strong>
+      <%= @article.section.present? ? @article.section.ru_title : 'нет' %>
+    </p>
     <h3>
       <%= @article.ru_title %>
     </h3>

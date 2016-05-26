@@ -31,6 +31,7 @@ class Manage::ArticlesController < Manage::ApplicationController
   end
 
   def update
+    ap params
     if @article.update(article_params)
       flash[:notice] = 'Статья изменена'
       render json: { redirect_path: manage_issue_article_path(@issue, @article) }
@@ -56,7 +57,7 @@ class Manage::ArticlesController < Manage::ApplicationController
 
     def article_params
       params.require(:article).permit(
-        :issue_id, :ru_title, :en_title, :ru_annotation, :en_annotation,
+        :issue_id, :section_id, :ru_title, :en_title, :ru_annotation, :en_annotation,
         :ru_keyword_list, :en_keyword_list, :page_from, :page_to, :file
       )
     end
