@@ -40,7 +40,6 @@
 
         <div class='col-md-5 col-sm-6 col-xs-12'>
           <div class='additional-capabilities pull-right'>
-            <a href='#' class='cecutient' data-normal='<%= I18n.t('app.cecutient_normal') %>' data-cecutient='<%= I18n.t('app.cecutient') %>'><%= I18n.t('app.cecutient') %></a>
             <%= link_to 'English version', @page.related_pages.try(:[], 'en') || '/en', class: 'language en' if I18n.locale == :ru %>
             <%= link_to 'Русская версия', @page.related_pages.try(:[], 'ru') || '/ru', class: 'language ru' if I18n.locale == :en %>
           </div>
