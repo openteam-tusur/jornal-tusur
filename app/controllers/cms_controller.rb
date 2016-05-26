@@ -1,6 +1,4 @@
-class CmsController < ActionController::Base
-
-  protect_from_forgery :with => :exception
+class CmsController < ApplicationController
 
   rescue_from ActionView::MissingTemplate do |exception|
     raise ActionController::RoutingError.new('Not Found')

@@ -12,9 +12,13 @@
   <body>
     <div class='page_wrapper'>
       <div class='overlay js-overlay hidden-xs'></div>
-        <%= render partial: 'public_navigation' %>
-        <%= render partial: 'flash' %>
-        <%= yield %>
+      <%= render partial: 'public_navigation' %>
+      <% if notice || alert %>
+        <div class='container margin-top'>
+          <%= render partial: 'flash' %>
+        </div>
+      <% end %>
+      <%= yield %>
     </div>
     <%= render partial: 'footer' %>
   </body>
