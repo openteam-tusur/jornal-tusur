@@ -8,6 +8,7 @@
  * = require bootstrap-sprockets
  * = require tusur_header
  * = require toggle_subnavigation
+ * = require overlay
  * = require collapse
  * = require main
  */
