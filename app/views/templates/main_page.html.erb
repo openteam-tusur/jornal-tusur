@@ -10,15 +10,6 @@
 
           <h1><%= @content.try(&:part_title).presence || @page_title %></h1>
 
-          <% if @page.slug == 'contact-information' %>
-            <div class="address">
-              <strong>Address</strong>: 40 Lenina Prospect, Tomsk, Russia
-            </div>
-            <div class="map">
-              <iframe width="850" height="350" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=%D1%82%D1%83%D1%81%D1%83%D1%80&key=AIzaSyAEQnlSHzvQyGEbEhlpl1s5FRhcKxIbh1E" allowfullscreen></iframe>
-            </div>
-          <% end %>
-
           <%= render_partial_for_region(@content) if @content.present? %>
         </div>
       </div>
