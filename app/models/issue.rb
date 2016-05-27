@@ -1,5 +1,7 @@
 class Issue < ActiveRecord::Base
 
+  include AASM
+
   has_many :articles, dependent: :destroy
 
   scope :ordered, -> { order year: :desc, number: :desc, part: :desc }
@@ -30,6 +32,27 @@ class Issue < ActiveRecord::Base
   normalize_attributes :year, :number, :through_number, with: :squish
   normalize_attributes :part, with: [:squish, :blank]
 
+  aasm whiny_transitions: false do
+    state :draft, initial: true
+    state :published
+
+    event :approve do
+      transitions from: :draft, to: :published
+    end
+
+    event :rollback do
+      transitions from: :published, to: :draft
+    end
+  end
+
+  def current_state
+    aasm.current_state
+  end
+
+  def current_human_state
+    aasm.human_state
+  end
+
   def human_number
     human_number = ["№#{number}"]
     human_number << "#{part} часть" if part.present?
@@ -59,4 +82,5 @@ end
 #  poster_file_size    :integer
 #  poster_updated_at   :datetime
 #  poster_url          :text
+#  aasm_state          :string
 #

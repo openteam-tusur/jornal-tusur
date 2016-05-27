@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'aasm'
 gem 'acts-as-taggable-on'
 gem 'airbrake'
 gem 'angular_rails_csrf'

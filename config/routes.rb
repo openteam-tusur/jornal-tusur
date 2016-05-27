@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   namespace :manage do
     resources :issues, except: [:show] do
       resources :articles
+      member do
+        post :approve
+        post :rollback
+      end
     end
 
     resources :sections, except: [:show]

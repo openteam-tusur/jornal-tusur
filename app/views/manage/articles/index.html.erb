@@ -16,8 +16,17 @@
   <% end %>
   <div class='col-xs-12'>
     <p>
+      <span class='state state-<%= @issue.current_state %>'>
+        <%= @issue.current_human_state %>
+      </span>
+    </p>
+  </div>
+  <div class='col-xs-12'>
+    <p>
       <%= link_to 'Изменить', edit_manage_issue_path(@issue), class: 'btn btn-default' %>
       <%= link_to 'Отмена', manage_issues_path, class: 'btn btn-default' %>
+      <%= link_to 'Опубликовать', approve_manage_issue_path(@issue), class: 'btn btn-success', method: :post if @issue.draft? %>
+      <%= link_to 'Снять с публикации', rollback_manage_issue_path(@issue), class: 'btn btn-warning', method: :post if @issue.published? %>
     </p>
   </div>
 </div>

@@ -13,3 +13,13 @@ body
 
   .content
     margin-bottom: 30px
+
+  .state
+    +inline-block
+    padding: 10px
+
+    &.state-draft
+      @extend .bg-danger
+
+    &.state-published
+      @extend .bg-success

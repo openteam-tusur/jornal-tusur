@@ -2,7 +2,7 @@ class Manage::IssuesController < Manage::ApplicationController
 
   load_and_authorize_resource
 
-  before_action :set_issue, only: [:show, :edit, :update, :destroy]
+  before_action :set_issue, only: [:edit, :update, :destroy, :approve, :rollback]
 
   def index
     @issues = Issue.ordered
@@ -33,6 +33,16 @@ class Manage::IssuesController < Manage::ApplicationController
   def destroy
     @issue.destroy
     redirect_to manage_issues_path, notice: 'Номер журнала удалён'
+  end
+
+  def approve
+    @issue.approve!
+    redirect_to manage_issue_articles_path(@issue), notice: 'Номер журнала опубликован'
+  end
+
+  def rollback
+    @issue.rollback!
+    redirect_to manage_issue_articles_path(@issue), notice: 'Номер журнала снят с публикации'
   end
 
   private
