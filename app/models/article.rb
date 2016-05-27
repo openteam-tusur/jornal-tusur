@@ -2,6 +2,8 @@ class Article < ActiveRecord::Base
 
   belongs_to :issue
   belongs_to :section
+  has_many :article_authors, dependent: :destroy
+  has_many :authors, through: :article_authors
 
   normalize_attributes :ru_title, :en_title, :ru_annotation, :en_annotation,
     :page_from, :page_to, with: :squish

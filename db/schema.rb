@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527035149) do
+ActiveRecord::Schema.define(version: 20160527050017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "article_authors", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "article_authors", ["article_id"], name: "index_article_authors_on_article_id", using: :btree
+  add_index "article_authors", ["author_id"], name: "index_article_authors_on_author_id", using: :btree
 
   create_table "articles", force: :cascade do |t|
     t.integer  "issue_id"
@@ -38,6 +48,21 @@ ActiveRecord::Schema.define(version: 20160527035149) do
 
   add_index "articles", ["issue_id"], name: "index_articles_on_issue_id", using: :btree
   add_index "articles", ["section_id"], name: "index_articles_on_section_id", using: :btree
+
+  create_table "authors", force: :cascade do |t|
+    t.integer  "directory_id"
+    t.string   "ru_surname"
+    t.string   "ru_name"
+    t.string   "ru_patronymic"
+    t.string   "en_surname"
+    t.string   "en_name"
+    t.string   "en_patronymic"
+    t.text     "post"
+    t.string   "phone"
+    t.string   "email"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "issues", force: :cascade do |t|
     t.integer  "year"
@@ -91,6 +116,8 @@ ActiveRecord::Schema.define(version: 20160527035149) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
+  add_foreign_key "article_authors", "articles"
+  add_foreign_key "article_authors", "authors"
   add_foreign_key "articles", "issues"
   add_foreign_key "articles", "sections"
 end
