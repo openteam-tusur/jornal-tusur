@@ -10,7 +10,7 @@ angular.module('article_form').
         return if $scope.article_form.$error.required
         return if $scope.article_form.article_file && $scope.article_form.article_file.$invalid
 
-        if $scope.article_form.article_page_from.$viewValue >= $scope.article_form.article_page_to.$viewValue
+        if parseInt($scope.article_form.article_page_from.$viewValue) >= parseInt($scope.article_form.article_page_to.$viewValue)
           $scope.article_form.$error.page_from_larger_page_to = true
           return
         else
