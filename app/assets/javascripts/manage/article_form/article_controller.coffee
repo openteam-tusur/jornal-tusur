@@ -25,18 +25,21 @@ angular.module('article_form').
 
         delete($scope.article['section'])
 
-        $scope.upload = Upload.upload
+        upload = Upload.upload
           url: $scope.url
           method: $scope.method
           headers: { 'Content-Type': 'application/json' }
           data: { article: $scope.article }
           file: $scope.article_file
           fileFormDataName: 'article[file]'
-        .then (response) ->
-          $window.location = response.data.redirect_path
-        , (response) ->
-          console.log 'error'
-        , (event) ->
+
+        upload.success (data, status, headers, config) ->
+          $window.location = data.redirect_path
+
+        upload.error (data, status, headers, config) ->
+          console.log "error: #{status}"
+
+        upload.progress (event) ->
           return unless event.config.data.article.file
-          $scope.article.submit_proggress = parseInt(100.0 * event.loaded / event.total)
+          $scope.article.submit_file_proggress = parseInt(100.0 * event.loaded / event.total)
   ])

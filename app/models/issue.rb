@@ -11,6 +11,10 @@ class Issue < ActiveRecord::Base
     message: 'Такой номер журнала уже существует'
   }
 
+  has_attached_file :poster, storage: :elvfs, elvfs_url: Settings['storage.url']
+  validates_attachment :poster, presence: true,
+    content_type: { content_type: /\Aimage/ }
+
   default_value_for :year do
     Issue.pluck(:year).max
   end
@@ -43,11 +47,16 @@ end
 #
 # Table name: issues
 #
-#  id             :integer          not null, primary key
-#  year           :integer
-#  number         :integer
-#  through_number :integer
-#  part           :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id                  :integer          not null, primary key
+#  year                :integer
+#  number              :integer
+#  through_number      :integer
+#  part                :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  poster_file_name    :string
+#  poster_content_type :string
+#  poster_file_size    :integer
+#  poster_updated_at   :datetime
+#  poster_url          :text
 #

@@ -29,6 +29,7 @@ ru:
         number: 'Номер'
         part: 'Часть'
         through_number: 'Сквозной номер'
+        poster: 'Обложка'
 
       article:
         ru_title: 'Название'
@@ -42,15 +43,6 @@ ru:
         ru_keyword_list: 'Ключевые слова'
         en_keywords: 'Keywords [ключевые слова на английском]'
         en_keyword_list: 'Keywords [ключевые слова на английском]'
-
-    errors:
-      models:
-        article:
-          attributes:
-            file:
-              blank: 'Не может быть пустым'
-            file_content_type:
-              invalid: 'имеет содержимое, не соответствующее заявленному'
 
   top_header:
     sections_for: 'Разделы для'

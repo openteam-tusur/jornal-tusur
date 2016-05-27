@@ -15,6 +15,18 @@
       <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
         <%= f.input :through_number %>
       </div>
+      <% if @issue.poster.present? %>
+        <div class='col-xs-12'>
+          <p>
+            <%= link_to @issue.poster_url, class: :colorbox do %>
+              <%= image_tag @issue.poster_url.gsub(/\/\d+-\d+\//, '/150-215!/'), size: '150x215' %>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+      <div class='col-xs-12'>
+        <%= f.input :poster, required: true %>
+      </div>
     </div>
 
     <div class='form-actions col-xs-12'>

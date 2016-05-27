@@ -20,9 +20,11 @@
             <input class='hidden form-control' type='hidden' id='article_id' ng-model='article.id' />
           </div>
         <% end %>
+
         <div class='form-group hidden article_issue'>
           <input class='hidden form-control' type='hidden' id='article_issue_id' ng-model='article.issue_id' />
         </div>
+
         <div class='col-xs-12'>
           <div class='form-group select optional article_section'>
             <label class='select optional control-label' for='article_section_id'>Секция</label>
@@ -33,6 +35,7 @@
             </select>
           </div>
         </div>
+
         <div class='col-xs-12'>
           <div class='form-group string required article_ru_title'
                ng-class='{"has-error": article_form.$submitted && article_form.article_ru_title.$error.required}'>
@@ -42,6 +45,7 @@
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_ru_title.$error.required'>не может быть пустым</span>
           </div>
         </div>
+
         <div class='col-xs-12'>
           <div class='form-group text required article_ru_annotation'
                ng-class='{"has-error": article_form.$submitted && article_form.article_ru_annotation.$error.required}'>
@@ -51,6 +55,7 @@
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_ru_annotation.$error.required'>не может быть пустым</span>
           </div>
         </div>
+
         <div class='col-xs-12'>
           <div class='form-group string optional article_ru_keyword_list'>
             <label class='string optional control-label' for='article_ru_keyword_list'>Ключевые слова</label>
@@ -59,6 +64,7 @@
           </div>
           <hr>
         </div>
+
         <div class='col-xs-12'>
           <div class='form-group string required article_en_title'
                ng-class='{"has-error": article_form.$submitted && article_form.article_en_title.$error.required}'>
@@ -68,6 +74,7 @@
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_en_title.$error.required'>не может быть пустым</span>
           </div>
         </div>
+
         <div class='col-xs-12'>
           <div class='form-group text required article_en_annotation'
                ng-class='{"has-error": article_form.$submitted && article_form.article_en_annotation.$error.required}'>
@@ -77,6 +84,7 @@
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_en_annotation.$error.required'>не может быть пустым</span>
           </div>
         </div>
+
         <div class='col-xs-12'>
           <div class='form-group string optional article_en_keyword_list'>
             <label class='string optional control-label' for='article_en_keyword_list'>Keywords [ключевые слова на английском]</label>
@@ -85,6 +93,7 @@
           </div>
           <hr />
         </div>
+
         <div class='col-lg-2 col-md-2 col-sm-6 col-xs-12'>
           <div class='form-group integer required article_page_from'
                ng-class='{"has-error": article_form.$submitted && article_form.article_page_from.$error.required}'>
@@ -94,6 +103,7 @@
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_page_from.$error.required'>не может быть пустым</span>
           </div>
         </div>
+
         <div class='col-lg-2 col-md-2 col-sm-6 col-xs-12'>
           <div class='form-group integer required article_page_to'
                ng-class='{ "has-error": article_form.$submitted && (article_form.article_page_to.$error.required || article_form.$error.page_from_larger_page_to) }'>
@@ -104,38 +114,38 @@
             <span class='help-block' ng-show='article_form.$submitted && article_form.$error.page_from_larger_page_to'>не может быть меньше или равной стартовой странице</span>
           </div>
         </div>
+
         <% if @article.file.present? %>
-          <div class='col-lg-2 col-md-3 col-sm-6 col-xs-12'>
-            <div class='form-group'>
-              <label class='file control-label' for='article_file'>&nbsp;</label>
-              <%= link_to @article.file_file_name, @article.file.url, target: '_blank' %>
-            </div>
+          <div class='col-xs-12'>
+            Файл: <%= link_to @article.file_file_name, @article.file.url, target: '_blank' %>
           </div>
         <% end %>
-        <div class='col-lg-3 col-md-3 col-sm-6 col-xs-12'>
+        <div class='col-xs-12'>
           <div class='form-group file required article_file'
                ng-class='{ "has-error": article_form.$submitted && (article_form.article_file.$error.required || article_form.article_file.$error.pattern) }'>
             <label class='file required control-label' for='article_file'>Файл <abbr title='обязательное поле'>*</abbr></label>
             <input class='file required' type='file' id='article_file' <%= 'required="required"'.html_safe if @article.file.blank? %>
-                   ng-model='article.file' ng-change='show_progress = true' ng-disabled='article.submitted' name='article_file'
+                   ng-model='article.file' ng-change='show_file_progress = true' ng-disabled='article.submitted' name='article_file'
                    ngf-select ngf-pattern='"application/pdf"' ngf-accept='"application/pdf"'>
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_file.$error.required && !article_form.article_file.$error.pattern'>не может быть пустым</span>
             <span class='help-block' ng-show='article_form.$submitted && article_form.article_file.$error.pattern'>имеет неверный формат</span>
           </div>
         </div>
-        <div class='col-xs-12' ng-show='show_progress'>
+        <div class='col-xs-12' ng-show='show_file_progress'>
           <div class='progress'>
             <div class='progress-bar'
               role='progressbar'
               aria-valuemin='0'
               aria-valuemax='100'
-              aria-valuenow='{{ article.submit_proggress }'
-              style='width: {{ article.submit_proggress }}%;'>
-              {{ article.submit_proggress }}%
+              aria-valuenow='{{ article.submit_file_proggress }'
+              style='width: {{ article.submit_file_proggress }}%;'>
+              {{ article.submit_file_proggress }}%
             </div>
           </div>
         </div>
+
       </div>
+
       <div class='form-actions col-xs-12'>
         <input type='submit' name='commit' value='Сохранить' class='btn btn-default btn btn-success'
                ng-class='{"disabled": article.submitted}' ng-disabled='article.submitted' />

@@ -5,6 +5,15 @@
 <% end %>
 
 <div class='row'>
+  <% if @issue.poster.present? %>
+    <div class='col-xs-12'>
+      <p>
+        <%= link_to @issue.poster_url, class: :colorbox do %>
+          <%= image_tag @issue.poster_url.gsub(/\/\d+-\d+\//, '/150-215!/'), size: '150x215' %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
   <div class='col-xs-12'>
     <p>
       <%= link_to 'Изменить', edit_manage_issue_path(@issue), class: 'btn btn-default' %>

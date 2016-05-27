@@ -1,4 +1,4 @@
-$(document).on 'ready page:change', ->
+$(document).on 'ready page:load', ->
 
   Turbolinks.enableProgressBar()
 
@@ -6,5 +6,6 @@ $(document).on 'ready page:change', ->
     return false
 
   init_user_autocomplete() if $('.js-user-autocomplete').length
+  init_colorbox() if $('a.colorbox').length
 
   return
