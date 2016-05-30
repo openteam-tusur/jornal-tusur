@@ -1,7 +1,7 @@
 angular.module('article_form').
   controller('ArticleController', [
-    '$scope', 'Upload', '$http', '$window',
-    ($scope,   Upload,   $http,   $window) ->
+    '$scope', 'Upload', '$window', 'article_authors',
+    ($scope,   Upload,   $window,   article_authors) ->
 
       $scope.article = { submitted: false }
 

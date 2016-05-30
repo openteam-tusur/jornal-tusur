@@ -33,3 +33,12 @@ storage:
 cms:
   url:                  url
   site_slug:            site_slug_cms
+
+directory:
+  fulltext_fullname:    url
+  by_fullname:          url
+  by_name:              url
+  url:                  url
+
+solr:
+  url:                  url

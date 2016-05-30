@@ -11,6 +11,11 @@ Rails.application.routes.draw do
 
     resources :sections, except: [:show]
 
+    resources :authors, only: [] do
+      get 'search', on: :collection
+      get 'directory_search', on: :collection
+    end
+
     resources :permissions, except: [:edit, :update]
     get 'users/search' => 'users#search', as: :users_search
 

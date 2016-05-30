@@ -3,6 +3,13 @@ class Author < ActiveRecord::Base
   has_many :article_authors, dependent: :destroy
   has_many :articles, through: :article_authors
 
+  searchable do
+    text :ru_surname
+    text :ru_name
+    text :ru_patronymic
+    integer :id
+  end
+
   def ru_fullname
     "#{ru_surname} #{ru_name} #{ru_patronymic}"
   end

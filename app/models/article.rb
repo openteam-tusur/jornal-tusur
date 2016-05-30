@@ -34,7 +34,7 @@ class Article < ActiveRecord::Base
 
   def to_json
     super({
-      methods: [:ru_keyword_list, :en_keyword_list],
+      methods: [:ru_keyword_list, :en_keyword_list, :authors],
       except: [:created_at, :updated_at]
     })
   end
