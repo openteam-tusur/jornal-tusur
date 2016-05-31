@@ -14,6 +14,13 @@
       </p>
     </div>
   <% end %>
+  <% if @issue.file.present? %>
+    <div class='col-xs-12'>
+      <p>
+        Файл: <%= link_to @issue.file_file_name, @issue.file.url, target: '_blank' %>
+      </p>
+    </div>
+  <% end %>
   <div class='col-xs-12'>
     <p>
       <span class='state state-<%= @issue.current_state %>'>

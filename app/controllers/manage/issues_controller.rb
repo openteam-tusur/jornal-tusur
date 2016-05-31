@@ -52,7 +52,7 @@ class Manage::IssuesController < Manage::ApplicationController
     end
 
     def issue_params
-      params.require(:issue).permit(:year, :number, :through_number, :part, :poster)
+      params.require(:issue).permit(:year, :number, :through_number, :part, :poster, :file)
     end
 
 end

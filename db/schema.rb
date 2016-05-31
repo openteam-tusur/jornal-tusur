@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527052850) do
+ActiveRecord::Schema.define(version: 20160531094447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,11 @@ ActiveRecord::Schema.define(version: 20160527052850) do
     t.datetime "poster_updated_at"
     t.text     "poster_url"
     t.string   "aasm_state"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.text     "file_url"
   end
 
   create_table "permissions", force: :cascade do |t|

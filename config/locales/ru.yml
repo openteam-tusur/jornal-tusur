@@ -30,6 +30,7 @@ ru:
         part: 'Часть'
         through_number: 'Сквозной номер'
         poster: 'Обложка'
+        file: 'Файл'
         aasm_state: 'Статус'
         aasm_state/draft: 'Черновик'
         aasm_state/published: 'Опубликовано'

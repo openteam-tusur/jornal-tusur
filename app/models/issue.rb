@@ -17,6 +17,10 @@ class Issue < ActiveRecord::Base
   validates_attachment :poster, presence: true,
     content_type: { content_type: /\Aimage/ }
 
+  has_attached_file :file, storage: :elvfs, elvfs_url: Settings['storage.url']
+  validates_attachment :file, presence: true,
+    content_type: { content_type: 'application/pdf' }
+
   default_value_for :year do
     Issue.pluck(:year).max
   end
@@ -83,4 +87,9 @@ end
 #  poster_updated_at   :datetime
 #  poster_url          :text
 #  aasm_state          :string
+#  file_file_name      :string
+#  file_content_type   :string
+#  file_file_size      :integer
+#  file_updated_at     :datetime
+#  file_url            :text
 #

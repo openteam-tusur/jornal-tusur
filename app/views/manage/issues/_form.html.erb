@@ -27,6 +27,16 @@
       <div class='col-xs-12'>
         <%= f.input :poster, required: true %>
       </div>
+      <% if @issue.file.present? %>
+        <div class='col-xs-12'>
+          <p>
+            Файл: <%= link_to @issue.file_file_name, @issue.file.url, target: '_blank' %>
+          </p>
+        </div>
+      <% end %>
+      <div class='col-xs-12'>
+        <%= f.input :file, required: true %>
+      </div>
     </div>
 
     <div class='form-actions col-xs-12'>
