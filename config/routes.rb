@@ -2,11 +2,16 @@ Rails.application.routes.draw do
 
   namespace :manage do
     resources :issues, except: [:show] do
-      resources :articles
+
       member do
         post :approve
         post :rollback
       end
+
+      resources :articles do
+        resources :authors, only: [:new, :create, :destroy]
+      end
+
     end
 
     resources :sections, except: [:show]

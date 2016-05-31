@@ -2,6 +2,7 @@ angular.module('article_form')
   .factory('article_authors', [
     '$http',
     ($http) ->
+
       o = {
         authors: []
       }

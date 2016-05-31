@@ -3,6 +3,16 @@ class Author < ActiveRecord::Base
   has_many :article_authors, dependent: :destroy
   has_many :articles, through: :article_authors
 
+  validates_presence_of :ru_surname, :ru_name
+
+  normalize_attributes :ru_surname, :ru_name, :ru_patronymic, with: :squish do |value|
+    value.present? ? value.mb_chars.downcase.gsub(/\s+/, '-').split('-').map(&:capitalize).join('-').to_s : value
+  end
+
+  normalize_attributes :phone, :email, with: [:squish, :downcase]
+
+  before_validation :set_en_attributes
+
   searchable do
     text :ru_surname
     text :ru_name
@@ -25,6 +35,15 @@ class Author < ActiveRecord::Base
   def en_shortname
     en_fullname.gsub(/(?<=\s[A-Z])[a-z]+/, '.')
   end
+
+  private
+
+    def set_en_attributes
+      self.en_surname = Russian.transliterate(self.ru_surname)
+      self.en_name = Russian.transliterate(self.ru_name)
+      self.en_patronymic = Russian.transliterate(self.ru_patronymic)
+      p self
+    end
 
 end
 

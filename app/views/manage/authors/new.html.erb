@@ -1,0 +1,33 @@
+<% content_for :page_header, @article.ru_title %>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <h2>Новый автор</h2>
+  </div>
+  <%= simple_form_for [:manage, @issue, @article, @author] do |f| %>
+    <%= content_tag :div, f.error_notification, class: 'col-xs-12' %>
+
+    <div class='form-inputs'>
+      <div class='col-lg-4 col-md-4 col-sm-4 col-xs-12'>
+        <%= f.input :ru_surname, autofocus: true %>
+      </div>
+      <div class='col-lg-4 col-md-4 col-sm-4 col-xs-12'>
+        <%= f.input :ru_name %>
+      </div>
+      <div class='col-lg-4 col-md-4 col-sm-4 col-xs-12'>
+        <%= f.input :ru_patronymic %>
+      </div>
+      <div class='col-lg-4 col-md-4 col-sm-4 col-xs-12'>
+        <%= f.input :phone %>
+      </div>
+      <div class='col-lg-4 col-md-4 col-sm-4 col-xs-12'>
+        <%= f.input :email %>
+      </div>
+    </div>
+
+    <div class='form-actions col-xs-12'>
+      <%= f.button :submit, 'Сохранить', class: 'btn btn-success' %>
+      <%= link_to 'Отмена', manage_issue_article_path(@issue, @article), class: 'btn btn-default' %>
+    </div>
+  <% end %>
+</div>

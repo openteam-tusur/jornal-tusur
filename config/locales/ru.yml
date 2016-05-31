@@ -47,6 +47,16 @@ ru:
         en_keywords: 'Keywords [ключевые слова на английском]'
         en_keyword_list: 'Keywords [ключевые слова на английском]'
 
+      author:
+        ru_surname: 'Фамилия'
+        ru_name: 'Имя'
+        ru_patronymic: 'Отчество'
+        en_surname: 'Surname [фамилия на английском языке]'
+        en_name: 'Name [имя на английском языке]'
+        en_patronymic: 'Patronymic [отчество на английском языке]'
+        phone: 'Телефон'
+        email: 'Email'
+
   top_header:
     sections_for: 'Разделы для'
     sites_tusur: 'Сайты ТУСУР'

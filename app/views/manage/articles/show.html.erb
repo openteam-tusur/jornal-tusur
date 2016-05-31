@@ -50,4 +50,25 @@
       <%= link_to 'Отмена', manage_issue_articles_path(@issue), class: 'btn btn-default' %>
     </p>
   </div>
+  <div class='col-xs-12'>
+    <h2>Авторы</h2>
+  </div>
+  <% if @article.authors.any? %>
+    <div class='col-xs-12'>
+      <ul>
+        <% @article.authors.each do |author| %>
+          <li>
+            <%= author.ru_fullname %>
+            <%= link_to manage_issue_article_author_path(@issue, @article, author), title: 'Удалить',
+              data: { toggle: 'tooltip', placement: 'right', method: 'delete', confirm: 'Вы уверены?' } do %>
+              <span class='glyphicon glyphicon-remove'></span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class='col-xs-12'>
+    <%= link_to 'Добавить', new_manage_issue_article_author_path(@issue, @article), class: 'btn btn-default' %>
+  </div>
 </div>
