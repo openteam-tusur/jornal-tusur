@@ -54,6 +54,7 @@ group :development do
   gem 'openteam-capistrano', '~> 1.0.11'
   gem 'rubocop'
   gem 'spring'
+  gem 'quiet_assets'
   gem 'web-console', '~> 2.0'
 end
 

@@ -221,6 +221,8 @@ GEM
     progress_bar (1.0.5)
       highline (~> 1.6)
       options (~> 2.3.0)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.4)
     rack-cache (1.6.1)
       rack (>= 0.4)
@@ -391,6 +393,7 @@ DEPENDENCIES
   paperclip-elvfs
   pg
   progress_bar
+  quiet_assets
   rack-cache
   rack-utf8_sanitizer
   rails (~> 4.2.6)
@@ -416,4 +419,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.12.4
+   1.12.5

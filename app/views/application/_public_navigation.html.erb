@@ -1,10 +1,10 @@
 <% cache_unless request.host.match(Settings['app.nocache_host'].to_s),
                 "#{request.fullpath.to_s.parameterize('_').gsub('-', '_')}_fullscreen_navigation",
                 expires_in: 20.minutes do %>
-  <%= render partial: 'main/navigation/fullscreen' %>
+  <%= render partial: 'application/navigation/fullscreen' %>
 <% end %>
-<%= render partial: 'main/navigation/top_navigation' %>
-<%= render partial: 'main/navigation/subtop_navigation' %>
+<%= render partial: 'application/navigation/top_navigation' %>
+<%= render partial: 'application/navigation/subtop_navigation' %>
 
 <% cache_unless request.host.match(Settings['app.nocache_host'].to_s),
                 "#{request.fullpath.to_s.parameterize('_').gsub('-', '_')}_main_navigation",

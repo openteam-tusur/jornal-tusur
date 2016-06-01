@@ -1,6 +1,5 @@
 class MainController < CmsController
 
-  layout "application"
   include Cmsable
 
   private
