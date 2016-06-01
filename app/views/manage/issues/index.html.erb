@@ -18,7 +18,6 @@
             <%= link_to issue.full_number, manage_issue_articles_path(issue) %>
             <%= content_tag :span, issue.current_human_state, class: 'text-warning' if issue.draft? %>
             <%= content_tag :span, issue.current_human_state, class: 'text-success' if issue.published? %>
-            <%= issue.slug %>
           </li>
         <% end %>
       </ul>
