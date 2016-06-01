@@ -75,6 +75,17 @@ table
   p
     margin-bottom: 0
 
+  &.border-box
+    border-top: 1px solid #d3d3d3
+
+    td
+      border-left: 1px solid #d3d3d3
+      border-right: 1px solid #d3d3d3
+
+      &:first-child
+        width: 25%
+
+
   @media (max-width: $screen-xs-max)
     thead
       th, td
