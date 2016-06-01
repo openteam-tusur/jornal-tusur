@@ -27,7 +27,7 @@ ru:
 
     students:
       title: 'Студентам'
-      link: '/ru/studentam'
+      link: 'https://tusur.ru/ru/studentam'
 
     magistrants:
       title: 'Магистрантам'
@@ -35,11 +35,11 @@ ru:
 
     postgraduates:
       title: 'Аспирантам'
-      link: '/ru/aspirantam'
+      link: 'https://tusur.ru/ru/aspirantam'
 
     staff:
       title: 'Сотрудникам'
-      link: '/ru/sotrudnikam'
+      link: 'https://tusur.ru/ru/sotrudnikam'
 
 en:
   main_sites:
@@ -66,16 +66,16 @@ en:
   additional_sites:
     admission:
       title: 'Admission'
-      link: '/en/admission'
+      link: 'https://tusur.ru/en/admission'
 
     degree-programs:
       title: 'Degree Programs'
-      link: '/en/degree-programs/bachelor-programs'
+      link: 'https://tusur.ru/en/degree-programs/bachelor-programs'
 
     employment:
       title: 'Employment'
-      link: '/en/employment'
+      link: 'https://tusur.ru/en/employment'
 
     publications:
       title: 'Publications'
-      link: '/en/publications'
+      link: 'https://tusur.ru/en/publications'

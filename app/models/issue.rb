@@ -1,7 +1,5 @@
 class Issue < ActiveRecord::Base
 
-  include AASM
-
   has_many :articles, dependent: :destroy
 
   scope :ordered, -> { order year: :desc, number: :desc, part: :desc }
@@ -18,7 +16,7 @@ class Issue < ActiveRecord::Base
     content_type: { content_type: /\Aimage/ }
 
   has_attached_file :file, storage: :elvfs, elvfs_url: Settings['storage.url']
-  validates_attachment :file, presence: true,
+  validates_attachment :file,
     content_type: { content_type: 'application/pdf' }
 
   default_value_for :year do
@@ -36,6 +34,8 @@ class Issue < ActiveRecord::Base
   normalize_attributes :year, :number, :through_number, with: :squish
   normalize_attributes :part, with: [:squish, :blank]
 
+  include AASM
+
   aasm whiny_transitions: false do
     state :draft, initial: true
     state :published
@@ -47,6 +47,17 @@ class Issue < ActiveRecord::Base
     event :rollback do
       transitions from: :published, to: :draft
     end
+  end
+
+  extend FriendlyId
+
+  friendly_id :slug_candidates
+
+  def slug_candidates
+    [
+      [:number, :part, :year],
+      [:number, :year],
+    ]
   end
 
   def current_state
@@ -92,4 +103,9 @@ end
 #  file_file_size      :integer
 #  file_updated_at     :datetime
 #  file_url            :text
+#  slug                :string
+#
+# Indexes
+#
+#  index_issues_on_slug  (slug) UNIQUE
 #

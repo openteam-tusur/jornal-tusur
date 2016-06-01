@@ -26,7 +26,7 @@ module Cmsable
     @page_meta = page.meta
     @link_to_json = remote_url
 
-    render "templates/#{page.template}"
+    render "templates/#{page.template}" unless page.template == 'on_client'
   end
 
   def detect_robots_in_development

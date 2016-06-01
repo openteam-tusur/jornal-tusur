@@ -5,7 +5,10 @@ class MainController < CmsController
   private
 
   def remote_url
-    request_path, parts_params = request.fullpath.split('?')
+    origin_request_path, parts_params = request.fullpath.split('?')
+    request_path = origin_request_path
+
+    request_path = '/ru/arhiv' if origin_request_path.match(/\A\/ru\/arhiv.*/)
 
     ["#{cms_address}#{request_path.gsub('//', '/').split('/').compact.join('/')}.json", parts_params].compact.join('?')
   end
