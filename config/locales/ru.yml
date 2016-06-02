@@ -13,6 +13,8 @@ ru:
     issue_of_journal: 'Выпуск журнала %{number} за %{year} год'
     list_of_articles: 'Список статей'
     download_full_issue: 'Скачать %{message} в формате PDF'
+    last_release: 'Последний выпуск'
+    last_issue_title: 'Доклады ТУСУР %{number} %{year} г.'
 
   permissions:
     admin: 'Администратор'
