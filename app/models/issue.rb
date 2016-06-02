@@ -80,7 +80,7 @@ class Issue < ActiveRecord::Base
   end
 
   def title
-    "Выпуск журнала #{full_number} за #{year} год"
+    I18n.t('app.issue_of_journal', number: full_number, year: year)
   end
 
 end

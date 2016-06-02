@@ -14,7 +14,7 @@
             <h2><%= year %></h2>
             <ul>
               <% issues.each do |issue| %>
-                <li><%= link_to issue.full_number, ru_articles_path(issue.slug) %></li>
+                <li><%= link_to issue.full_number, send("#{I18n.locale}_articles_path", issue.slug) %></li>
               <% end %>
             </ul>
           <% end %>

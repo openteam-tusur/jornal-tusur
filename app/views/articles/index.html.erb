@@ -19,16 +19,14 @@
             <% if @issue.file.present? %>
               <p>
                 <%= link_to @issue.file.url, target: '_blank' do %>
-                  Скачать
-                  <%= @issue.title.mb_chars.downcase %>
-                  в формате PDF
+                  <%= I18n.t('app.download_full_issue', message: @issue.title.mb_chars.downcase) %>
                 <% end %>
               </p>
             <% end %>
           </div>
 
           <% if @articles.any? %>
-            <h2><strong>Список статей</strong></h2>
+            <h2><strong><%= I18n.t('app.list_of_articles') %></strong></h2>
 
             <% @articles.group_by(&:section).each do |section, articles| %>
 

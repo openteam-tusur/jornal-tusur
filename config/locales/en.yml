@@ -8,6 +8,9 @@ en:
     manage: 'Manage'
     send_article: 'Send article'
     requirements: 'Requirements for registration of articles'
+    issue_of_journal: 'Issue of Journal %{number}, %{year}'
+    list_of_articles: 'List of articles'
+    download_full_issue: 'Download %{message} in PDF format'
 
   top_header:
     sections_for: 'Sections for'
