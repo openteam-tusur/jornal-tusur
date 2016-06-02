@@ -1,7 +1,7 @@
 class IssuesController < MainController
 
   def index
-    @issues = Issue.ordered
+    @issues = Issue.published.ordered
   end
 
 end

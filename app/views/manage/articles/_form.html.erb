@@ -7,7 +7,7 @@
         <%= f.association :section, collection: Section.ordered %>
       </div>
       <div class='col-xs-12'>
-        <%= f.input :ru_title, as: :string %>
+        <%= f.input :title_ru, as: :string, required: true %>
       </div>
       <div class='col-xs-12'>
         <%= f.input :ru_annotation %>
@@ -16,7 +16,7 @@
         <%= f.input :ru_keyword_list %>
       </div>
       <div class='col-xs-12'>
-        <%= f.input :en_title, as: :string %>
+        <%= f.input :title_en, as: :string, required: true %>
       </div>
       <div class='col-xs-12'>
         <%= f.input :en_annotation %>
@@ -38,7 +38,7 @@
         </div>
       <% end %>
       <div class='col-xs-12'>
-        <%= f.input :file %>
+        <%= f.input :file, required: true %>
       </div>
     </div>
 

@@ -1,4 +1,4 @@
-<% content_for :page_header, @article.ru_title %>
+<% content_for :page_header, @article.title %>
 
 <div class='row'>
   <div class='col-xs-12'>
@@ -12,7 +12,7 @@
       <%= @article.section.present? ? @article.section.title : 'нет' %>
     </p>
     <h3>
-      <%= @article.ru_title %>
+      <%= @article.title_ru %>
     </h3>
     <p>
       <strong>Аннотация:</strong>
@@ -25,7 +25,7 @@
 
     <hr />
 
-    <h3><%= @article.en_title %></h3>
+    <h3><%= @article.title_en %></h3>
     <p>
       <strong>Annotation:</strong>
       <%= @article.en_annotation %>

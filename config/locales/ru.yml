@@ -36,8 +36,9 @@ ru:
         aasm_state/published: 'Опубликовано'
 
       article:
-        ru_title: 'Название'
-        en_title: 'Title [название на английском языке]'
+        section: 'Секция'
+        title_ru: 'Название'
+        title_en: 'Title [название на английском языке]'
         ru_annotation: 'Аннотация'
         en_annotation: 'Annotation [аннотация на английском языке]'
         page_from: 'Со страницы'

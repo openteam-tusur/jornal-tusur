@@ -6,7 +6,7 @@ class Manage::ArticlesController < Manage::ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
-    @articles = Article.where(issue: @issue).order(:page_from)
+    @articles = Article.where(issue: @issue).ordered
   end
 
   def show
@@ -54,8 +54,11 @@ class Manage::ArticlesController < Manage::ApplicationController
 
     def article_params
       params.require(:article).permit(
-        :issue_id, :section_id, :ru_title, :en_title, :ru_annotation, :en_annotation,
-        :ru_keyword_list, :en_keyword_list, :page_from, :page_to, :file
+        :issue_id, :section_id,
+        *Article.globalize_attribute_names,
+        :ru_annotation, :en_annotation,
+        :ru_keyword_list, :en_keyword_list,
+        :page_from, :page_to, :file
       )
     end
 

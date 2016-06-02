@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601101334) do
+ActiveRecord::Schema.define(version: 20160602034317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,10 +26,20 @@ ActiveRecord::Schema.define(version: 20160601101334) do
   add_index "article_authors", ["article_id"], name: "index_article_authors_on_article_id", using: :btree
   add_index "article_authors", ["author_id"], name: "index_article_authors_on_author_id", using: :btree
 
+  create_table "article_translations", force: :cascade do |t|
+    t.integer  "article_id", null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "title"
+    t.string   "slug"
+  end
+
+  add_index "article_translations", ["article_id"], name: "index_article_translations_on_article_id", using: :btree
+  add_index "article_translations", ["locale"], name: "index_article_translations_on_locale", using: :btree
+
   create_table "articles", force: :cascade do |t|
     t.integer  "issue_id"
-    t.text     "ru_title"
-    t.text     "en_title"
     t.text     "ru_annotation"
     t.text     "en_annotation"
     t.integer  "page_from"

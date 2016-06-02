@@ -5,18 +5,25 @@ class Article < ActiveRecord::Base
   has_many :article_authors, dependent: :destroy
   has_many :authors, through: :article_authors
 
-  normalize_attributes :ru_title, :en_title, :ru_annotation, :en_annotation,
-    :page_from, :page_to, with: :squish
+  translates :title, :slug
 
-  validates_presence_of :ru_title, :en_title, :ru_annotation, :en_annotation,
-    :page_from, :page_to
+  globalize_accessors locales: I18n.available_locales, attributes: translated_attribute_names
 
-  validates :ru_title, uniqueness: {
+  globalize_validations
+  validates :title, presence: true
+  validates :title, uniqueness: {
     scope: :issue_id,
     message: 'Статья с таким названием уже есть в этом номере журнала'
   }
+  validate :validates_globalized_attributes
+
+  validates_presence_of :ru_annotation, :en_annotation,
+    :page_from, :page_to
 
   validate :page_from_larger_page_to
+
+  normalize_attributes :title, :ru_annotation, :en_annotation,
+    :page_from, :page_to, with: :squish
 
   normalize_attributes :ru_keyword_list, :en_keyword_list, with: [:squish, :blank, :downcase] do |value|
     if value.present?
@@ -28,16 +35,14 @@ class Article < ActiveRecord::Base
 
   acts_as_taggable_on :ru_keywords, :en_keywords
 
+  extend FriendlyId
+  friendly_id :title
+
+  scope :ordered, -> { order :page_from }
+
   has_attached_file :file, storage: :elvfs, elvfs_url: Settings['storage.url']
   validates_attachment :file, presence: true,
     content_type: { content_type: 'application/pdf' }
-
-  def to_json
-    super({
-      methods: [:ru_keyword_list, :en_keyword_list, :authors],
-      except: [:created_at, :updated_at]
-    })
-  end
 
   def ru_keyword_list
     ru_keywords.map(&:name).join(', ')
@@ -50,7 +55,7 @@ class Article < ActiveRecord::Base
   private
 
     def page_from_larger_page_to
-      if page_from >= page_to
+      if page_from.to_i >= page_to.to_i
         errors.add(:page_to, 'не может быть меньше или равной стартовой странице')
       end
     end
@@ -63,8 +68,6 @@ end
 #
 #  id                :integer          not null, primary key
 #  issue_id          :integer
-#  ru_title          :text
-#  en_title          :text
 #  ru_annotation     :text
 #  en_annotation     :text
 #  page_from         :integer
