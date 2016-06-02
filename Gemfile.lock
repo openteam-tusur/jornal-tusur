@@ -76,7 +76,7 @@ GEM
     auto_html (1.6.4)
       redcarpet (~> 3.1)
       rinku (~> 1.5.0)
-    autoprefixer-rails (6.3.6.1)
+    autoprefixer-rails (6.3.6.2)
       execjs
     awesome_print (1.6.1)
     binding_of_caller (0.7.2)
@@ -85,7 +85,7 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.2)
-    byebug (9.0.4)
+    byebug (9.0.5)
     cancancan (1.14.0)
     capistrano (3.5.0)
       airbrussh (>= 1.0.0)
@@ -159,6 +159,14 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    globalize (5.0.1)
+      activemodel (>= 4.2.0, < 4.3)
+      activerecord (>= 4.2.0, < 4.3)
+    globalize-accessors (0.2.1)
+      globalize (~> 5.0, >= 5.0.0)
+    globalize-validations (0.0.4)
+      globalize (>= 3)
+      globalize-accessors (~> 0.1)
     gravtastic (3.2.6)
     hashie (3.4.4)
     highline (1.7.8)
@@ -215,7 +223,7 @@ GEM
     paperclip-elvfs (0.0.5.2)
       curb
       paperclip
-    parser (2.3.1.0)
+    parser (2.3.1.2)
       ast (~> 2.2)
     pg (0.18.4)
     powerpack (0.1.1)
@@ -245,7 +253,7 @@ GEM
       sprockets-rails
     rails-assets-angucomplete-alt (2.4.1)
       rails-assets-angular (>= 1.4.0)
-    rails-assets-angular (1.5.5)
+    rails-assets-angular (1.5.6)
     rails-assets-ng-file-upload (12.0.4)
       rails-assets-angular (> 1.2.0)
     rails-deprecated_sanitizer (1.0.3)
@@ -384,6 +392,9 @@ DEPENDENCIES
   configliere
   default_value_for
   friendly_id
+  globalize
+  globalize-accessors
+  globalize-validations
   gravtastic
   hashie
   jquery-colorbox-rails

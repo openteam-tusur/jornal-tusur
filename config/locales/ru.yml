@@ -21,8 +21,8 @@ ru:
         role: 'Роль'
 
       section:
-        ru_title: 'Название'
-        en_title: 'Title [название на английском языке]'
+        title_ru: 'Название'
+        title_en: 'Title [название на английском языке]'
 
       issue:
         year: 'Год'

@@ -14,8 +14,8 @@
       <% @sections.each do |section| %>
         <li>
           <p>
-            <%= section.ru_title %>
-            [<%= section.en_title %>]
+            <%= section.title_ru %>
+            [<%= section.title_en %>]
             <%= link_to edit_manage_section_path(section) do %>
               <span class='nowrap'>
                 <span class='glyphicon glyphicon-pencil'></span>

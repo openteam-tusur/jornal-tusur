@@ -1,11 +1,16 @@
 class Section < ActiveRecord::Base
 
-  validates_presence_of :ru_title, :en_title
-  validates_uniqueness_of :ru_title, :en_title
+  translates :title
 
-  normalize_attributes :ru_title, :en_title, with: :squish
+  globalize_accessors locales: I18n.available_locales, attributes: translated_attribute_names
 
-  scope :ordered, -> { order :ru_title }
+  globalize_validations
+  validates :title, presence: true, uniqueness: true
+  validate :validates_globalized_attributes
+
+  normalize_attributes :title, with: :squish
+
+  scope :ordered, -> { with_translations(I18n.locale).order(:title) }
 
 end
 
@@ -14,8 +19,6 @@ end
 # Table name: sections
 #
 #  id         :integer          not null, primary key
-#  ru_title   :string
-#  en_title   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

@@ -41,6 +41,6 @@ class Manage::SectionsController < Manage::ApplicationController
     end
 
     def section_params
-      params.require(:section).permit(:ru_title, :en_title)
+      params.require(:section).permit(*Section.globalize_attribute_names)
     end
 end

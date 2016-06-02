@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601064321) do
+ActiveRecord::Schema.define(version: 20160601101334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,9 +111,18 @@ ActiveRecord::Schema.define(version: 20160601064321) do
 
   add_index "permissions", ["user_id", "role", "context_id", "context_type"], name: "by_user_and_role_and_context", using: :btree
 
+  create_table "section_translations", force: :cascade do |t|
+    t.integer  "section_id", null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "title"
+  end
+
+  add_index "section_translations", ["locale"], name: "index_section_translations_on_locale", using: :btree
+  add_index "section_translations", ["section_id"], name: "index_section_translations_on_section_id", using: :btree
+
   create_table "sections", force: :cascade do |t|
-    t.string   "ru_title"
-    t.string   "en_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
