@@ -32,6 +32,11 @@ Rails.application.routes.draw do
     get 'arhiv/:issue_id', to: 'articles#index', as: :ru_articles
   end
 
+  scope 'en' do
+    get 'archive', to: 'issues#index', as: :en_issues
+    get 'archive/:issue_id', to: 'articles#index', as: :en_articles
+  end
+
   root :to => 'main#index'
   get '(*path)', :to => 'main#index'
 
