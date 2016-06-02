@@ -3,6 +3,7 @@
     <%= content_tag :div, f.error_notification, class: 'col-xs-12' %>
 
     <div class='form-inputs'>
+      <%= f.input :issue_id, as: :hidden %>
       <div class='col-xs-12'>
         <%= f.association :section, collection: Section.ordered %>
       </div>
