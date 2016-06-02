@@ -36,6 +36,14 @@ class Author < ActiveRecord::Base
     en_fullname.gsub(/(?<=\s[A-Z])[a-z]+/, '.')
   end
 
+  def shortname
+    send "#{I18n.locale}_shortname"
+  end
+
+  def fullname
+    send "#{I18n.locale}_fullname"
+  end
+
   private
 
     def set_en_attributes

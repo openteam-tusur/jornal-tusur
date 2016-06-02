@@ -4,7 +4,7 @@ class ArticlesController < MainController
     @issue = Issue.find(params[:issue_id])
     raise ActionController::RoutingError.new('Not Found') unless @issue.published?
 
-    @articles = @issue.articles
+    @articles = @issue.articles.ordered.includes(:section).includes(:authors)
 
     if @breadcrumbs.present?
       @breadcrumbs.extend_content.push Hashie::Mash.new({
