@@ -1,18 +1,18 @@
 <div class='last-release-right-part'>
-  <%= link_to 'Отправить статью', '#', class: 'btn btn-success btn-lg add-article' %>
+  <%= link_to 'Отправить статью', '#', class: 'btn btn-success btn-lg add-article disabled' %>
   <p>
-    <%= link_to 'Требования к оформлению статей', '/ru/informatsiya-dlya-avtorov' %>
+    <%= link_to 'Требования к оформлению статей', '/ru/rukovodstvo-dlya-avtorov' %>
   </p>
 
   <% if @last_issue.present? %>
     <div class='title'>Последний выпуск</div>
-    <%= link_to @last_issue.poster_url, class: :colorbox do %>
+    <%= link_to ru_articles_path(@last_issue) do %>
       <%= image_tag @last_issue.poster_url.gsub(/\/\d+-\d+\//, '/200-288!/'), size: '200x288',
         class: 'img-responsive', alt: "Доклады ТУСУР &ndash; выпуск #{@last_issue.full_number} #{@last_issue.year}г.".html_safe %>
     <% end %>
 
     <div class='content'>
-    <%= link_to '#' do %>
+    <%= link_to ru_articles_path(@last_issue) do %>
       Доклады ТУСУР &ndash;
       <br />
       выпуск <%= @last_issue.full_number %> <%= @last_issue.year %>г.

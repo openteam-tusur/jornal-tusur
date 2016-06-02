@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   scope 'ru' do
     get 'arhiv', to: 'issues#index', as: :ru_issues
-    get 'arhiv/:issue_slug', to: 'articles#index', as: :ru_articles
+    get 'arhiv/:issue_id', to: 'articles#index', as: :ru_articles
   end
 
   root :to => 'main#index'

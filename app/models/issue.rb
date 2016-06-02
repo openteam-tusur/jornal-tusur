@@ -79,6 +79,10 @@ class Issue < ActiveRecord::Base
     [human_number, "[#{through_number}]"].join(' ')
   end
 
+  def title
+    "Выпуск журнала #{full_number} за #{year} год"
+  end
+
 end
 
 # == Schema Information

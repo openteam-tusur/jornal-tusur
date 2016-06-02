@@ -6,8 +6,8 @@
 
         <div class='content'>
 
-          <h1></h1>
-          <%# content_for :page_header, page_header %>
+          <h1><%= @issue.title.html_safe %></h1>
+          <% content_for :page_header, @issue.title.html_safe %>
 
           <%= render_partial_for_region(@content) if @content.present? %>
         </div>
