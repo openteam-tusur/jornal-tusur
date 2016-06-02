@@ -9,6 +9,5 @@
  * = require jquery.colorbox-ru
  * = require colorbox
  * = require ./user_autocomplete
- * = require ./article_form
  * = require ./main
  */

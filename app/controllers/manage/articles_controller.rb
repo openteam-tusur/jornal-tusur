@@ -23,18 +23,15 @@ class Manage::ArticlesController < Manage::ApplicationController
     @article = Article.new(article_params)
 
     if @article.save
-      flash[:notice] = 'Статья создана'
-      render json: { redirect_path: manage_issue_article_path(@issue, @article) }
+      redirect_to manage_issue_article_path(@issue, @article), notice: 'Статья создана'
     else
       render :new
     end
   end
 
   def update
-    ap params
     if @article.update(article_params)
-      flash[:notice] = 'Статья изменена'
-      render json: { redirect_path: manage_issue_article_path(@issue, @article) }
+      redirect_to manage_issue_article_path(@issue, @article), notice: 'Статья изменена'
     else
       render :edit
     end
