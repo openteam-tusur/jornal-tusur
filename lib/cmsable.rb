@@ -7,11 +7,38 @@ module Cmsable
   extend ActiveSupport::Concern
 
   included do
+    before_action :prepare_locale
     before_action :detect_robots_in_development if Rails.env.development?
+    before_action :check_country
     before_action :load_cms_data
   end
 
   private
+
+  def prepare_locale
+    locale = request.path.split('/').second.to_s.to_sym
+    I18n.locale = I18n.available_locales.include?(locale) ? locale : :ru
+  end
+
+  def check_country
+    return unless request.fullpath.match(/^\/$/)
+
+    return if remote_ip == '127.0.0.1' || request.user_agent.to_s.match(/\(.*https?:\/\/.*\)/)
+
+    geo_data = GeoIP.new(Rails.root.join('data', 'GeoLiteCity.dat'))
+
+    country =
+      request.env['HTTP_ACCEPT_LANGUAGE'].to_s.scan(/^[a-z]{2}/).first.to_s.upcase.presence ||
+      geo_data.city(remote_ip).try(:country_code2)
+    Rails.logger.info "Country: #{country}"
+    timezone = geo_data.city(remote_ip).try(:timezone)
+    Rails.logger.info "Timezone: #{timezone}"
+    redirect_to '/en' if country != 'RU' && I18n.locale != :en
+  end
+
+  def remote_ip
+    request.remote_ip || nil
+  end
 
   def load_cms_data
     render :file => "#{Rails.root}/public/404", :formats => [:html], :layout => false, :status => 404 and return if request_status == 404

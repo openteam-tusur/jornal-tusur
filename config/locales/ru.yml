@@ -7,6 +7,9 @@ ru:
     cecutient_normal: 'Обычная версия'
     sign_in: 'Кабинет ТУСУР'
     notifications: 'Уведомления'
+    manage: 'Manage'
+    send_article: 'Отправить статью'
+    requirements: 'Требования к оформлению статей'
 
   permissions:
     admin: 'Администратор'
@@ -66,3 +69,8 @@ ru:
 
   old_site_version: 'Старая версия сайта'
   search_placeholder: 'Поиск'
+
+  contacts:
+    place: 'пр. Ленина, 40, мк, каб. 310/2'
+    telephone:  '(3822) 51-21-21, внутр.: 1460'
+    email: 'vnmas@tusur.ru'

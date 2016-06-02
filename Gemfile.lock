@@ -157,6 +157,7 @@ GEM
     ffi (1.9.10)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
+    geoip (1.6.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     globalize (5.0.1)
@@ -392,6 +393,7 @@ DEPENDENCIES
   configliere
   default_value_for
   friendly_id
+  geoip
   globalize
   globalize-accessors
   globalize-validations

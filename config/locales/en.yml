@@ -3,3 +3,21 @@ en:
 
   app:
     title: 'Journal «Proceedings of TUSUR»'
+    sign_in: 'Sign in'
+    notifications: 'Notifications'
+    manage: 'Manage'
+    send_article: 'Send article'
+    requirements: 'Requirements for registration of articles'
+
+  top_header:
+    sections_for: 'Sections for'
+    sites_tusur: 'Sites TUSUR'
+    close: 'Close'
+
+  search_placeholder: 'Search'
+
+  contacts:
+    place: 'Editor’s Office: 40 Lenina Prospect, Tomsk, 634050, Russia'
+    telephone:  'Phone / Fax: + 7 (3822) 51-21-21 / 51-43-02'
+    email: 'vnmas@tusur.ru'
+

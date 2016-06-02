@@ -1,7 +1,8 @@
 <div class='last-release-right-part'>
-  <%= link_to 'Отправить статью', '#', class: 'btn btn-success btn-lg add-article disabled' %>
+  <%= link_to I18n.t('app.send_article'), '#', class: 'btn btn-success btn-lg add-article disabled' %>
   <p>
-    <%= link_to 'Требования к оформлению статей', '/ru/rukovodstvo-dlya-avtorov' %>
+    <%= link_to I18n.t('app.requirements'), '/ru/rukovodstvo-dlya-avtorov' if I18n.locale == :ru %>
+    <%= link_to I18n.t('app.requirements'), '/en/information-for-authors' if I18n.locale == :en %>
   </p>
 
   <% if @last_issue.present? %>

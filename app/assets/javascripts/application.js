@@ -7,6 +7,7 @@
  * = require turbolinks
  * = require bootstrap-sprockets
  * = require tusur_header
+ * = require languages
  * = require toggle_subnavigation
  * = require overlay
  * = require collapse
