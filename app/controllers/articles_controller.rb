@@ -14,6 +14,10 @@ class ArticlesController < MainController
         title: @issue.title
       })
     end
+
+    @page.related_pages.en = en_articles_path(@issue)
+    @page.related_pages.ru = ru_articles_path(@issue)
+
   end
 
 end
