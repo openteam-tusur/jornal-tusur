@@ -4,7 +4,6 @@
  * = require jquery.colorbox
  * = require jquery.colorbox-ru
  * = require colorbox
- * = require turbolinks
  * = require bootstrap-sprockets
  * = require tusur_header
  * = require languages

@@ -5,8 +5,8 @@
     <title><%= "#{yield(:page_header).squish} — " if content_for? :page_header %><%= I18n.t('app_name') %></title>
     <%= favicon_link_tag %>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
   </head>
   <body>
