@@ -10,7 +10,7 @@ class ClaimsController < MainController
   def create
     @claim = Claim.new(claim_params)
 
-    if @claim.save
+    if verify_recaptcha && @claim.save
       redirect_to send("#{I18n.locale}_claim_sended_path"), notice: I18n.t('claim.sended')
     else
       render :new

@@ -278,6 +278,8 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    recaptcha (1.3.0)
+      json
     redcarpet (3.3.4)
     redis (3.3.0)
     redis-session-store (0.8.1)
@@ -419,6 +421,7 @@ DEPENDENCIES
   rails-assets-angucomplete-alt!
   rails-assets-angular!
   rails-assets-ng-file-upload!
+  recaptcha
   redis-session-store
   rest-client
   rest-client-components

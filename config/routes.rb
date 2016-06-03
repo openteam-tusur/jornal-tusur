@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
     get 'otpravit-statyu', to: 'claims#new', as: :ru_new_claim
     post 'otpravit-statyu', to: 'claims#create', as: :ru_claim_post
+    patch 'otpravit-statyu', to: 'claims#create', as: :ru_claim_patch
     get 'otpravit-statyu/statya-otpravlena', to: 'claims#show', as: :ru_claim_sended
   end
 
@@ -46,6 +47,7 @@ Rails.application.routes.draw do
 
     get 'send-article', to: 'claims#new', as: :en_new_claim
     post 'send-article', to: 'claims#create', as: :en_claim_post
+    patch 'send-article', to: 'claims#create', as: :en_claim_patch
     get 'send-article/article-sended', to: 'claims#show', as: :en_claim_sended
   end
 

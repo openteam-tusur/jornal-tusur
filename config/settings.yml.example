@@ -42,3 +42,7 @@ directory:
 
 solr:
   url:                  url
+
+recaptcha:
+  public:               public
+  private:              private
