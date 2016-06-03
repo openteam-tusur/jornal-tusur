@@ -11,9 +11,13 @@
       <strong>Секция:</strong>
       <%= @article.section.present? ? @article.section.title : 'нет' %>
     </p>
-    <h3>
-      <%= @article.title_ru %>
-    </h3>
+    <h3><%= @article.title_ru %></h3>
+    <% if current_user.admin? %>
+      <p>
+        <strong>Slug ru:</strong>
+        <%= @article.slug_ru %>
+      </p>
+    <% end %>
     <p>
       <strong>Аннотация:</strong>
       <%= @article.ru_annotation %>
@@ -26,6 +30,12 @@
     <hr />
 
     <h3><%= @article.title_en %></h3>
+    <% if current_user.admin? %>
+      <p>
+        <strong>Slug en:</strong>
+        <%= @article.slug_en %>
+      </p>
+    <% end %>
     <p>
       <strong>Annotation:</strong>
       <%= @article.en_annotation %>

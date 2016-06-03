@@ -19,6 +19,7 @@
             <% if @issue.file.present? %>
               <p>
                 <%= link_to @issue.file.url, target: '_blank' do %>
+                  <span class='glyphicon glyphicon-download'></span>
                   <%= I18n.t('app.download_full_issue', message: @issue.title.mb_chars.downcase) %>
                 <% end %>
               </p>
@@ -39,7 +40,7 @@
                   <tr>
                     <td>
                       <p><%= article.authors.map(&:shortname).join(', ') %></p>
-                      <p><%= link_to article.title  %></p>
+                      <p><%= link_to article.title, send("#{I18n.locale}_article_path", @issue, article) %></p>
                     </td>
                     <td class='text-right nobr'>
                       <p><%= article.page_from %>&ndash;<%= article.page_to %></p>

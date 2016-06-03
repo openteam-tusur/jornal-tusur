@@ -20,6 +20,12 @@ ru:
     admin: 'Администратор'
     manager: 'Менеджер'
 
+  article:
+    download: 'Скачать текст статьи в формате PDF'
+    authors: 'Авторы:'
+    annotation: 'Аннотация:'
+    keywords: 'Ключевые слова:'
+
   activerecord:
 
     attributes:

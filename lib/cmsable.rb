@@ -17,7 +17,7 @@ module Cmsable
 
   def prepare_locale
     locale = request.path.split('/').second.to_s.to_sym
-    I18n.locale = I18n.available_locales.include?(locale) ? locale : :ru
+    I18n.locale = I18n.available_locales.map(&:to_sym).include?(locale) ? locale : :ru
   end
 
   def check_country

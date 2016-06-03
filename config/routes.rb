@@ -30,11 +30,13 @@ Rails.application.routes.draw do
   scope 'ru' do
     get 'arhiv', to: 'issues#index', as: :ru_issues
     get 'arhiv/:issue_id', to: 'articles#index', as: :ru_articles
+    get 'arhiv/:issue_id/:id', to: 'articles#show', as: :ru_article
   end
 
   scope 'en' do
     get 'archive', to: 'issues#index', as: :en_issues
     get 'archive/:issue_id', to: 'articles#index', as: :en_articles
+    get 'archive/:issue_id/:id', to: 'articles#show', as: :en_article
   end
 
   root :to => 'main#index'

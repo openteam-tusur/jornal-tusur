@@ -36,7 +36,7 @@ class Article < ActiveRecord::Base
   acts_as_taggable_on :ru_keywords, :en_keywords
 
   extend FriendlyId
-  friendly_id :title
+  friendly_id :title, use: :globalize
 
   scope :ordered, -> { order :page_from }
 
@@ -44,12 +44,20 @@ class Article < ActiveRecord::Base
   validates_attachment :file, presence: true,
     content_type: { content_type: 'application/pdf' }
 
+  def annotation
+    send("#{I18n.locale}_annotation")
+  end
+
   def ru_keyword_list
     ru_keywords.map(&:name).join(', ')
   end
 
   def en_keyword_list
     en_keywords.map(&:name).join(', ')
+  end
+
+  def keywords
+    send("#{I18n.locale}_keyword_list")
   end
 
   private

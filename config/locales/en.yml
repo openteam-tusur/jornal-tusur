@@ -14,6 +14,12 @@ en:
     last_release: 'Last issue'
     last_issue_title: 'Proceedings of TUSUR %{number} - %{year}'
 
+  article:
+    download: 'Download article in PDF format'
+    authors: 'Authors:'
+    annotation: 'Annotation:'
+    keywords: 'Keywords:'
+
   top_header:
     sections_for: 'Sections for'
     sites_tusur: 'Sites TUSUR'
