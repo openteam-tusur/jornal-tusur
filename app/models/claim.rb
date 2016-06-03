@@ -2,6 +2,8 @@ class Claim < ActiveRecord::Base
 
   validates_presence_of :surname, :name, :email, :phone, :address, :workplace, :file
 
+  validates :email, email: true
+
   normalize_attributes :surname, :name, :patronymic, with: :squish do |value|
     if value.present?
       value.mb_chars.downcase.gsub(/\s+/, '-').split('-').map(&:capitalize).join('-').to_s
