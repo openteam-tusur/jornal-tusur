@@ -12,7 +12,7 @@ en:
     list_of_articles: 'List of articles'
     download_full_issue: 'Download %{message} in PDF format'
     last_release: 'Last issue'
-    last_issue_title: 'Proceedings of TUSUR %{number} - %{year}'
+    last_issue_title: 'Proceedings of TUSUR<br /> %{number}, %{year}'
 
   article:
     download: 'Download article in PDF format'

@@ -33,7 +33,11 @@ class Author < ActiveRecord::Base
   end
 
   def en_shortname
-    en_fullname.gsub(/(?<=\s[A-Z])[a-z]+/, '.')
+    en_shortname = [en_surname]
+    en_shortname << (en_name[0] == 'Y' ? en_name[0..1] : en_name[0]) + '.'
+    en_shortname << (en_patronymic[0] == 'Y' ? en_patronymic[0..1] : en_patronymic[0]) + '.'
+
+    en_shortname.join(' ')
   end
 
   def shortname
@@ -50,7 +54,6 @@ class Author < ActiveRecord::Base
       self.en_surname = Russian.transliterate(self.ru_surname)
       self.en_name = Russian.transliterate(self.ru_name)
       self.en_patronymic = Russian.transliterate(self.ru_patronymic)
-      p self
     end
 
 end

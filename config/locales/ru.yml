@@ -14,7 +14,7 @@ ru:
     list_of_articles: 'Список статей'
     download_full_issue: 'Скачать %{message} в формате PDF'
     last_release: 'Последний выпуск'
-    last_issue_title: 'Доклады ТУСУР %{number} - %{year}'
+    last_issue_title: 'Доклады ТУСУР<br /> %{number}, %{year}'
 
   permissions:
     admin: 'Администратор'

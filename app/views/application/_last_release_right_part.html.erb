@@ -14,7 +14,7 @@
 
     <div class='content'>
       <%= link_to send("#{I18n.locale}_articles_path", @last_issue) do %>
-        <%= I18n.t('app.last_issue_title', number: @last_issue.full_number, year: @last_issue.year) %>
+        <%= I18n.t('app.last_issue_title', number: @last_issue.full_number, year: @last_issue.year).html_safe %>
       <% end %>
     </div>
   <% end %>
