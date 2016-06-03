@@ -11,8 +11,8 @@ en:
     issue_of_journal: 'Issue of Journal %{number}, %{year}'
     list_of_articles: 'List of articles'
     download_full_issue: 'Download %{message} in PDF format'
-    last_release: 'Last release'
-    last_issue_title: 'Reports of TUSUR %{number} %{year} year'
+    last_release: 'Last issue'
+    last_issue_title: 'Proceedings of TUSUR %{number} - %{year}'
 
   top_header:
     sections_for: 'Sections for'
