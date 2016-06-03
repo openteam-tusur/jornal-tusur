@@ -1,3 +1,5 @@
-<div class='right-navigation'>
-  <%= render_cms_navigation object.try(:values).try(:first).try(:[], 'children') %>
-</div>
+<% if object.try(:values).try(:first).try(:[], 'children').present? %>
+  <div class='right-navigation'>
+    <%= render_cms_navigation object.try(:values).try(:first).try(:[], 'children') %>
+  </div>
+<% end %>
