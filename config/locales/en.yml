@@ -20,6 +20,10 @@ en:
     annotation: 'Annotation:'
     keywords: 'Keywords:'
 
+  claim:
+    new: 'Send article'
+    sended: 'Article was successfully sended.'
+
   top_header:
     sections_for: 'Sections for'
     sites_tusur: 'Sites TUSUR'
@@ -32,3 +36,16 @@ en:
     telephone:  'Phone / Fax: + 7 (3822) 51-21-21 / 51-43-02'
     email: 'vnmas@tusur.ru'
 
+  activerecord:
+
+    attributes:
+
+      claim:
+        surname: 'Surname'
+        name: 'Name'
+        patronymic: 'Patronymic'
+        phone: 'Phone'
+        email: 'Email'
+        address: 'Address'
+        workplace: 'Workplace'
+        file: 'Article attachment'

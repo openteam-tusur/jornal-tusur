@@ -6,7 +6,11 @@ class Author < ActiveRecord::Base
   validates_presence_of :ru_surname, :ru_name
 
   normalize_attributes :ru_surname, :ru_name, :ru_patronymic, with: :squish do |value|
-    value.present? ? value.mb_chars.downcase.gsub(/\s+/, '-').split('-').map(&:capitalize).join('-').to_s : value
+    if value.present?
+      value.mb_chars.downcase.gsub(/\s+/, '-').split('-').map(&:capitalize).join('-').to_s
+    else
+      value
+    end
   end
 
   normalize_attributes :phone, :email, with: [:squish, :downcase]

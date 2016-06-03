@@ -1,0 +1,72 @@
+<div class='inner-page-wrapper<%= right_side_present? ? ' with-right-bg' : nil  %>'>
+  <div class='container'>
+    <div class='row'>
+      <div class='<%= right_side_present? ? 'col-lg-9 col-md-9 col-sm-8 col-xs-12' : 'col-xs-12' %> left-side'>
+        <%= render_partial_for_region @breadcrumbs if @breadcrumbs.present? %>
+
+        <div class='content'>
+
+          <h1><%= I18n.t('claim.new') %></h1>
+          <% content_for :page_header, I18n.t('claim.new') %>
+
+          <%= render_partial_for_region(@content) if @content.present? %>
+
+          <div class='row'>
+            <%= simple_form_for @claim, url: send("#{I18n.locale}_claim_post_path") do |f| %>
+              <%= content_tag :div, f.error_notification, class: 'col-xs-12' %>
+
+              <div class='form-inputs'>
+                <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
+                  <%= f.input :surname, autofocus: true %>
+                </div>
+                <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
+                  <%= f.input :name %>
+                </div>
+                <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
+                  <%= f.input :patronymic %>
+                </div>
+                <div class='col-lg-6 col-md-6 col-sm-12 col-xs-12'>
+                  <%= f.input :phone %>
+                </div>
+                <div class='col-lg-6 col-md-6 col-sm-12 col-xs-12'>
+                  <%= f.input :email %>
+                </div>
+                <div class='col-xs-12'>
+                  <%= f.input :address %>
+                </div>
+                <div class='col-xs-12'>
+                  <%= f.input :workplace %>
+                </div>
+                <div class='col-xs-12'>
+                  <%= f.input :file %>
+                </div>
+              </div>
+
+              <div class='form-actions col-xs-12'>
+                <%= f.button :submit, I18n.t('claim.new'), class: 'btn btn-success' %>
+              </div>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+
+      <% if right_side_present? %>
+        <div class='col-lg-3 col-md-3 col-sm-4 col-xs-12 right-side'>
+          <% if @right_navigation.present? && @content.present? && (@content.type == 'NewsListPart' || @content.type == 'NewsItemPart') %>
+          <% else %>
+            <%= render_partial_for_region(@right_navigation, 'inner_right') if @right_navigation.present? %>
+          <% end %>
+          <%= render partial: 'last_release_right_part' %>
+
+          <%= render_partial_for_region(@right_links, 'inner_right_links') if @right_links.present? %>
+          <%= render_partial_for_region(@right_advert, 'inner_right_advert') if @right_advert.present? %>
+          <%= render_partial_for_region(@right_documents, 'inner_right_documents') if @right_documents.present? %>
+          <%= render_partial_for_region(@right_contacts, 'inner_right_contacts') if @right_contacts.present? %>
+          <%= render_partial_for_region(@right_html, 'inner_right_html') if @right_html.present? %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

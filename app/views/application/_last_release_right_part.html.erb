@@ -1,5 +1,5 @@
 <div class='last-release-right-part'>
-  <%= link_to I18n.t('app.send_article'), '#', class: 'btn btn-success btn-lg add-article disabled' %>
+  <%= link_to I18n.t('app.send_article'), send("#{I18n.locale}_new_claim_path") , class: 'btn btn-success btn-lg add-article' %>
   <p>
     <%= link_to I18n.t('app.requirements'), '/ru/rukovodstvo-dlya-avtorov' if I18n.locale == :ru %>
     <%= link_to I18n.t('app.requirements'), '/en/information-for-authors' if I18n.locale == :en %>

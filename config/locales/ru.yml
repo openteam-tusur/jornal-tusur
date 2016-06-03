@@ -26,6 +26,10 @@ ru:
     annotation: 'Аннотация:'
     keywords: 'Ключевые слова:'
 
+  claim:
+    new: 'Отправить статью'
+    sended: 'Статья успешно отправлена.'
+
   activerecord:
 
     attributes:
@@ -72,6 +76,16 @@ ru:
         en_patronymic: 'Patronymic [отчество на английском языке]'
         phone: 'Телефон'
         email: 'Email'
+
+      claim:
+        surname: 'Фамилия'
+        name: 'Имя'
+        patronymic: 'Отчество'
+        phone: 'Телефон'
+        email: 'Email'
+        address: 'Адрес'
+        workplace: 'Место работы'
+        file: 'Файл статьи'
 
   top_header:
     sections_for: 'Разделы для'

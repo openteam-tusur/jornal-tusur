@@ -29,14 +29,24 @@ Rails.application.routes.draw do
 
   scope 'ru' do
     get 'arhiv', to: 'issues#index', as: :ru_issues
+
     get 'arhiv/:issue_id', to: 'articles#index', as: :ru_articles
     get 'arhiv/:issue_id/:id', to: 'articles#show', as: :ru_article
+
+    get 'otpravit-statyu', to: 'claims#new', as: :ru_new_claim
+    post 'otpravit-statyu', to: 'claims#create', as: :ru_claim_post
+    get 'otpravit-statyu/statya-otpravlena', to: 'claims#show', as: :ru_claim_sended
   end
 
   scope 'en' do
     get 'archive', to: 'issues#index', as: :en_issues
+
     get 'archive/:issue_id', to: 'articles#index', as: :en_articles
     get 'archive/:issue_id/:id', to: 'articles#show', as: :en_article
+
+    get 'send-article', to: 'claims#new', as: :en_new_claim
+    post 'send-article', to: 'claims#create', as: :en_claim_post
+    get 'send-article/article-sended', to: 'claims#show', as: :en_claim_sended
   end
 
   root :to => 'main#index'
