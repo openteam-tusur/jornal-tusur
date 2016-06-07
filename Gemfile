@@ -59,7 +59,6 @@ end
 group :development do
   gem 'annotate'
   gem 'capistrano-auth-subscriber'
-  gem 'letter_opener'
   gem 'openteam-capistrano', '~> 1.0.11'
   gem 'rubocop'
   gem 'spring'

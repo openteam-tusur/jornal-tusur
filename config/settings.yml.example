@@ -43,6 +43,14 @@ directory:
 solr:
   url:                  url
 
+postman:
+  url:                  url
+  slug:                 slug
+
+mail:
+  new_claim:
+    to:                 to@email.to
+
 recaptcha:
   public:               public
   private:              private
