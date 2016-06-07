@@ -5,6 +5,12 @@
     <p class='claim-<%= @claim.current_state %>'>
       <%= @claim.current_human_state %>
     </p>
+    <% if current_user.admin? %>
+      <p>
+        <strong>User ID:</strong>
+        <%= @claim.user_id %>
+      </p>
+    <% end %>
     <p>
       <strong>Автор:</strong>
       <%= @claim.author %>

@@ -16,20 +16,21 @@
               <%= content_tag :div, f.error_notification, class: 'col-xs-12' %>
 
               <div class='form-inputs'>
+                <%= f.input :user_id, as: :hidden, input_html: { value: current_user.try(&:id) } %>
                 <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
-                  <%= f.input :surname, autofocus: true %>
+                  <%= f.input :surname, autofocus: true, input_html: { value: current_user.try(&:surname) } %>
                 </div>
                 <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
-                  <%= f.input :name %>
+                  <%= f.input :name, input_html: { value: current_user.try(&:name) } %>
                 </div>
                 <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
-                  <%= f.input :patronymic %>
+                  <%= f.input :patronymic, input_html: { value: current_user.try(&:patronymic) } %>
                 </div>
                 <div class='col-lg-6 col-md-6 col-sm-12 col-xs-12'>
                   <%= f.input :phone %>
                 </div>
                 <div class='col-lg-6 col-md-6 col-sm-12 col-xs-12'>
-                  <%= f.input :email %>
+                  <%= f.input :email, input_html: { value: current_user.try(&:email) } %>
                 </div>
                 <div class='col-xs-12'>
                   <%= f.input :address %>

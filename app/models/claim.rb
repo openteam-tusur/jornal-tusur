@@ -80,4 +80,5 @@ end
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  aasm_state        :string
+#  user_id           :string
 #

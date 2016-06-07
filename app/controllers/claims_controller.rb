@@ -20,7 +20,17 @@ class ClaimsController < MainController
   private
 
     def claim_params
-      params.require(:claim).permit(:surname, :name, :patronymic, :phone, :email, :address, :workplace, :file)
+      params.require(:claim).permit(
+        :user_id,
+        :surname,
+        :name,
+        :patronymic,
+        :phone,
+        :email,
+        :address,
+        :workplace,
+        :file
+      )
     end
 
 end
