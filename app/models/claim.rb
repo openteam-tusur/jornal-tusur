@@ -14,9 +14,49 @@ class Claim < ActiveRecord::Base
 
   normalize_attributes :phone, :address, :workplace, with: :squish
 
+  normalize_attributes :email, with: [:squish, :downcase]
+
   has_attached_file :file, storage: :elvfs, elvfs_url: Settings['storage.url']
   validates_attachment :file, presence: true
   do_not_validate_attachment_file_type :file
+
+  scope :ordered, -> { order created_at: :desc }
+
+  include AASM
+
+  aasm whiny_transitions: false do
+    state :created, initial: true
+    state :accepted
+    state :rejected
+
+    event :accept do
+      transitions from: [:created, :rejected], to: :accepted
+    end
+
+    event :reject do
+      transitions from: [:created, :accepted], to: :rejected
+    end
+
+    event :rollback do
+      transitions from: [:accepted, :rejected], to: :created
+    end
+  end
+
+  def author
+    [
+      surname,
+      name,
+      patronymic
+    ].join(' ')
+  end
+
+  def current_state
+    aasm.current_state
+  end
+
+  def current_human_state
+    aasm.human_state
+  end
 
 end
 
@@ -39,4 +79,5 @@ end
 #  file_url          :text
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  aasm_state        :string
 #

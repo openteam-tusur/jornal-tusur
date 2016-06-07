@@ -1,0 +1,46 @@
+<% content_for :page_header, 'Заявка' %>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <p class='claim-<%= @claim.current_state %>'>
+      <%= @claim.current_human_state %>
+    </p>
+    <p>
+      <strong>Автор:</strong>
+      <%= @claim.author %>
+    </p>
+    <p>
+      <strong>Телефон:</strong>
+      <%= @claim.phone %>
+    </p>
+    <p>
+      <strong>Email:</strong>
+      <%= mail_to @claim.email %>
+    </p>
+    <p>
+      <strong>Адрес:</strong>
+      <%= @claim.address %>
+    </p>
+    <p>
+      <strong>Место работы:</strong>
+      <%= @claim.workplace %>
+    </p>
+    <p>
+      <strong>Файл:</strong>
+      <%= link_to @claim.file_file_name, @claim.file.url, target: '_blank' %>
+    </p>
+    <p>
+      <%= link_to 'Принять', accept_manage_claim_path(@claim),
+        data: { method: :post }, class: 'btn btn-success' if @claim.may_accept? %>
+      <%= link_to 'Отклонить', reject_manage_claim_path(@claim),
+        data: { method: :post }, class: 'btn btn-warning' if @claim.may_reject? %>
+      <%= link_to 'Вернуть в исходное состояние', rollback_manage_claim_path(@claim),
+        data: { method: :post }, class: 'btn btn-default' if @claim.may_rollback? %>
+      <%= link_to 'Отмена', manage_claims_path, class: 'btn btn-default' %>
+      <%= link_to 'Удалить', manage_claim_path(@claim),
+        data: { method: :delete,
+                confirm: 'Заявка будет удалена без возможности восстановления. Точно хотите удалить?' },
+        class: 'btn btn-default pull-right' %>
+    </p>
+  </div>
+</div>

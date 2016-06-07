@@ -21,6 +21,14 @@ Rails.application.routes.draw do
       get 'directory_search', on: :collection
     end
 
+    resources :claims, only: [:index, :show, :destroy] do
+      member do
+        post :accept
+        post :reject
+        post :rollback
+      end
+    end
+
     resources :permissions, except: [:edit, :update]
     get 'users/search' => 'users#search', as: :users_search
 

@@ -86,6 +86,10 @@ ru:
         address: 'Адрес'
         workplace: 'Место работы'
         file: 'Файл статьи'
+        aasm_state: 'Статус'
+        aasm_state/created: 'Создана'
+        aasm_state/accepted: 'Принята'
+        aasm_state/rejected: 'Отклонена'
 
   top_header:
     sections_for: 'Разделы для'

@@ -1,0 +1,18 @@
+<% content_for :page_header, 'Заявки' %>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <ul>
+      <% @claims.each do |claim| %>
+        <li>
+          <%= I18n.l claim.created_at, format: :long %>
+          &mdash;
+          <%= link_to claim.author, manage_claim_path(claim) %>
+          <span class='claim-<%= claim.current_state %>'>
+            <%= claim.current_human_state %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

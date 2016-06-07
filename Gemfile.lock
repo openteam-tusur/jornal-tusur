@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/openteam-tusur/postman-client.git
+  revision: dbec4c8971d6a647a1caba4939e8c5debe5f1bd8
+  specs:
+    postman-client (0.0.1)
+      rest-client
+
+GIT
   remote: https://github.com/openteam-tusur/auth_client
   revision: 6c8b820338746c7dc902d9b98188e0007801f0cc
   specs:
@@ -416,6 +423,7 @@ DEPENDENCIES
   paperclip
   paperclip-elvfs
   pg
+  postman-client!
   progress_bar
   quiet_assets
   rack-cache
