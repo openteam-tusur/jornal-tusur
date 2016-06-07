@@ -42,7 +42,7 @@ class ClaimsController < MainController
         emails: [
           Settings['mail.new_claim.to'],
           User.with_permissions('admin').map(&:email)
-        ].flatten.uniq,
+        ].flatten.delete_if(&:blank?).uniq,
         slug: Settings['postman.slug']
       )
     end
