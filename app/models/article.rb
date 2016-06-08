@@ -22,7 +22,8 @@ class Article < ActiveRecord::Base
 
   validate :page_from_larger_page_to
 
-  normalize_attributes :title, :ru_annotation, :en_annotation,
+  normalize_attributes :title, :title_ru, :title_en,
+    :ru_annotation, :en_annotation,
     :page_from, :page_to, with: :squish
 
   normalize_attributes :ru_keyword_list, :en_keyword_list, with: [:squish, :blank, :downcase] do |value|
