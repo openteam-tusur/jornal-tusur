@@ -1,11 +1,15 @@
 <div class='last-release-right-part'>
   <%= link_to I18n.t('app.send_article'), send("#{I18n.locale}_new_claim_path") , class: 'btn btn-success btn-lg add-article' %>
-  <p>
-    <%= link_to I18n.t('app.requirements'), '/ru/rukovodstvo-dlya-avtorov' if I18n.locale == :ru %>
-    <%= link_to I18n.t('app.requirements'), '/en/information-for-authors' if I18n.locale == :en %>
-  </p>
 
+  <%= content_tag(:div, class: 'right-links') do %>
+    <%= content_tag(:ul) do %>
+      <%= content_tag(:li, link_to(I18n.t('app.requirements'), '/ru/rukovodstvo-dlya-avtorov')) if I18n.locale == :ru %>
+      <%= content_tag(:li, link_to(I18n.t('app.template'), 'https://storage.tusur.ru/files/44729/Shablon.doc')) if I18n.locale == :ru %>
+      <%= content_tag(:li, link_to(I18n.t('app.requirements'), '/en/information-for-authors')) if I18n.locale == :en %>
+    <% end %>
+  <% end %>
   <% if @last_issue.present? %>
+
     <div class='title'><%= I18n.t('app.last_release') %></div>
     <%= link_to send("#{I18n.locale}_articles_path", @last_issue) do %>
       <%= image_tag @last_issue.poster_url.gsub(/\/\d+-\d+\//, '/200-288!/'), size: '200x288',

@@ -10,6 +10,7 @@ ru:
     manage: 'Управление'
     send_article: 'Отправить статью'
     requirements: 'Требования к оформлению статей'
+    template: 'Шаблон статьи'
     issue_of_journal: 'Выпуск журнала %{number} за %{year} год'
     list_of_articles: 'Список статей'
     download_full_issue: 'Скачать %{message} в формате PDF'

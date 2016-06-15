@@ -2,7 +2,7 @@ en:
   app_name: 'Journal «Proceedings of TUSUR»'
 
   app:
-    title: 'Journal «Proceedings of TUSUR»'
+    title: 'Proceedings of TUSUR journal'
     sign_in: 'Sign in'
     notifications: 'Notifications'
     manage: 'Manage'
