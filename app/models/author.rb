@@ -25,7 +25,11 @@ class Author < ActiveRecord::Base
   end
 
   def ru_fullname
-    "#{ru_surname} #{ru_name} #{ru_patronymic}"
+    [
+      ru_surname,
+      ru_name,
+      ru_patronymic
+    ].delete_if(&:blank?).join(' ')
   end
 
   def ru_shortname
@@ -33,13 +37,17 @@ class Author < ActiveRecord::Base
   end
 
   def en_fullname
-    "#{en_surname} #{en_name} #{en_patronymic}"
+    [
+      en_surname,
+      en_name,
+      en_patronymic
+    ].delete_if(&:blank?).join(' ')
   end
 
   def en_shortname
     en_shortname = [en_surname]
     en_shortname << (en_name[0] == 'Y' ? en_name[0..1] : en_name[0]) + '.'
-    en_shortname << (en_patronymic[0] == 'Y' ? en_patronymic[0..1] : en_patronymic[0]) + '.'
+    en_shortname << (en_patronymic[0] == 'Y' ? en_patronymic[0..1] : en_patronymic[0]) + '.' if en_patronymic.present?
 
     en_shortname.join(' ')
   end
