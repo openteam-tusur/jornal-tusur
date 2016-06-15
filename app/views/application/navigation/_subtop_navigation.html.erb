@@ -44,7 +44,7 @@
             <%= link_to 'Русская версия', @page.related_pages.try(:[], 'ru') || '/ru', class: 'language ru' if I18n.locale == :en %>
           </div>
 
-          <div class="search search-block pull-right">
+          <div class="search search-block pull-right hidden">
             <%= simple_form_for :search, :url => "/#{I18n.locale}/search", :method => :get do |f| %>
               <%= f.input :q, :label => false,
                 :input_html => { :name => 'parts_params[search][q]', :value => params.try(:[], :parts_params).try(:[], :search).try(:[], :q), :placeholder => I18n.t('search_placeholder') } %>
