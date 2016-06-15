@@ -83,6 +83,16 @@ class Issue < ActiveRecord::Base
     I18n.t('app.issue_of_journal', number: full_number, year: year)
   end
 
+  def bibliography_number
+    result = []
+    result << "Т. #{tome}" if tome.present?
+    result << "№ #{number}#{"(#{through_number})" if through_number.present?}"
+    result = [result.join(', ') + '.']
+    result << "Ч. #{part}." if part.present?
+
+    result.join(' – ')
+  end
+
   private
 
   def all_articles_with_authors?

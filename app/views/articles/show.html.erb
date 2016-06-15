@@ -34,6 +34,12 @@
             <strong><%= I18n.t('article.keywords') %></strong>
             <%= @article.keywords %>
           </p>
+          <% if I18n.locale == :ru %>
+            <p>
+              <strong>Библиография статьи:</strong>
+              <%= @article.bibliography %>
+            </p>
+          <% end %>
 
         </div>
       </div>

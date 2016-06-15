@@ -68,8 +68,15 @@ class Article < ActiveRecord::Base
       title_ru,
       '/',
       authors_for_bibliography,
-      '//'
-    ]
+      '//',
+      'Доклады ТУСУР.',
+      '–',
+      "#{issue.year}.",
+      '–',
+      issue.bibliography_number,
+      '–',
+      "С. #{page_from}-#{page_to}."
+    ].join(' ')
   end
 
   def authors_for_bibliography
