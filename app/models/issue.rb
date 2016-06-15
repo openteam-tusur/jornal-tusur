@@ -4,7 +4,7 @@ class Issue < ActiveRecord::Base
 
   scope :ordered, -> { order year: :desc, number: :desc, part: :desc }
 
-  validates_presence_of :year, :number, :through_number
+  validates_presence_of :year, :number
 
   validates :number, uniqueness: {
     scope: [:year, :part],
@@ -12,7 +12,7 @@ class Issue < ActiveRecord::Base
   }
 
   has_attached_file :poster, storage: :elvfs, elvfs_url: Settings['storage.url']
-  validates_attachment :poster, presence: true,
+  validates_attachment :poster,
     content_type: { content_type: /\Aimage/ }
 
   has_attached_file :file, storage: :elvfs, elvfs_url: Settings['storage.url']
@@ -25,10 +25,6 @@ class Issue < ActiveRecord::Base
 
   default_value_for :number do
     Issue.where(year: Issue.pluck(:year).max).pluck(:number).max + 1 rescue nil
-  end
-
-  default_value_for :through_number do
-    Issue.pluck(:through_number).max + 1 rescue nil
   end
 
   normalize_attributes :year, :number, :through_number, with: :squish

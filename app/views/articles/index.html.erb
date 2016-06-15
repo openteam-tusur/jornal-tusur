@@ -7,10 +7,6 @@
         <div class='content'>
 
           <div class='clearfix'>
-            <%= link_to @issue.poster_url, class: 'colorbox float_right' do %>
-              <%= image_tag @issue.poster_url.gsub(/\/\d+-\d+\//, '/150-216!/'), size: '150x216', alt: @issue.title %>
-            <% end %>
-
             <h1><%= @issue.title.html_safe %></h1>
             <% content_for :page_header, @issue.title.html_safe %>
 
