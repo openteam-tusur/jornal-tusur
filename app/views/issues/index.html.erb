@@ -22,7 +22,7 @@
             <p>
               <%= link_to 'http://old.tusur.ru/ru/science/tusur_reports_magazine/full-text/', target: '_blank' do %>
                 <% if I18n.locale == :ru %>
-                  Выпуски журнала за <%= @year_range[:min] %>&ndash;<%= @year_range[:max] %>
+                  Выпуски журнала за <%= @year_range[:min] %> &ndash; <%= @year_range[:max] %> года
                 <% end %>
                 <% if I18n.locale == :en %>
                   <%= @year_range[:min] %>&ndash;<%= @year_range[:max] %> Issues
