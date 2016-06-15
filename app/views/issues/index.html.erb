@@ -10,13 +10,21 @@
           <% content_for :page_header, page_header %>
 
           <%= render_partial_for_region(@content) if @content.present? %>
-          <% @issues.group_by(&:year). each do |year, issues| %>
+          <% @issues.group_by(&:year).each do |year, issues| %>
             <h2><%= year %></h2>
             <ul>
               <% issues.each do |issue| %>
                 <li><%= link_to issue.full_number, send("#{I18n.locale}_articles_path", issue.slug) %></li>
               <% end %>
             </ul>
+          <% end %>
+          <% if @year_range[:min] < @year_range[:max] %>
+            <p>
+              <%= link_to 'http://old.tusur.ru/ru/science/tusur_reports_magazine/full-text/', target: '_blank' do %>
+                <%= I18n.t('app.archive_issues') %>
+                <%= @year_range[:min] %>&ndash;<%= @year_range[:max] %>
+              <% end %>
+            </p>
           <% end %>
         </div>
       </div>

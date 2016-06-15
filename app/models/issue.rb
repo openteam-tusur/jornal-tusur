@@ -66,13 +66,17 @@ class Issue < ActiveRecord::Base
 
   def human_number
     human_number = ["№#{number}"]
+    human_number << "т. #{tome}" if tome.present?
     human_number << "#{part} часть" if part.present?
 
     human_number.join(', ')
   end
 
   def full_number
-    [human_number, "[#{through_number}]"].join(' ')
+    full_number = [human_number]
+    full_number << "[#{through_number}]" if through_number.present?
+
+    full_number.join(' ')
   end
 
   def title
@@ -104,6 +108,7 @@ end
 #  file_updated_at     :datetime
 #  file_url            :text
 #  slug                :string
+#  tome                :integer
 #
 # Indexes
 #

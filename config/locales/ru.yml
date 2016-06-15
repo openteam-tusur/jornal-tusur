@@ -16,6 +16,7 @@ ru:
     download_full_issue: 'Скачать %{message} в формате PDF'
     last_release: 'Последний выпуск'
     last_issue_title: 'Доклады ТУСУР<br /> %{number}, %{year}'
+    archive_issues: 'Выпуски журнала'
 
   permissions:
     admin: 'Администратор'
@@ -48,6 +49,7 @@ ru:
 
       issue:
         year: 'Год'
+        tome: 'Том'
         number: 'Номер'
         part: 'Часть'
         through_number: 'Сквозной номер'

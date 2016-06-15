@@ -11,9 +11,11 @@
   <% if @last_issue.present? %>
 
     <div class='title'><%= I18n.t('app.last_release') %></div>
-    <%= link_to send("#{I18n.locale}_articles_path", @last_issue) do %>
-      <%= image_tag @last_issue.poster_url.gsub(/\/\d+-\d+\//, '/200-288!/'), size: '200x288',
-        class: 'img-responsive', alt: "Доклады ТУСУР &ndash; выпуск #{@last_issue.full_number} #{@last_issue.year}г.".html_safe %>
+    <% if @last_issue.poster_url %>
+      <%= link_to send("#{I18n.locale}_articles_path", @last_issue) do %>
+        <%= image_tag @last_issue.poster_url.gsub(/\/\d+-\d+\//, '/200-288!/'), size: '200x288',
+          class: 'img-responsive', alt: "Доклады ТУСУР &ndash; выпуск #{@last_issue.full_number} #{@last_issue.year}г.".html_safe %>
+      <% end %>
     <% end %>
 
     <div class='content'>
