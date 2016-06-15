@@ -21,8 +21,12 @@
           <% if @year_range[:min] < @year_range[:max] %>
             <p>
               <%= link_to 'http://old.tusur.ru/ru/science/tusur_reports_magazine/full-text/', target: '_blank' do %>
-                <%= I18n.t('app.archive_issues') %>
-                <%= @year_range[:min] %>&ndash;<%= @year_range[:max] %>
+                <% if I18n.locale == :ru %>
+                  Выпуски журнала за <%= @year_range[:min] %>&ndash;<%= @year_range[:max] %>
+                <% end %>
+                <% if I18n.locale == :en %>
+                  <%= @year_range[:min] %>&ndash;<%= @year_range[:max] %> Issues
+                <% end %>
               <% end %>
             </p>
           <% end %>

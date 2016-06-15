@@ -13,7 +13,6 @@ en:
     download_full_issue: 'Download %{message} in PDF format'
     last_release: 'Last issue'
     last_issue_title: 'Proceedings of TUSUR<br /> %{number}, %{year}'
-    archive_issues: 'Journal issues'
 
   article:
     download: 'Download article in PDF format'
