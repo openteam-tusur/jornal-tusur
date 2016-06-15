@@ -33,7 +33,19 @@ class Author < ActiveRecord::Base
   end
 
   def ru_shortname
-    ru_fullname.gsub(/(?<=\s[А-Я|Ё])[а-я|ё]+/, '.')
+    ru_fullname.gsub(/(?<=\s[А-ЯЁ])[а-яё]+/, '.')
+  end
+
+  def ru_reverse_fullname
+    [
+      ru_name,
+      ru_patronymic,
+      ru_surname
+    ].delete_if(&:blank?).join(' ')
+  end
+
+  def ru_reverse_shortname
+    ru_reverse_fullname.gsub(/([а-яё]+)\s/, '. ')
   end
 
   def en_fullname

@@ -36,8 +36,12 @@ class Manage::IssuesController < Manage::ApplicationController
   end
 
   def approve
-    @issue.approve!
-    redirect_to manage_issue_articles_path(@issue), notice: 'Номер журнала опубликован'
+    if @issue.approve!
+      redirect_to manage_issue_articles_path(@issue), notice: 'Номер журнала опубликован'
+    else
+      redirect_to manage_issue_articles_path(@issue),
+        alert: "Номер журнала не опубликован! Есть статьи без авторов: #{@issue.errors.messages[:articles_without_authors].join}"
+    end
   end
 
   def rollback

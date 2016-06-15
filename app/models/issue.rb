@@ -37,7 +37,7 @@ class Issue < ActiveRecord::Base
     state :published
 
     event :approve do
-      transitions from: :draft, to: :published
+      transitions from: :draft, to: :published, if: :all_articles_with_authors?
     end
 
     event :rollback do
@@ -81,6 +81,18 @@ class Issue < ActiveRecord::Base
 
   def title
     I18n.t('app.issue_of_journal', number: full_number, year: year)
+  end
+
+  private
+
+  def all_articles_with_authors?
+    a = articles.without_authors
+    if a.any?
+      errors.add(:articles_without_authors, a.map(&:title).join(', '))
+      return false
+    else
+      return true
+    end
   end
 
 end

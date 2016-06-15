@@ -40,6 +40,7 @@ class Article < ActiveRecord::Base
   friendly_id :title, use: :globalize
 
   scope :ordered, -> { order :page_from }
+  scope :without_authors, -> { includes(:article_authors).where(article_authors: { author_id: nil }) }
 
   has_attached_file :file, storage: :elvfs, elvfs_url: Settings['storage.url']
   validates_attachment :file, presence: true,
@@ -59,6 +60,28 @@ class Article < ActiveRecord::Base
 
   def keywords
     send("#{I18n.locale}_keyword_list")
+  end
+
+  def bibliography
+    bibliography = [
+      authors.first.ru_shortname,
+      title_ru,
+      '/',
+      authors_for_bibliography,
+      '//'
+    ]
+  end
+
+  def authors_for_bibliography
+    result = []
+    if authors.count > 3
+      result << authors.first.ru_reverse_shortname
+      result << '[и др.]'
+    else
+      result << authors.map(&:ru_reverse_shortname).join(', ')
+    end
+
+    result.flatten.join(' ')
   end
 
   private
