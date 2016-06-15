@@ -8,5 +8,6 @@ $(document).on 'ready page:load', ->
   init_colorbox() if $('a.colorbox').length
   init_overlay() if $('.js-init-overlay').length
   init_languages() if $('.js-languages').length
+  init_mime()
 
   return

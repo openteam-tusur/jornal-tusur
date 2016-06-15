@@ -3,6 +3,7 @@
  * = require jquery_ujs
  * = require jquery.colorbox
  * = require jquery.colorbox-ru
+ * = require sugarjs
  * = require colorbox
  * = require bootstrap-sprockets
  * = require tusur_header
@@ -11,4 +12,5 @@
  * = require overlay
  * = require collapse
  * = require main
+ * = require mime
  */

@@ -50,6 +50,10 @@ gem 'turbolinks'
 gem 'tusur_header'
 gem 'uglifier', '>= 1.3.0'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-sugarjs'
+end
+
 group :development do
   gem 'annotate'
   gem 'capistrano-auth-subscriber'
