@@ -21,5 +21,6 @@
       <%= yield %>
     </div>
     <%= render partial: 'footer' %>
+    <%= render partial: 'yandex_metrika' if Rails.env.production? %>
   </body>
 </html>
