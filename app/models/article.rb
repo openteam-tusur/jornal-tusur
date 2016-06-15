@@ -2,7 +2,7 @@ class Article < ActiveRecord::Base
 
   belongs_to :issue
   belongs_to :section
-  has_many :article_authors, dependent: :destroy
+  has_many :article_authors, -> { order(:id) }, dependent: :destroy
   has_many :authors, through: :article_authors
 
   translates :title, :slug
