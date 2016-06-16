@@ -1,5 +1,9 @@
 ru:
   main_sites:
+    tusur:
+      title: 'Официальный сайт университета'
+      link: 'https://tusur.ru'
+
     phones:
       title: 'Телефонный справочник'
       link: 'https://directory.tusur.ru'
@@ -43,6 +47,10 @@ ru:
 
 en:
   main_sites:
+    tusur:
+      title: 'University official website'
+      link: 'https://tusur.ru'
+
     phones:
       title: 'Phonebook'
       link: 'https://directory.tusur.ru'
