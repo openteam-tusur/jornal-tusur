@@ -25,7 +25,7 @@ class Manage::AuthorsController < Manage::ApplicationController
   end
 
   def destroy
-    article_author = ArticleAuthor.find_by(article_id: params[:article_id], author_id: params[:id])
+    article_author = ArticleAuthor.find_by(article_id: @article.id, author_id: Author.find(params[:id]).id)
     article_author.destroy
 
     redirect_to manage_issue_article_path(@issue, @article)
