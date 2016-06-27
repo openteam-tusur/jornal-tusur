@@ -20,6 +20,9 @@ en:
     annotation: 'Annotation:'
     keywords: 'Keywords:'
 
+  author:
+    articles: 'Articles:'
+
   claim:
     new: 'Send article'
     sended: 'Article was successfully sended.'

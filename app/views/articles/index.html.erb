@@ -35,7 +35,7 @@
                 <% articles.each do |article| %>
                   <tr>
                     <td>
-                      <p><%= article.article_authors.map(&:author).map(&:shortname).join(', ') %></p>
+                      <p><%= raw article.article_authors.map(&:author).map {|author| link_to(author.shortname, send("#{I18n.locale}_author_path", author))}.join(', ') %></p>
                       <p><%= link_to article.title, send("#{I18n.locale}_article_path", @issue, article) %></p>
                     </td>
                     <td class='text-right nobr'>

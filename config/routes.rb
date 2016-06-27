@@ -36,8 +36,11 @@ Rails.application.routes.draw do
   end
 
   scope 'ru' do
-    get 'arhiv', to: 'issues#index', as: :ru_issues
 
+
+    get 'authors/:id', to: 'authors#show', as: :ru_author
+
+    get 'arhiv', to: 'issues#index', as: :ru_issues
     get 'arhiv/:issue_id', to: 'articles#index', as: :ru_articles
     get 'arhiv/:issue_id/:id', to: 'articles#show', as: :ru_article
 
@@ -48,8 +51,9 @@ Rails.application.routes.draw do
   end
 
   scope 'en' do
-    get 'archive', to: 'issues#index', as: :en_issues
+    get 'authors/:id', to: 'authors#show', as: :en_author
 
+    get 'archive', to: 'issues#index', as: :en_issues
     get 'archive/:issue_id', to: 'articles#index', as: :en_articles
     get 'archive/:issue_id/:id', to: 'articles#show', as: :en_article
 

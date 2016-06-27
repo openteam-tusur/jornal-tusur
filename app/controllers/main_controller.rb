@@ -8,6 +8,8 @@ class MainController < CmsController
     origin_request_path, parts_params = request.fullpath.split('?')
     request_path = origin_request_path
 
+    request_path = '/ru/authors' if origin_request_path.match(/\A\/ru\/authors.*/)
+    request_path = '/en/authors' if origin_request_path.match(/\A\/en\/authors.*/)
     request_path = '/ru/arhiv' if origin_request_path.match(/\A\/ru\/arhiv.*/)
     request_path = '/en/archive' if origin_request_path.match(/\A\/en\/archive.*/)
 

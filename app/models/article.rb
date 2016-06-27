@@ -40,6 +40,7 @@ class Article < ActiveRecord::Base
   friendly_id :title, use: :globalize
 
   scope :ordered, -> { order :page_from }
+  scope :newest, -> { order("created_at DESC") }
   scope :without_authors, -> { includes(:article_authors).where(article_authors: { author_id: nil }) }
 
   has_attached_file :file, storage: :elvfs, elvfs_url: Settings['storage.url']

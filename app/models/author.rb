@@ -17,6 +17,9 @@ class Author < ActiveRecord::Base
 
   before_validation :set_en_attributes
 
+  extend FriendlyId
+  friendly_id :fullname, use: :slugged
+
   searchable do
     text :ru_surname
     text :ru_name
@@ -99,4 +102,9 @@ end
 #  email         :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  slug          :string
+#
+# Indexes
+#
+#  index_authors_on_slug  (slug) UNIQUE
 #
