@@ -5,6 +5,7 @@ class AuthorsController < MainController
     @articles = @author.articles.newest
 
     if @breadcrumbs.present?
+      @breadcrumbs.extend_content.pop
       @breadcrumbs.extend_content.push Hashie::Mash.new({
         external_link: nil,
         path: send("#{I18n.locale}_author_path", @author),
