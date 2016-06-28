@@ -40,9 +40,9 @@ class Article < ActiveRecord::Base
   friendly_id :title, use: :globalize
 
   scope :ordered, -> { order :page_from }
-  scope :newest, -> { order("created_at DESC") }
+  scope :ordered_by_title, -> { with_translations(I18n.locale).order(:title) }
   scope :without_authors, -> { includes(:article_authors).where(article_authors: { author_id: nil }) }
-  scope :published, -> {  newest.joins(:issue).where(issues: { aasm_state: :published }) }
+  scope :published, -> { ordered_by_title.joins(:issue).where(issues: { aasm_state: :published }) }
 
   has_attached_file :file, storage: :elvfs, elvfs_url: Settings['storage.url']
   validates_attachment :file, presence: true,
