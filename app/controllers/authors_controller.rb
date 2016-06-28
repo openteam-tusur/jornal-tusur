@@ -2,7 +2,7 @@ class AuthorsController < MainController
 
   def show
     @author = Author.friendly.find(params[:id])
-    @articles = @author.articles.newest
+    @articles = @author.articles.published
 
     if @breadcrumbs.present?
       @breadcrumbs.extend_content.pop

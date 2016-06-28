@@ -42,6 +42,7 @@ class Article < ActiveRecord::Base
   scope :ordered, -> { order :page_from }
   scope :newest, -> { order("created_at DESC") }
   scope :without_authors, -> { includes(:article_authors).where(article_authors: { author_id: nil }) }
+  scope :published, -> {  newest.joins(:issue).where(issues: { aasm_state: :published }) }
 
   has_attached_file :file, storage: :elvfs, elvfs_url: Settings['storage.url']
   validates_attachment :file, presence: true,
