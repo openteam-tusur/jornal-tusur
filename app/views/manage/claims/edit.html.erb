@@ -1,0 +1,25 @@
+<% content_for :page_header, 'Заявка' %>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <p class='claim-<%= @claim.current_state %>'>
+      <%= @claim.current_human_state %>
+    </p>
+    <%= simple_form_for @claim, url: [:manage, @claim] do |f| %>
+      <%= f.input :user_id, disabled: true if current_user.admin? %>
+      <%= f.input :author, disabled: true %>
+      <%= f.input :phone, disabled: true %>
+      <%= f.input :email, disabled: true %>
+      <%= f.input :address, disabled: true %>
+      <%= f.input :workplace, disabled: true %>
+      <p>
+        Файл
+        <%= link_to @claim.file_file_name, @claim.file.url, target: '_blank' %>
+      </p>
+      <%= f.association :issue, collection: Issue.ordered %>
+      <%= f.submit 'Сохранить', class: 'btn btn-success' %>
+      <%= link_to 'Отмена', manage_claim_path(@claim), class: 'btn btn-default' %>
+    <% end %>
+  </div>
+</div>
+

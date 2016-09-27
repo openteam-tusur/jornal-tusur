@@ -36,6 +36,11 @@
       <%= link_to @claim.file_file_name, @claim.file.url, target: '_blank' %>
     </p>
     <p>
+      <strong>Журнал:</strong>
+      <%= @claim.issue.try(:human_number) || 'не связана с журналом' %>
+    </p>
+    <p>
+      <%= link_to 'изменить', edit_manage_claim_path(@claim), class: 'btn btn-success' %>
       <%= link_to 'Принять', accept_manage_claim_path(@claim),
         data: { method: :post }, class: 'btn btn-success' if @claim.may_accept? %>
       <%= link_to 'Отклонить', reject_manage_claim_path(@claim),

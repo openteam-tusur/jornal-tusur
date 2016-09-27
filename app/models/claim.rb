@@ -1,5 +1,7 @@
 class Claim < ActiveRecord::Base
 
+  belongs_to :issue
+
   validates_presence_of :surname, :name, :email, :phone, :address, :workplace, :file
 
   validates :email, email: true
@@ -21,6 +23,8 @@ class Claim < ActiveRecord::Base
   do_not_validate_attachment_file_type :file
 
   scope :ordered, -> { order created_at: :desc }
+
+  paginates_per 20
 
   include AASM
 
@@ -81,4 +85,13 @@ end
 #  updated_at        :datetime         not null
 #  aasm_state        :string
 #  user_id           :string
+#  issue_id          :integer
+#
+# Indexes
+#
+#  index_claims_on_issue_id  (issue_id)
+#
+# Foreign Keys
+#
+#  fk_rails_34dc6a3746  (issue_id => issues.id)
 #

@@ -50,6 +50,14 @@ en:
     telephone:  'Phone / Fax: + 7 (3822) 51-21-21 / 51-43-02'
     email: 'vnmas@tusur.ru'
 
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
+      truncate: "&hellip;"
+
   activerecord:
 
     attributes:

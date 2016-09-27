@@ -2,13 +2,18 @@ class Manage::ClaimsController < Manage::ApplicationController
 
   load_and_authorize_resource
 
-  before_action :set_claim, only: [:show, :destroy, :accept, :reject, :rollback]
+  before_action :set_claim, except: [:index]
 
   def index
-    @claims = Claim.ordered
+    @claims = Claim.ordered.page(params[:page])
   end
 
-  def show
+  def update
+    if @claim.update!(claim_params)
+      redirect_to manage_claim_path(@claim), notice: 'Заявка изменена'
+    else
+      render [:manage, :edit]
+    end
   end
 
   def accept
@@ -35,6 +40,12 @@ class Manage::ClaimsController < Manage::ApplicationController
   end
 
   private
+
+  def claim_params
+    params.require(:claim).permit(
+      :issue_id,
+    )
+  end
 
   def set_claim
     @claim = Claim.find(params[:id])

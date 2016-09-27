@@ -45,6 +45,14 @@ ru:
     rollback: 'Ваша заявка возвращена в состояние рассмотрения.'
     dont_reply: 'Это письмо сформировано автоматически. Не нужно на него отвечать.'
 
+  views:
+    pagination:
+      first: '&laquo;'
+      last: '&raquo;'
+      previous: '&lsaquo;'
+      next: '&rsaquo;'
+      truncate: '&hellip;'
+
   activerecord:
 
     attributes:
@@ -102,6 +110,7 @@ ru:
         address: 'Адрес'
         workplace: 'Место работы'
         file: 'Файл статьи'
+        issue: 'Журнал'
         aasm_state: 'Статус'
         aasm_state/created: 'Создана'
         aasm_state/accepted: 'Принята'

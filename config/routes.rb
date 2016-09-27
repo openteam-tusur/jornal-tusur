@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       get 'directory_search', on: :collection
     end
 
-    resources :claims, only: [:index, :show, :destroy] do
+    resources :claims do
       member do
         post :accept
         post :reject
