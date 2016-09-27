@@ -30,6 +30,12 @@ en:
     new_claim_email_for_admin_header: 'New claim for journal «Proceedings of TUSUR»'
     new_claim_email_for_author_header: 'Claim for journal «Proceedings of TUSUR»'
     created_successfully: 'We have received your request and will soon consider it. After consideration of the application you will receive a notification.'
+    email_about_accepted_header: 'Claim for journal «Proceedings of TUSUR» accepted'
+    accepted: 'Your claim is accepted.'
+    email_about_rejected_header: 'Claim for journal «Proceedings of TUSUR» rejected'
+    rejected: 'Your claim is rejected.'
+    email_about_rollback_header: 'Claim for journal «Proceedings of TUSUR» reverted to start state'
+    rollback: 'Your claim is reverted to start state.'
     dont_reply: 'This letter has been generated automatically. No need to answer it.'
 
   top_header:

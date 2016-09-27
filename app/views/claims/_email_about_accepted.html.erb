@@ -1,0 +1,36 @@
+<h3><%= I18n.t('claim.email_about_accepted_header') %></h3>
+<p><%= I18n.t('claim.accepted') %></p>
+<p>
+  <strong><%= I18n.t('activerecord.attributes.claim.surname') %>:</strong>
+  <%= @claim.surname %>
+</p>
+<p>
+  <strong><%= I18n.t('activerecord.attributes.claim.name') %>:</strong>
+  <%= @claim.name %>
+</p>
+<p>
+  <strong><%= I18n.t('activerecord.attributes.claim.patronymic') %>:</strong>
+  <%= @claim.patronymic %>
+</p>
+<p>
+  <strong><%= I18n.t('activerecord.attributes.claim.phone') %>:</strong>
+  <%= @claim.phone %>
+</p>
+<p>
+  <strong><%= I18n.t('activerecord.attributes.claim.email') %>:</strong>
+  <%= mail_to @claim.email %>
+</p>
+<p>
+  <strong><%= I18n.t('activerecord.attributes.claim.address') %>:</strong>
+  <%= @claim.address %>
+</p>
+<p>
+  <strong><%= I18n.t('activerecord.attributes.claim.workplace') %>:</strong>
+  <%= @claim.workplace %>
+</p>
+<p>
+  <strong><%= I18n.t('activerecord.attributes.claim.file') %>:</strong>
+  <%= link_to @claim.file.url, @claim.file.url, target: '_blank' %>
+</p>
+<hr />
+<p><%= I18n.t('claim.dont_reply') %></p>

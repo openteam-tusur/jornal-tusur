@@ -21,35 +21,35 @@ class ClaimsController < MainController
 
   private
 
-    def claim_params
-      params.require(:claim).permit(
-        :user_id,
-        :surname,
-        :name,
-        :patronymic,
-        :phone,
-        :email,
-        :address,
-        :workplace,
-        :file
-      )
-    end
+  def claim_params
+    params.require(:claim).permit(
+      :user_id,
+      :surname,
+      :name,
+      :patronymic,
+      :phone,
+      :email,
+      :address,
+      :workplace,
+      :file
+    )
+  end
 
-    def send_emails_about_new_claim
-      PostmanSender.new({
-        subject: I18n.t('claim.new_claim_email_for_admin_header'),
-        body: render_to_string(partial: 'claims/new_claim_email_for_admin'),
-        emails: [
-          Settings['mail.new_claim.to'],
-          User.with_permissions('admin').map(&:email)
-        ]
-      }).send_emails
+  def send_emails_about_new_claim
+    PostmanSender.new({
+      subject: I18n.t('claim.new_claim_email_for_admin_header'),
+      body: render_to_string(partial: 'claims/new_claim_email_for_admin'),
+      emails: [
+        Settings['mail.new_claim.to'],
+        User.with_permissions('admin').map(&:email)
+      ]
+    }).send_emails
 
-      PostmanSender.new({
-        subject: I18n.t('claim.new_claim_email_for_author_header'),
-        body: render_to_string(partial: 'claims/new_claim_email_for_author'),
-        emails: @claim.email
-      }).send_emails
-    end
+    PostmanSender.new({
+      subject: I18n.t('claim.new_claim_email_for_author_header'),
+      body: render_to_string(partial: 'claims/new_claim_email_for_author'),
+      emails: @claim.email
+    }).send_emails
+  end
 
 end
