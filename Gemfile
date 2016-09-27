@@ -28,6 +28,7 @@ gem 'jquery-colorbox-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'non-stupid-digest-assets'
+gem 'openteam-commons', '~> 0.3.3'
 gem 'paperclip'
 gem 'paperclip-elvfs'
 gem 'pg'
@@ -58,10 +59,11 @@ end
 group :development do
   gem 'annotate'
   gem 'capistrano-auth-subscriber'
-  gem 'openteam-capistrano', '~> 1.0.11'
+  gem 'openteam-capistrano', '~> 1.0.15'
+  gem 'puma'
+  gem 'quiet_assets'
   gem 'rubocop'
   gem 'spring'
-  gem 'quiet_assets'
   gem 'web-console', '~> 2.0'
 end
 

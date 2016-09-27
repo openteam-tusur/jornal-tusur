@@ -6,8 +6,12 @@ app:
   secret:               secret
 
 errors:
-  key:                  key
-  url:                  url
+  key:                  KEY
+  url:                  http://errbit
+
+slack:
+  channel:              channel
+  webhook:              http://webhook
 
 redis:
   url:                  url

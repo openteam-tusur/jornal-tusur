@@ -47,7 +47,7 @@ class Claim < ActiveRecord::Base
       surname,
       name,
       patronymic
-    ].join(' ')
+    ].delete_if(&:blank?).join(' ')
   end
 
   def current_state
