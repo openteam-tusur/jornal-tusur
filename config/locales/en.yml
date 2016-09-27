@@ -27,7 +27,9 @@ en:
     new: 'Send article'
     sended: 'Article was successfully sended.'
     go_to_manage: 'Go to the claim view'
-    new_claim_email_header: 'New claim for journal «Proceedings of TUSUR»'
+    new_claim_email_for_admin_header: 'New claim for journal «Proceedings of TUSUR»'
+    new_claim_email_for_author_header: 'Claim for journal «Proceedings of TUSUR»'
+    created_successfully: 'We have received your request and will soon consider it. After consideration of the application you will receive a notification.'
     dont_reply: 'This letter has been generated automatically. No need to answer it.'
 
   top_header:

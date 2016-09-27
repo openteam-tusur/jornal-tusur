@@ -12,7 +12,7 @@ class ClaimsController < MainController
 
     if verify_recaptcha &&
        @claim.save!
-      send_claim
+      send_emails_about_new_claim
       redirect_to send("#{I18n.locale}_claim_sended_path"), notice: I18n.t('claim.sended')
     else
       render :new
@@ -35,21 +35,21 @@ class ClaimsController < MainController
       )
     end
 
-    def send_claim
-      Postman::Client::Dispatcher.new(host: Settings['postman.url']).send_mail(
-        subject: I18n.t('claim.new_claim_email_header'),
-        body: mail_body.to_str,
-        # see http://stackoverflow.com/questions/9469825/why-uri-escape-fails-when-called-on-actionviewoutputbuffer
+    def send_emails_about_new_claim
+      PostmanSender.new({
+        subject: I18n.t('claim.new_claim_email_for_admin_header'),
+        body: render_to_string(partial: 'claims/new_claim_email_for_admin'),
         emails: [
           Settings['mail.new_claim.to'],
           User.with_permissions('admin').map(&:email)
-        ].flatten.delete_if(&:blank?).uniq,
-        slug: Settings['postman.slug']
-      )
-    end
+        ]
+      }).send_emails
 
-    def mail_body
-      render_to_string(partial: 'claims/new_claim_email')
+      PostmanSender.new({
+        subject: I18n.t('claim.new_claim_email_for_author_header'),
+        body: render_to_string(partial: 'claims/new_claim_email_for_author'),
+        emails: @claim.email
+      }).send_emails
     end
 
 end
