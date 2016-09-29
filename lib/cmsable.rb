@@ -1,6 +1,7 @@
 require 'active_support/concern'
-require 'restclient/components'
 require 'rack/cache'
+require 'rest-client'
+require 'restclient/components'
 
 module Cmsable
 
@@ -17,7 +18,7 @@ module Cmsable
 
   def prepare_locale
     locale = request.path.split('/').second.to_s.to_sym
-    I18n.locale = I18n.available_locales.map(&:to_sym).include?(locale) ? locale : :ru
+    I18n.locale = I18n.available_locales.include?(locale) ? locale : :ru
   end
 
   def check_country
@@ -41,7 +42,10 @@ module Cmsable
   end
 
   def load_cms_data
-    render :file => "#{Rails.root}/public/404", :formats => [:html], :layout => false, :status => 404 and return if request_status == 404
+    render file: "#{Rails.root}/public/404",
+           formats: [:html],
+           layout: false,
+           status: 404 and return if rest_request_status == 404
 
     page_regions.each do |region|
       eval "@#{region} = page.regions.#{region}"
@@ -49,6 +53,7 @@ module Cmsable
 
     @site_title = @site_name.try(:content).try(:body) || 'ТУСУР'
     @page_title = page.title
+    @alternative_title = page.alternative_title
     @navigation_title = page.navigation_title
     @page_meta = page.meta
     @link_to_json = remote_url
@@ -58,12 +63,14 @@ module Cmsable
 
   def detect_robots_in_development
     puts "\n\n"
-    puts "DEBUG ---> #{request.user_agent.to_s}"
+    puts "DEBUG --->"
+    puts "UserAgent: #{request.user_agent.to_s}"
     puts "Current locale: #{I18n.locale}"
     puts "Params: #{params}"
-    puts "\n\n"
+    puts "<---"
+    puts "\n"
 
-    render :nothing => true, status: :forbidden and return if request.user_agent.to_s.match(/\(.*https?:\/\/.*\)/)
+    render nothing: true, status: :forbidden and return if request.user_agent.to_s.match(/\(.*https?:\/\/.*\)/)
   end
 
   def remote_url
@@ -77,28 +84,75 @@ module Cmsable
   def rest_request
     RestClient.enable Rack::CommonLogger
     RestClient.enable Rack::Cache,
-      :metastore => "file:#{Rails.root.join('tmp/rack-cache/meta')}",
-      :entitystore => "file:#{Rails.root.join('tmp/rack-cache/body')}",
-      :verbose => true
+      metastore: "file:#{Rails.root.join('tmp/rack-cache/meta')}",
+      entitystore: "file:#{Rails.root.join('tmp/rack-cache/body')}",
+      verbose: true
 
     @rest_request ||= RestClient::Request.execute(
-      :method => :get,
-      :url => remote_url,
-      :timeout => nil,
-      :headers => {
-        :Accept => 'application/json'
+      method: :get,
+      url: remote_url,
+      timeout: nil,
+      headers: {
+        Accept: 'application/json',
+        timeout: nil
       }
     ) do |response, request, result, &block|
-      response
+      begin
+        {
+          updated_at: Time.zone.now,
+          code: response.code,
+          headers: response.headers,
+          body: response.body.force_encoding('utf-8')
+        }
+      rescue
+        {
+          updated_at: Time.zone.now,
+          code: 404,
+          headers: nil,
+          body: ''
+        }
+      end
     end
   end
 
-  def request_status
-    @request_status ||= rest_request.code
+  def transliterate_remote_url
+    Russian.transliterate URI.decode(remote_url).parameterize('_').gsub('-', '_')
   end
 
-  def request_body
-    @request_body ||= rest_request.body
+  def cache_timeout
+    return 1.minutes if Rails.env.development?
+    return 5.minutes if Rails.env.production?
+  end
+
+  def load_rest_request_json
+    if (defined?(request) && request.host.match(Settings['app.nocache_host'].to_s)) || Rails.env.development?
+      result = String.new(rest_request.to_json)
+    else
+      result = Rails.cache.fetch(transliterate_remote_url) do
+        String.new(rest_request.to_json)
+      end
+      if Time.zone.now - DateTime.parse(JSON.load(result).try(:[], 'updated_at')) > cache_timeout
+        CacheWorker.perform_async(remote_url)
+      end
+    end
+
+    JSON.load result rescue {}
+  end
+
+  def rest_request_json
+    @rest_request_json ||= load_rest_request_json
+  end
+
+  def rest_request_status
+    @rest_request_status ||= rest_request_json['code']
+  end
+
+  def rest_request_headers
+    @rest_request_headers ||= rest_request_json['headers']
+  end
+
+  def rest_request_body
+    @rest_request_body ||= rest_request_json['body']
   end
 
   def page_regions
@@ -111,7 +165,7 @@ module Cmsable
 
   def request_json
     @request_json ||= begin
-                        JSON.load request_body
+                        JSON.load rest_request_body
                       rescue
                         raise 'Response is not a JSON'
                       end
