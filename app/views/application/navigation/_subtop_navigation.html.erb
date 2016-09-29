@@ -1,4 +1,4 @@
-<div class='container-fluid navbar-fixed-top subtop_header'>
+<div class='container-fluid subtop-header'>
   <div class='container'>
     <div class='header'>
       <div class='row'>
@@ -9,14 +9,14 @@
                           expires_in: 20.minutes do %>
             <div class='logotype'>
 
-              <div class='col-xs-10 col-sm-12 col-md-6 col-lg-6 image-wrapper'>
+              <div class='image-wrapper'>
                 <%= link_to I18n.locale == :ru ? '/' : "/#{I18n.locale}", :class => 'image' do %>
                   <%= image_tag 'logotype.png', class: 'img-responsive' %>
                 <% end %>
               </div>
 
-              <div class='col-md-6 col-lg-6 site_name-wrapper hidden-xs hidden-sm'>
-                <%= link_to I18n.t('app.title'), I18n.locale == :ru ? '/' : "/#{I18n.locale}", :class => 'site_name' %>
+              <div class='site-name-wrapper hidden-xs hidden-sm'>
+                <%= link_to I18n.t('app.title'), I18n.locale == :ru ? '/' : "/#{I18n.locale}", :class => 'site-name' %>
               </div>
 
               <button class='navbar-toggle collapsed' type='button' data-toggle='collapse' data-target='#main-navbar' aria-controls='main-navbar' aria-expanded='false'>

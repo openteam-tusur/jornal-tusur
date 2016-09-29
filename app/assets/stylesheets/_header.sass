@@ -274,7 +274,7 @@
         &.navbar-right
           margin-right: 0
 
-  &.subtop_header
+  &.subtop-header
     border-bottom: 1px solid #005baa
     background-color: #fff
     z-index: 8
@@ -294,7 +294,7 @@
         .image
           display: block
 
-      .site_name-wrapper
+      .site-name-wrapper
         padding: 0
         margin-left: -25px
 
@@ -302,7 +302,7 @@
           margin: 0
           padding-left: 15px
 
-        .site_name
+        .site-name
           display: block
           font-size: 1.6rem
           line-height: 2.5
@@ -331,7 +331,7 @@
 
       @media (min-width: $screen-md-min) and (max-width: $screen-md-max)
 
-        .site_name
+        .site-name
           font-size: 1.5rem
 
     .notifications
@@ -341,46 +341,3 @@
         float: left
         margin: 3px 5px 0 0
 
-    .additional-capabilities
-      a
-        +inline-block
-        margin-top: 10px
-        font-size: 14px
-
-        &.cecutient
-          border-right: 1px solid #ccc
-          padding: 0 10px 0 30px
-          margin-right: 5px
-          background: transparent image_url('cecutient.jpg') no-repeat left center
-
-        &.language
-          padding-left: 30px
-
-          &.en
-            background: transparent image_url('languages/eng.jpg') no-repeat left center
-
-          &.ru
-            background: transparent image_url('languages/rus.jpg') no-repeat left center
-
-      @media (max-width: $screen-xs-max)
-
-        float: left !important
-        margin-left: -15px
-
-        a
-          &.cecutient
-            overflow: hidden
-            content: ''
-            width: 0
-            text-indent: -999em
-            padding-left: 14px
-            padding-right: 14px
-
-
-          &.language
-            overflow: hidden
-            content: ''
-            width: 0
-            text-indent: -999em
-            padding-left: 14px
-            padding-right: 14px
