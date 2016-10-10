@@ -2,43 +2,19 @@
   <div class='container'>
     <div class='header'>
       <div class='row'>
-        <div class='col-md-7 col-sm-6 col-xs-12'>
-
-          <% cache_unless request.host.match(Settings['app.nocache_host'].to_s),
-                          "#{request.fullpath.to_s.parameterize('_').gsub('-', '_')}_subtop_navigation",
-                          expires_in: 20.minutes do %>
-            <div class='logotype'>
-
-              <div class='image-wrapper'>
-                <%= link_to I18n.locale == :ru ? '/' : "/#{I18n.locale}", :class => 'image' do %>
-                  <%= image_tag 'logotype.png', class: 'img-responsive' %>
-                <% end %>
-              </div>
-
-              <div class='site-name-wrapper hidden-xs hidden-sm'>
-                <%= link_to I18n.t('app.title'), I18n.locale == :ru ? '/' : "/#{I18n.locale}", :class => 'site-name' %>
-              </div>
-
-              <button class='navbar-toggle collapsed' type='button' data-toggle='collapse' data-target='#main-navbar' aria-controls='main-navbar' aria-expanded='false'>
-                <span class='sr-only'>Toggle navigation</span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-              </button>
-
-              <div class='visible-xs'>
-                <nav id='main-navbar' class='navbar-collapse collapse' aria-expanded='true'>
-                  <ul class='nav navbar-nav'>
-                    <%= render partial: 'public_navigation_items' %>
-                  </ul>
-                </nav>
-              </div>
+        <div class='col-md-7 col-sm-7 col-xs-12'>
+          <div class='logotype'>
+            <div class='image-wrapper'>
+              <%= link_to '/', :class => 'image' do %>
+                <%= image_tag 'logotype.png', class: 'img-responsive' %>
+              <% end %>
             </div>
-          <% end %>
-
+            <div class='site-name-wrapper hidden-sm hidden-xs'>
+              <%= link_to I18n.t('app.title').html_safe, I18n.locale == :ru ? '/' : "/#{I18n.locale}", :class => 'site-name' %>
+            </div>
+          </div>
         </div>
-
-        <div class='col-md-5 col-sm-6 col-xs-12'>
+        <div class='col-md-5 col-sm-5 col-xs-12'>
           <div class='additional-capabilities pull-right'>
             <%= link_to 'English version', @page.related_pages.try(:[], 'en') || '/en', class: 'language en' if I18n.locale == :ru %>
             <%= link_to 'Русская версия', @page.related_pages.try(:[], 'ru') || '/ru', class: 'language ru' if I18n.locale == :en %>
