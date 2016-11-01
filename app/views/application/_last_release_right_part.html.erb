@@ -4,7 +4,7 @@
   <%= content_tag(:div, class: 'right-links') do %>
     <%= content_tag(:ul) do %>
       <%= content_tag(:li, link_to(I18n.t('app.requirements'), '/ru/rukovodstvo-dlya-avtorov')) if I18n.locale == :ru %>
-      <%= content_tag(:li, link_to(I18n.t('app.template'), 'https://storage.tusur.ru/files/44729/Shablon.doc')) if I18n.locale == :ru %>
+      <%= content_tag(:li, link_to(I18n.t('app.template'), 'https://storage.tusur.ru/files/52017/Shablon_2016.doc')) if I18n.locale == :ru %>
       <%= content_tag(:li, link_to(I18n.t('app.requirements'), '/en/information-for-authors')) if I18n.locale == :en %>
     <% end %>
   <% end %>
