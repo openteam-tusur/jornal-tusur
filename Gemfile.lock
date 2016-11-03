@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/openteam-tusur/auth_client
-  revision: 6c8b820338746c7dc902d9b98188e0007801f0cc
+  revision: af5f3aa92069d9bf257acfa9c16d2295be56b9e6
   specs:
-    auth_client (0.0.3)
+    auth_client (0.0.5)
       activesupport
       auth_redis_user_connector
       configliere
@@ -153,7 +153,7 @@ GEM
       multi_json (>= 1.1)
     connection_pool (2.2.0)
     curb (0.9.3)
-    daemons (1.2.3)
+    daemons (1.2.4)
     debug_inspector (0.0.2)
     default_value_for (3.0.1)
       activerecord (>= 3.2.0, < 5.0)
@@ -212,9 +212,8 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
     netrc (0.11.0)
-    nokogiri (1.6.8)
+    nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
     non-stupid-digest-assets (1.0.8)
       sprockets (>= 2.0)
     openteam-capistrano (1.0.15)
@@ -245,7 +244,6 @@ GEM
     parser (2.3.1.2)
       ast (~> 2.2)
     pg (0.18.4)
-    pkg-config (1.1.7)
     powerpack (0.1.1)
     pr_geohash (1.0.0)
     progress_bar (1.0.5)
@@ -473,4 +471,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.13.1
+   1.13.6

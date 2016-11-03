@@ -4,8 +4,8 @@ class Permission < ActiveRecord::Base
 
   acts_as_auth_client_permission roles: [:admin, :manager]
 
-   validates_uniqueness_of :role, :scope => :user_id,
-    :message => 'У пользователя не может быть несколько одинаковых ролей'
+   validates_uniqueness_of :role, scope: :user_id,
+     message: 'У пользователя не может быть несколько одинаковых ролей'
 
 end
 
