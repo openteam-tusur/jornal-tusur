@@ -63,6 +63,7 @@ group :development do
   gem 'capistrano-auth-subscriber'
   gem 'openteam-capistrano', '~> 1.0.15'
   gem 'puma'
+  gem 'rails-erd'
   gem 'quiet_assets'
   gem 'rubocop'
   gem 'spring'
