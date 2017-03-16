@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'aasm'
 gem 'acts-as-taggable-on'
-gem 'airbrake'
 gem 'angular_rails_csrf'
 gem 'attribute_normalizer'
 gem 'auth_client', git: 'https://github.com/openteam-tusur/auth_client'
@@ -61,6 +60,7 @@ end
 group :development do
   gem 'annotate'
   gem 'capistrano-auth-subscriber'
+  gem 'capistrano-db-tasks', '0.4'
   gem 'openteam-capistrano', '~> 1.0.15'
   gem 'puma'
   gem 'rails-erd'
