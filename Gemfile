@@ -60,7 +60,7 @@ end
 group :development do
   gem 'annotate'
   gem 'capistrano-auth-subscriber'
-  gem 'capistrano-db-tasks', '0.4'
+  gem 'capistrano-db-tasks', '0.4', require: false
   gem 'openteam-capistrano', '~> 1.0.15'
   gem 'puma'
   gem 'rails-erd'
